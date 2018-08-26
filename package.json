@@ -4,17 +4,31 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "tsc": "tsc",
+    "build": "npm run clean && npm run tsc --",
+    "clean": "rimraf lib",
+    "watch": "npm run build -- -w"
   },
   "dependencies": {
     "react": "16.4.1",
-    "react-native": "0.56.0"
+    "react-native": "0.56.0",
+    "react-native-router-flux": "^4.0.0-beta.31",
+    "webpack-visualizer-plugin": "^0.1.11",
+    "gulp": "^3.9.1",
+    "gulp-iconfont": "^9.1.0",
+    "gulp-typescript": "^4.0.2"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
     "babel-preset-react-native": "^5",
     "jest": "23.5.0",
-    "react-test-renderer": "16.4.1"
+    "react-test-renderer": "16.4.1",
+    "haul": "^1.0.0-rc.1",
+    "react-native-bundle-visualizer": "^1.2.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2",
+    "typings": "^2.1.1"
   },
   "jest": {
     "preset": "react-native"
