@@ -7,6 +7,7 @@
 # Xcode
 #
 lib/
+/lib/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -57,3 +58,5 @@ buck-out/
 *.jsbundle
 
 package-lock.json
+lib/*
+lib/routes/index.js

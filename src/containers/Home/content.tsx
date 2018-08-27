@@ -5,38 +5,26 @@ import {
     View,
     TouchableOpacity
 } from 'react-native'
-import { getAllPokemon, getPokemonData } from '../../util/api'
-import ItemPokemon from '../../components/itemPokemon'
+import MenuItem from '../../components/MenuItem'
 import { Actions } from 'react-native-router-flux'
 import styles from './style'
 
 export default class Home extends Component<any, any> {
-    constructor(props) {
-        super(props)
-        this.state = {
-            pokemones: []
-        }
-    }
-
-    async componentWillMount() {
-        let pokemones = await getAllPokemon()
-        let pokemon = await getPokemonData('5')
-        this.setState({ pokemones, pokemon })
-    }
-
     render() {
         return (
             <View>
                 <Text> {`HOME POKEDEX`}</Text>
                 <View style={styles.container}>
-                    <FlatList
-                        data={this.state.pokemones.results}
-                        renderItem={({ item }) =>
-                            <TouchableOpacity
-                                onPress={() => { Actions.PokemonDetail({ item }) }}>
-                                <ItemPokemon name={item.name} />
-                            </TouchableOpacity>
-                        } />
+                    <View style={styles.menuItem}>
+                        <TouchableOpacity onPress={() => { Actions.Items() }}>
+                            <MenuItem name={'Items'} />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.menuItem}>
+                        <TouchableOpacity onPress={() => { Actions.Pokemon() }}>
+                            <MenuItem name={'Pokemones'} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         )
