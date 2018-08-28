@@ -7,7 +7,6 @@
 # Xcode
 #
 lib/
-/lib/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -32,6 +31,7 @@ build/
 .gradle
 local.properties
 *.iml
+
 # node.js
 #
 node_modules/
@@ -58,5 +58,3 @@ buck-out/
 *.jsbundle
 
 package-lock.json
-lib/*
-lib/routes/index.js
