@@ -1,24 +1,21 @@
 
 export default {
     container: {
-        backgroundColor: 'green'
+        backgroundColor: 'red'
+    },
+    contentContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        padding: 5,
     },
     item: {
         alignItems: 'center',
         backgroundColor: 'rgba(255, 255, 255, 1.0)',
         margin: 10,
+        flexDirection: 'row',
         justifyContent: 'center',
         overflow: 'hidden',
-        height: 200,
+        height: 60,
         borderRadius: 10
-    },
-    sprite: {
-        width: '100%',
-        height: '100%',
-    },
-    spriteContainer: {
-        width: 150,
-        height: 150,
-        padding: 5,
     }
 }

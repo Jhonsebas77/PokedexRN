@@ -15,15 +15,22 @@ export default class Home extends Component<any, any> {
             <View>
                 <Text> {`HOME POKEDEX`}</Text>
                 <View style={styles.container}>
-                    <View style={styles.menuItem}>
-                        <TouchableOpacity onPress={() => { Actions.Items() }}>
-                            <MenuItem name={'Items'} />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.menuItem}>
-                        <TouchableOpacity onPress={() => { Actions.Pokemon() }}>
-                            <MenuItem name={'Pokemones'} />
-                        </TouchableOpacity>
+                    <View style={styles.contentContainer}>
+                        <View style={styles.menuItem}>
+                            <TouchableOpacity onPress={() => { Actions.Items() }}>
+                                <MenuItem name={'Items'} />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.menuItem}>
+                            <TouchableOpacity onPress={() => { Actions.Pokemon() }}>
+                                <MenuItem name={'Pokedex'} />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.menuItem}>
+                            <TouchableOpacity onPress={() => { Actions.Moves() }}>
+                                <MenuItem name={'Movimientos'} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </View>

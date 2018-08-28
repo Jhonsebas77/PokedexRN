@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { getPokemonURL } from '../../util/api'
 import styles from './style'
@@ -18,14 +18,8 @@ export default class PokemonDetail extends Component {
         this.setState({ pokemon })
     }
 
-    getAbilities(abilities) {
-        Object.keys(abilities).map((item, index) => {
-            return <Text key={`${index}`}>{item}</Text>
-        })
-    }
-
     render() {
-        const { name, id, abilities } = this.state.pokemon
+        const { name, id, types, sprites } = this.state.pokemon
         return (
             <View style={styles.container}>
                 <TouchableOpacity
@@ -33,12 +27,23 @@ export default class PokemonDetail extends Component {
                     onPress={() => { Actions.pop() }}>
                     <Text>BACK</Text>
                 </TouchableOpacity>
-                <Text>
-                    {id && name ? `#${id} ${name}` : '-- -----'}
-                </Text>
-                <Text>
-                    {abilities ? this.getAbilities(abilities) : 'Ninguna'}
-                </Text>
+                <View style={styles.item}>
+                    <View style={styles.spriteContainer}>
+                        {sprites ?
+                            <Image style={styles.sprite}
+
+                                source={{ uri: sprites.front_default }} />
+                            : undefined}
+                    </View>
+                    <Text>
+                        {id && name ? `#${id} ${name}` : '-- -----'}
+                    </Text>
+                    <Text>
+                        {types && types[0] ? types[0].type.name : '----'}
+                        {'/'}
+                        {types && types[1] ? types[1].type.name : '----'}
+                    </Text>
+                </View >
             </View >
         )
     }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import styles from './style'
 
 export default class ItemPokemon extends Component<ChipProps, ChipState> {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class ItemPokemon extends Component<ChipProps, ChipState> {
         const { name } = this.props
         // ({ name }) => {
         return (
-            <View style={{ backgroundColor: 'blue', height: 100, width: 300 }} >
+            <View style={styles.item}>
                 <Text> {name} </Text>
             </View>
         )

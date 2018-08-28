@@ -20,8 +20,7 @@ export default class Pokemon extends Component<any, any> {
 
     async componentWillMount() {
         let pokemones = await getAllPokemon()
-        let pokemon = await getPokemonData('5')
-        this.setState({ pokemones, pokemon })
+        this.setState({ pokemones })
     }
 
     render() {

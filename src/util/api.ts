@@ -31,4 +31,15 @@ export const getPokemonURL =
       console.error(error)
     })
 }
+export const getAllItems =
+  () => {
+    return fetch(`https://pokeapi.co/api/v2/item/`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
 
