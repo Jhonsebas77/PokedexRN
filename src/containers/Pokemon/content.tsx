@@ -5,7 +5,7 @@ import {
     View,
     TouchableOpacity
 } from 'react-native'
-import { getAllPokemon, getPokemonData } from '../../util/api'
+import { getAllPokemon } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'

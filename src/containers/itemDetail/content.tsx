@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, Image } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { getPokemonURL } from '../../util/api'
+import { newString } from '../../Helpers/Validators'
 import styles from './style'
 
 export default class ItemDetail extends Component {
@@ -30,13 +31,11 @@ export default class ItemDetail extends Component {
                 <View style={styles.item}>
                     <View style={styles.spriteContainer}>
                         {sprites ?
-                            <Image style={styles.sprite}
-
-                                source={{ uri: sprites.default }} />
-                            : undefined}
+                         <Image style={styles.sprite} source={{ uri: sprites.default }} />
+                        : undefined}
                     </View>
                     <Text>
-                        {name ? `${name}` : '-----'}
+                        {name ? `${newString(name)}` : '-----'}
                     </Text>
                 </View >
             </View >

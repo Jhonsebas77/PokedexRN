@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
     Text,
     FlatList,
@@ -8,6 +8,7 @@ import {
 import { getAllItems } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
+import { newString } from '../../Helpers/Validators'
 import styles from './style'
 
 export default class Home extends Component<any, any> {
@@ -33,7 +34,7 @@ export default class Home extends Component<any, any> {
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.ItemDetail({ item }) }}>
-                                <ItemPokemon name={item.name} />
+                                <ItemPokemon name={newString(item.name)} />
                             </TouchableOpacity>
                         } />
                 </View>
