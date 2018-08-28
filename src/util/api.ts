@@ -42,4 +42,14 @@ export const getAllItems =
         console.error(error)
       })
   }
-
+  export const getItemData =
+  (id) => {
+    return fetch(`http://pokeapi.co/api/v2/item/${id}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }

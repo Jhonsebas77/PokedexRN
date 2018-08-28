@@ -32,7 +32,7 @@ export default class Home extends Component<any, any> {
                         data={this.state.Items.results}
                         renderItem={({ item }) =>
                             <TouchableOpacity
-                                onPress={() => { Actions.PokemonDetail({ item }) }}>
+                                onPress={() => { Actions.ItemDetail({ item }) }}>
                                 <ItemPokemon name={item.name} />
                             </TouchableOpacity>
                         } />
