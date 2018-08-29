@@ -31,8 +31,9 @@ export default class ItemDetail extends Component {
                 <View style={styles.item}>
                     <View style={styles.spriteContainer}>
                         {sprites ?
-                         <Image style={styles.sprite} source={{ uri: sprites.default }} />
-                        : undefined}
+                         <Image style={styles.sprite} source={{ uri: sprites.default }} /> :
+                         <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
+                        }
                     </View>
                     <Text>
                         {name ? `${newString(name)}` : '-----'}

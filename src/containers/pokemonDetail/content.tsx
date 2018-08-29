@@ -30,10 +30,9 @@ export default class PokemonDetail extends Component {
                 <View style={styles.item}>
                     <View style={styles.spriteContainer}>
                         {sprites ?
-                            <Image style={styles.sprite}
-
-                                source={{ uri: sprites.front_default }} />
-                            : undefined}
+                            <Image style={styles.sprite} source={{ uri: sprites.front_default }} /> :
+                            <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
+                        }
                     </View>
                     <Text>
                         {id && name ? `#${id} ${_.capitalize(name)}` : '-- -----'}
