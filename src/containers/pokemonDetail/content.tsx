@@ -24,7 +24,6 @@ export default class PokemonDetail extends Component {
         return (
             <View style={styles.container}>
                 <TouchableOpacity
-                    // style={styles.btnContainer}
                     onPress={() => { Actions.pop() }}>
                     <Text>BACK</Text>
                 </TouchableOpacity>

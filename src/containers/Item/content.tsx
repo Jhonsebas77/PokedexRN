@@ -1,30 +1,36 @@
 import React, { Component } from 'react'
-import {
-    Text,
-    FlatList,
-    View,
-    TouchableOpacity
-} from 'react-native'
+import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllItems } from '../../util/api'
-import ItemPokemon from '../../components/itemPokemon'
+import ItemItem from '../../components/ItemItem'
 import { Actions } from 'react-native-router-flux'
 import { newString } from '../../Helpers/Validators'
+import Loading from '../../components/Loading';
 import styles from './style'
 
 export default class Home extends Component<any, any> {
     constructor(props) {
         super(props)
         this.state = {
-            Items: []
+            Items: [],
+            loaded: false
         }
     }
 
     async componentWillMount() {
         let Items = await getAllItems()
-        this.setState({ Items })
+        this.setState({ Items, loaded: true })
+    }
+
+    renderLoadingView() {
+        return (
+            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Items'} />
+        )
     }
 
     render() {
+        if (!this.state.loaded) {
+            return this.renderLoadingView();
+        }
         return (
             <View>
                 <Text> {`Items`}</Text>
@@ -34,7 +40,7 @@ export default class Home extends Component<any, any> {
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.ItemDetail({ item }) }}>
-                                <ItemPokemon name={newString(item.name)} />
+                                <ItemItem name={newString(item.name)} />
                             </TouchableOpacity>
                         } />
                 </View>

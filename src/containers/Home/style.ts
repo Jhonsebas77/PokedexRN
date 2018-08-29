@@ -1,7 +1,13 @@
 
 export default {
     container: {
-        backgroundColor: 'red'
+        backgroundColor: 'red',
+        width: '100%',
+        height: '100%'
+    },
+    loading: {
+        width: '100%',
+        height: '100%',
     },
     contentContainer: {
         flexDirection: 'row',
@@ -9,7 +15,6 @@ export default {
         padding: 5,
     },
     menuItem: {
-        backgroundColor: 'yellow',
         padding: 5,
         flex: 1
     }
