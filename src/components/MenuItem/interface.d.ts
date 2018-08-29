@@ -1,4 +1,4 @@
 interface ItemProps {
-    name: String,
-    source: String
+    name: string,
+    icon: any
 }

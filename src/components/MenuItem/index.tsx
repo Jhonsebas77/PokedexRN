@@ -14,7 +14,7 @@ export default class MenuItem extends Component<ItemProps> {
                     <Text> {name} </Text>
                 </View>
                 <View style={styles.spriteContainer}>
-                    <Image style={styles.sprite} source={{ uri: icon }} />
+                    <Image style={styles.sprite} source={icon} />
                 </View>
             </View>
         )

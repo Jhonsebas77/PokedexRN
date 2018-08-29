@@ -7,12 +7,12 @@ export default {
     },
     loading: {
         width: '100%',
-        height: '100%',
+        height: '100%'
     },
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 5,
+        padding: 5
     },
     menuItem: {
         padding: 5,

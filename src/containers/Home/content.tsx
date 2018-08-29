@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { View, TouchableOpacity, ImageBackground } from 'react-native'
 import MenuItem from '../../components/MenuItem'
 import { Actions } from 'react-native-router-flux'
@@ -13,17 +13,17 @@ export default class Home extends Component<any, any> {
                         <View style={styles.contentContainer}>
                             <View style={styles.menuItem}>
                                 <TouchableOpacity onPress={() => { Actions.Items() }}>
-                                    <MenuItem name={'ItemDex'} source={require('../../Assets/images/Icon_Item.png')} />
+                                    <MenuItem name={'ItemDex'} icon={require('../../Assets/images/Icon_Item.png')} />
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.menuItem}>
                                 <TouchableOpacity onPress={() => { Actions.Pokemon() }}>
-                                    <MenuItem name={'Pokedex'} source={'../../Assets/images/Icon_Pokedex.png'} />
+                                    <MenuItem name={'Pokedex'} icon={require('../../Assets/images/Icon_Pokedex.png')} />
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.menuItem}>
                                 <TouchableOpacity onPress={() => { Actions.Moves() }}>
-                                    <MenuItem name={'Movimientos'} source={'../../Assets/images/Icon_Item.png'} />
+                                    <MenuItem name={'Movimientos'} icon={require('../../Assets/images/Icon_Item.png')} />
                                 </TouchableOpacity>
                             </View>
                         </View>
