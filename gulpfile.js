@@ -2,11 +2,15 @@
 const gulp = require("gulp");
 const ts = require("gulp-typescript");
 const tsProject = ts.createProject("tsconfig.json");
+const RESOURCE_FILE = ['src/Assets/**/**'];
 
 // --------------------------------------------------------
 // Copying Resources
 // --------------------------------------------------------
-
+gulp.task('resource-copy', function () {
+    return gulp.src(RESOURCE_FILE)
+        .pipe(gulp.dest('lib/Assets/'));
+});
 // --------------------------------------------------------
 // config task
 // --------------------------------------------------------
