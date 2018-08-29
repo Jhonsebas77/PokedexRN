@@ -14,11 +14,14 @@ export default {
     },
     sprite: {
         width: '100%',
-        height: '100%',
+        height: '100%'
     },
     spriteContainer: {
         width: 150,
         height: 150,
-        padding: 5,
+        padding: 5
+    },
+    title: {
+        color: 'red'
     }
 }
