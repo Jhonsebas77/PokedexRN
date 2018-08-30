@@ -14,11 +14,17 @@ export default class Pokemon extends Component<any, any> {
             pokemones: [],
             loaded: false
         }
+        this.getSourceImage = this.getSourceImage.bind(this)
     }
 
     async componentWillMount() {
         let pokemones = await getAllPokemon()
         this.setState({ pokemones, loaded: true })
+    }
+
+    getSourceImage(id) {
+        let url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`
+        return url
     }
 
     renderLoadingView() {
@@ -37,10 +43,13 @@ export default class Pokemon extends Component<any, any> {
                 <View style={styles.container}>
                     <FlatList
                         data={this.state.pokemones.results}
-                        renderItem={({ item }) =>
+                        renderItem={({ item, index }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.PokemonDetail({ item }) }}>
-                                <ItemPokemon name={_.capitalize(item.name)} />
+                                <ItemPokemon
+                                    name={_.capitalize(item.name)}
+                                    imageSource={(index)=> this.getSourceImage(index)}
+                                />
                             </TouchableOpacity>
                         } />
                 </View>

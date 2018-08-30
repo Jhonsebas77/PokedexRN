@@ -23,7 +23,7 @@ export default class Home extends Component<any, any> {
                             </View>
                             <View style={styles.menuItem}>
                                 <TouchableOpacity onPress={() => { Actions.Moves() }}>
-                                    <MenuItem name={'Movimientos'} icon={require('../../Assets/images/Icon_Item.png')} />
+                                    <MenuItem name={'Movimientos'} icon={require('../../Assets/images/Icon_Moves.png')} />
                                 </TouchableOpacity>
                             </View>
                         </View>

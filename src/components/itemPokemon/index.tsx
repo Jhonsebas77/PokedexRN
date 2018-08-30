@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import styles from './style'
 
 export default class ItemPokemon extends Component<ChipProps, ChipState> {
@@ -7,10 +7,12 @@ export default class ItemPokemon extends Component<ChipProps, ChipState> {
         super(props)
     }
     render() {
-        const { name } = this.props
-        // ({ name }) => {
+        const { name, imageSource } = this.props
         return (
             <View style={styles.itemPokemon}>
+                <View style={styles.spriteContainer}>
+                    <Image style={styles.sprite} source={imageSource} />
+                </View>
                 <Text> {name} </Text>
             </View>
         )

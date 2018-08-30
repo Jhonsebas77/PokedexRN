@@ -17,5 +17,14 @@ export default {
         overflow: 'hidden',
         height: 60,
         borderRadius: 10
+    },
+    sprite: {
+        width: 90,
+        height: 90
+    },
+    spriteContainer: {
+        width: 100,
+        height: 100,
+        padding: 5
     }
 }
