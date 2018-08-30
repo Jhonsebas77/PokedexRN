@@ -1,6 +1,6 @@
 export const getAllPokemon =
   () => {
-    return fetch(`http://pokeapi.co/api/v2/pokemon/`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon/`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -11,7 +11,7 @@ export const getAllPokemon =
   }
 export const getPokemonData =
 (id) => {
-  return fetch(`http://pokeapi.co/api/v2/pokemon/${id}`)
+  return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     .then((response) => response.json())
     .then((responseJson) => {
       return responseJson
@@ -44,7 +44,7 @@ export const getAllItems =
   }
   export const getItemData =
   (id) => {
-    return fetch(`http://pokeapi.co/api/v2/item/${id}`)
+    return fetch(`https://pokeapi.co/api/v2/item/${id}`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson

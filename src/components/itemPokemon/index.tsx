@@ -7,6 +7,9 @@ export default class ItemPokemon extends Component<ChipProps, ChipState> {
         super(props)
     }
     render() {
+        console.log('====================================')
+        console.log('ItemPokemon this.props', this.props)
+        console.log('====================================')
         const { name, imageSource } = this.props
         return (
             <View style={styles.itemPokemon}>

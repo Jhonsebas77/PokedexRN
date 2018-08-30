@@ -4,7 +4,7 @@ import { getAllPokemon } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading'
 import styles from './style'
 
 export default class Pokemon extends Component<any, any> {
@@ -14,7 +14,6 @@ export default class Pokemon extends Component<any, any> {
             pokemones: [],
             loaded: false
         }
-        this.getSourceImage = this.getSourceImage.bind(this)
     }
 
     async componentWillMount() {
@@ -23,7 +22,7 @@ export default class Pokemon extends Component<any, any> {
     }
 
     getSourceImage(id) {
-        let url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${id}.png`
+        let url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/00${id}.png`
         return url
     }
 
@@ -34,21 +33,25 @@ export default class Pokemon extends Component<any, any> {
     }
 
     render() {
-        if (!this.state.loaded) {
-            return this.renderLoadingView();
+        const { loaded, pokemones } = this.state
+        if (!loaded) {
+            return this.renderLoadingView()
         }
+        console.log('====================================')
+        console.log('state Pokemon', this.state)
+        console.log('====================================')
         return (
             <View>
                 <Text> {`Pokemones`}</Text>
                 <View style={styles.container}>
                     <FlatList
-                        data={this.state.pokemones.results}
+                        data={pokemones.results}
                         renderItem={({ item, index }) =>
                             <TouchableOpacity
-                                onPress={() => { Actions.PokemonDetail({ item }) }}>
+                                onPress={() => { Actions.PokemonDetail({ item, index }) }}>
                                 <ItemPokemon
                                     name={_.capitalize(item.name)}
-                                    imageSource={(index)=> this.getSourceImage(index)}
+                                    imageSource={{ uri: this.getSourceImage(index + 1) }}
                                 />
                             </TouchableOpacity>
                         } />
