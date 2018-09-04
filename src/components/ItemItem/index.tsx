@@ -7,11 +7,11 @@ export default class ItemItem extends Component<IitemProps, IitemState> {
         super(props)
     }
     render() {
-        const { name } = this.props
+        const { name, itemSpriteSource } = this.props
         return (
             <View style={styles.item}>
                 <View>
-                    <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
+                    <Image style={styles.sprite} source={itemSpriteSource} />
                 </View>
                 <View>
                     <Text style={styles.nameItem}> {name} </Text>

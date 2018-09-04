@@ -3,7 +3,7 @@ import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllItems } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import { Actions } from 'react-native-router-flux'
-import { newString } from '../../Helpers/Validators'
+import { newString, getItemSpriteSource } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import styles from './style'
 
@@ -42,7 +42,10 @@ export default class Home extends Component<ItemProps, ItemState> {
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.ItemDetail({ item }) }}>
-                                <ItemItem name={newString((item as any).name)} />
+                                <ItemItem
+                                    name={newString((item as any).name)}
+                                    itemSpriteSource={{ uri: getItemSpriteSource((item as any).name) }}
+                                />
                             </TouchableOpacity>
                         } />
                 </View>

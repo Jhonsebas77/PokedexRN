@@ -10,6 +10,19 @@ export const newString = (value: string) => {
         return undefined
     }
 }
+
+export const newStringItem = (value: string) => {
+    if (value) {
+        const split = value.split('-')
+        const partOne = String(split[0])
+        const partTwo = split[1] ? String(split[1]) : ''
+        const newsString = `${partOne}${partTwo}`
+        return newsString
+    } else {
+        return undefined
+    }
+}
+
 export const paddingNumber = (id: number) => {
     const number = (id < 10 ? '00' : id < 100 ? '0' : '') + id
     return number
@@ -17,6 +30,12 @@ export const paddingNumber = (id: number) => {
 
 export const getTypeSource = (type: string) => {
     let urlType = `https://www.serebii.net/pokedex-bw/type/${type}.gif`
+    return urlType
+}
+
+export const getItemSpriteSource = (item: string) => {
+    let nitem = newStringItem(item)
+    let urlType = `https://www.serebii.net/itemdex/sprites/${nitem}.png`
     return urlType
 }
 

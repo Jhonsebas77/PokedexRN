@@ -33,7 +33,7 @@ export const getPokemonURL =
 }
 export const getAllItems =
   () => {
-    return fetch(`https://pokeapi.co/api/v2/item/`)
+    return fetch(`https://pokeapi.co/api/v2/item/?limit=100`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson

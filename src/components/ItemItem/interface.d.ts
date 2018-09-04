@@ -1,5 +1,6 @@
 interface IitemProps {
-    name: any
+    name: any,
+    itemSpriteSource: any
 }
 interface IitemState {
 
