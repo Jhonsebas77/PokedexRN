@@ -1,18 +1,10 @@
-interface ChipProps {
-    pressed: number,
+interface ItemPkmnProps {
     name: any,
-    text: string,
-    subtext?: string,
-    onPress: any,
-    image?: string,
-    icon?: string,
-    index?: number,
-    isLast?: boolean,
-    imageSource: any,
-    gender?: string
+    imageSource?: any,
+    uri?:any
 }
-interface ChipState {
-    name: any,
-    imageSource: any,
-    widthChip: any
+interface ItemPkmnState {
+    name?: any,
+    imageSource?: any,
+    uri?:any
 }

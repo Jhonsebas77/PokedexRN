@@ -1,7 +1,6 @@
 
 export default {
     container: {
-        backgroundColor: 'red',
         width: '100%',
         height: '100%'
     },

@@ -22,7 +22,8 @@ export default class Pokemon extends Component<any, any> {
     }
 
     getSourceImage(id) {
-        let url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/00${id}.png`
+        const number = (id < 10 ? '00' : id < 100 ? '0' : '') + id
+        let url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${number}.png`
         return url
     }
 
@@ -37,9 +38,6 @@ export default class Pokemon extends Component<any, any> {
         if (!loaded) {
             return this.renderLoadingView()
         }
-        console.log('====================================')
-        console.log('state Pokemon', this.state)
-        console.log('====================================')
         return (
             <View>
                 <Text> {`Pokemones`}</Text>
