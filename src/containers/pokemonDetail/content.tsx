@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, Image } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import { Text, View, Image } from 'react-native'
 import { getPokemonURL } from '../../util/api'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 
-export default class PokemonDetail extends Component {
+export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     constructor(props) {
         super(props)
         this.state = {

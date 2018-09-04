@@ -4,10 +4,10 @@ import { getAllItems } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import { Actions } from 'react-native-router-flux'
 import { newString } from '../../Helpers/Validators'
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading'
 import styles from './style'
 
-export default class Home extends Component<any, any> {
+export default class Home extends Component<ItemProps, ItemState> {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,19 +28,21 @@ export default class Home extends Component<any, any> {
     }
 
     render() {
-        if (!this.state.loaded) {
-            return this.renderLoadingView();
+        const { loaded, Items } = this.state
+        const { results } = Items
+        if (!loaded) {
+            return this.renderLoadingView()
         }
         return (
             <View>
                 <Text> {`Items`}</Text>
                 <View style={styles.container}>
                     <FlatList
-                        data={this.state.Items.results}
+                        data={results}
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.ItemDetail({ item }) }}>
-                                <ItemItem name={newString(item.name)} />
+                                <ItemItem name={newString((item as any).name)} />
                             </TouchableOpacity>
                         } />
                 </View>
@@ -48,4 +50,3 @@ export default class Home extends Component<any, any> {
         )
     }
 }
-

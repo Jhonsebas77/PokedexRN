@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './style'
 
-export default class ItemPokemon extends Component<ChipProps, ChipState> {
+export default class ItemItem extends Component<IitemProps, IitemState> {
     constructor(props) {
         super(props)
     }
@@ -15,7 +15,6 @@ export default class ItemPokemon extends Component<ChipProps, ChipState> {
                 </View>
                 <View>
                     <Text style={styles.nameItem}> {name} </Text>
-                    <Text> {'Descripcion Item'} </Text>
                 </View>
             </View>
         )

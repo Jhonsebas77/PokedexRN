@@ -5,7 +5,7 @@ import { getPokemonURL } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
 import styles from './style'
 
-export default class ItemDetail extends Component {
+export default class ItemDetail extends Component<ItemDetailProps, ItemDetailState> {
     constructor(props) {
         super(props)
         this.state = {

@@ -7,7 +7,7 @@ import _ from '../../Helpers/Utilities'
 import Loading from '../../components/Loading'
 import styles from './style'
 
-export default class Pokemon extends Component<any, any> {
+export default class Pokemon extends Component<PkmnProps, PkmnState> {
     constructor(props) {
         super(props)
         this.state = {
@@ -35,6 +35,7 @@ export default class Pokemon extends Component<any, any> {
 
     render() {
         const { loaded, pokemones } = this.state
+        const { results } = pokemones
         if (!loaded) {
             return this.renderLoadingView()
         }
@@ -43,12 +44,12 @@ export default class Pokemon extends Component<any, any> {
                 <Text> {`Pokemones`}</Text>
                 <View style={styles.container}>
                     <FlatList
-                        data={pokemones.results}
+                        data={results}
                         renderItem={({ item, index }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.PokemonDetail({ item, index }) }}>
                                 <ItemPokemon
-                                    name={_.capitalize(item.name)}
+                                    name={_.capitalize((item as any).name)}
                                     imageSource={{ uri: this.getSourceImage(index + 1) }}
                                 />
                             </TouchableOpacity>

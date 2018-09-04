@@ -1,13 +1,11 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, Platform } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
 import { Actions } from 'react-native-router-flux'
-import { BoxShadow } from 'react-native-shadow'
 import _ from '../../../Helpers/Utilities'
 import styles from './style'
 
 const isIos = Platform.OS === 'ios'
-export default ({ shadow, contentLeft, contentRight, onBack = (() => Actions.pop()), children,
+export default ({  contentLeft, contentRight, onBack = (() => Actions.pop()), children,
     justifyChildren = true }: any) => {
     const rightTitle = contentRight ? (isIos ? _.capitalize(contentRight.title) :
         _.upper(contentRight.title)) : ''

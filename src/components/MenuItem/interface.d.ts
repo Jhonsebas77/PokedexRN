@@ -1,4 +1,4 @@
-interface ItemProps {
-    name: string,
-    icon: any
+interface MenuItemProps {
+    name?: string,
+    icon?: any
 }

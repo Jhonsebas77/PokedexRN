@@ -6,5 +6,7 @@ export const newString = (value: string) => {
         const partTwo = split[1] ? _.capitalize(String(split[1])) : ''
         const newsString = `${partOne} ${partTwo}`
         return newsString
+    } else {
+        return undefined
     }
 }

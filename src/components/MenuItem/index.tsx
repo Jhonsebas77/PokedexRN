@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
 import styles from './style'
 
-export default class MenuItem extends Component<ItemProps> {
+export default class MenuItem extends Component<MenuItemProps> {
     constructor(props) {
         super(props)
     }
