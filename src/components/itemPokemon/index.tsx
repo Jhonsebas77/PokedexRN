@@ -21,7 +21,6 @@ export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState>
                     <Image style={styles.type} source={typeOneSource} />
                     <Image style={styles.type} source={typeTwoSource} />
                 </View>
-
             </View>
         )
     }

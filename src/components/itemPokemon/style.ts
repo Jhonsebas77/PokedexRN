@@ -16,25 +16,24 @@ export default {
         margin: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        overflow: 'hidden',
-        height: 60,
-        borderRadius: 10
+        height: 40,
+        borderRadius: 50
     },
     sprite: {
-        width: 50,
-        height: 50
+        width: 30,
+        height: 30
     },
     spriteContainer: {
-        width: 50,
-        height: 50,
-        padding: 5
+        width: 30,
+        height: 30
     },
     typeContainer: {
         width: 60,
-        height: 60,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: 5
+        height: 30,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        marginRight: 10
     },
     type: {
         width: 50,

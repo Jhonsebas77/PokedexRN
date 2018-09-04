@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
 import { getAllPokemon } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import { paddingNumber, getTypeSource, getMiniSpriteSource } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
+import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 
 export default class Pokemon extends Component<PkmnProps, PkmnState> {
@@ -22,6 +23,14 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
         this.setState({ pokemones, loaded: true })
     }
 
+    renderMiddle() {
+        return (
+            <View style={{ alignItems: 'center' }}>
+                <Text style={styles.title}>{'POKÉDEX'}</Text>
+            </View>
+        )
+    }
+
     renderLoadingView() {
         return (
             <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
@@ -35,9 +44,14 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
             return this.renderLoadingView()
         }
         return (
-            <View>
-                <Text> {`Pokemones`}</Text>
-                <View style={styles.container}>
+            <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
+                <NavBarSimple
+                    icon={'back'}
+                    contentLeft={'<'}
+                    contentCenter={this.renderMiddle()}
+                >
+                </NavBarSimple>
+                <View>
                     <FlatList
                         data={results}
                         renderItem={({ item, index }) =>
@@ -53,7 +67,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </View>
+            </ImageBackground>
         )
     }
 }
