@@ -22,8 +22,9 @@ export default {
         flexDirection: 'row',
         paddingLeft: 16,
         paddingRight: 16,
-        width: 360,
-        justifyContent: 'space-between'
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     checkoutRow: {
         flexDirection: 'row',
@@ -62,21 +63,23 @@ export default {
         y: 0
     },
     subbutton: {
-        fontSize: 14,
-        lineHeight: 20,
-        fontFamily: 'Cochin',
-        fontStyle: 'normal',
-        letterSpacing: 0,
-        textAlign: 'center',
-        color: 'red'
-    },
-    subButtonCheckout: {
-        color: 'red',
-        fontFamily: 'Cochin',
-        fontSize: 18,
-        marginLeft: 5
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white'
     },
     empty: {
-        width: 80
+        width: 10
+    },
+    navBar: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        margin: 10,
+        marginTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: 60,
+        borderRadius: 50
     }
 }

@@ -10,11 +10,22 @@ export const newString = (value: string) => {
         return undefined
     }
 }
-export const paddingNumber = (value: number) => {
-    if (value) {
-        const number = (value < 10 ? '00' : value < 100 ? '0' : '') + value
-        return number
-    } else {
-        return undefined
-    }
+export const paddingNumber = (id: number) => {
+    const number = (id < 10 ? '00' : id < 100 ? '0' : '') + id
+    return number
+}
+
+export const getTypeSource = (type: string) => {
+    let urlType = `https://www.serebii.net/pokedex-bw/type/${type}.gif`
+    return urlType
+}
+
+export const getMiniSpriteSource = (id: number) => {
+    let urlSprite = `https://www.serebii.net/pokedex-xy/icon/${paddingNumber(id)}.png`
+    return urlSprite
+}
+
+export const getNormalSpriteSource = (id: number) => {
+    let urlSprite = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${paddingNumber(id)}.png`
+    return urlSprite
 }

@@ -7,7 +7,7 @@ export default {
     },
     loading: {
         width: '100%',
-        height: '100%',
+        height: '100%'
     },
     textLoading: {
         color: 'red',

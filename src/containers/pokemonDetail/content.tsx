@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, ImageBackground } from 'react-native'
 import { getPokemonURL } from '../../util/api'
+import { paddingNumber, getTypeSource, getNormalSpriteSource } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
@@ -11,6 +12,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         this.state = {
             pokemon: []
         }
+        this.renderType = this.renderType.bind(this)
+        this.renderSpritePokemon = this.renderSpritePokemon.bind(this)
     }
 
     async componentWillMount() {
@@ -19,33 +22,62 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         this.setState({ pokemon })
     }
 
+    renderType(type) {
+        const url = getTypeSource(type)
+        return (
+            <View style={styles.typeContainer}>
+                <Image style={styles.type} source={{ uri: url }} />
+            </View>
+        )
+    }
+
+    renderMiddle() {
+        const { name, id } = this.state.pokemon
+        return (
+            <View style={{ alignItems: 'center' }}>
+                <Text style={styles.title}>{name ? `${_.capitalize(name)}` : 'Pokemon Detail'}</Text>
+                <Text style={styles.titleId}>{id ? `#${paddingNumber(id)}` : '-- -----'}</Text>
+            </View>
+        )
+    }
+
+    renderSpritePokemon(id) {
+        const url = getNormalSpriteSource(id)
+        return (
+            <View style={styles.spriteContainer}>
+                <Image style={styles.sprite} source={{ uri: url }} />
+            </View>
+        )
+    }
+
     render() {
         const { name, id, types, sprites } = this.state.pokemon
         return (
-            <View >
-                <NavBarSimple icon={'back'}
-                    shadow={false} pressLeft={() => console.log('home')} contentLeft={'Back'}>
-                    <Text style={styles.title}>{name ? `${_.capitalize(name)}` : 'Pokemon Detail'}</Text>
+            <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
+                <NavBarSimple
+                    icon={'back'}
+                    contentLeft={'<'}
+                    contentCenter={this.renderMiddle()}
+                >
                 </NavBarSimple>
-                <View style={styles.container}>
-                    <View style={styles.item}>
-                        <View style={styles.spriteContainer}>
-                            {sprites ?
-                                <Image style={styles.sprite} source={{ uri: sprites.front_default }} /> :
-                                <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
-                            }
-                        </View>
-                        <Text>
-                            {id && name ? `#${id} ${_.capitalize(name)}` : '-- -----'}
-                        </Text>
-                        <Text>
-                            {types && types[0] ? _.capitalize(types[0].type.name) : '----'}
-                            {' '}
-                            {types && types[1] ? _.capitalize(types[1].type.name) : ' '}
-                        </Text>
-                    </View >
+                <View style={styles.head}>
+                    <View style={styles.spriteContainer}>
+                        {sprites ?
+                            this.renderSpritePokemon(id) :
+                            <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
+                        }
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                        {types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                        {types && types[1] ? this.renderType(types[1].type.name) : undefined}
+                    </View>
                 </View >
-            </View >
+                <View style={styles.item}>
+                    <Text>
+                        {id && name ? `${paddingNumber(id)} ${_.capitalize(name)}` : '-- -----'}
+                    </Text>
+                </View>
+            </ImageBackground >
         )
     }
 }
