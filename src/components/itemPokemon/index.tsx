@@ -7,13 +7,21 @@ export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState>
         super(props)
     }
     render() {
-        const { name, imageSource } = this.props
+        const { number, name, spriteSource, typeOneSource, typeTwoSource } = this.props
         return (
             <View style={styles.itemPokemon}>
-                <View style={styles.spriteContainer}>
-                    <Image style={styles.sprite} source={imageSource} />
+                <View style={styles.numberSprite}>
+                    <Text> {number} </Text>
+                    <View style={styles.spriteContainer}>
+                        <Image style={styles.sprite} source={spriteSource} />
+                    </View>
+                    <Text> {name} </Text>
                 </View>
-                <Text> {name} </Text>
+                <View style={styles.typeContainer}>
+                    <Image style={styles.type} source={typeOneSource} />
+                    <Image style={styles.type} source={typeTwoSource} />
+                </View>
+
             </View>
         )
     }

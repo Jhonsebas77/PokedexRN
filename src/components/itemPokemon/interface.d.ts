@@ -1,7 +1,10 @@
 interface ItemPkmnProps {
     name: any,
-    imageSource?: any,
-    uri?:any
+    spriteSource?: any,
+    typeOneSource?: any,
+    typeTwoSource?: any,
+    uri?:any,
+    number?: any
 }
 interface ItemPkmnState {
     name?: any,

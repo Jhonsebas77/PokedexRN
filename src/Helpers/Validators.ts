@@ -10,3 +10,11 @@ export const newString = (value: string) => {
         return undefined
     }
 }
+export const paddingNumber = (value: number) => {
+    if (value) {
+        const number = (value < 10 ? '00' : value < 100 ? '0' : '') + value
+        return number
+    } else {
+        return undefined
+    }
+}
