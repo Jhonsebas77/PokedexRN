@@ -14,8 +14,8 @@ export default class Routes extends Component {
         <Stack key='root'>
           <Scene key='Home' component={Home} />
           <Scene key='PokemonDetail' component={pokemonDetail} hideNavBar={true} />
-          <Scene key='ItemDetail' component={itemDetail} />
-          <Scene key='Items' component={Items} />
+          <Scene key='ItemDetail' component={itemDetail} hideNavBar={true} />
+          <Scene key='Items' component={Items} hideNavBar={true} />
           <Scene key='Pokemon' component={Pokemon} hideNavBar={true} />
         </Stack>
       </Router>

@@ -2,29 +2,31 @@
 export default {
     container: {
         backgroundColor: 'red',
-        padding:5
+        padding: 5
     },
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 5,
+        padding: 5
     },
     item: {
         alignItems: 'center',
         backgroundColor: 'rgba(255, 255, 255, 1.0)',
-        margin: 10,
-        flexDirection: 'row',
+        margin: 5,
+        padding: 5,
+        flexDirection: 'column',
         justifyContent: 'center',
         overflow: 'hidden',
-        height: 80,
+        height: 100,
+        width: 100,
         borderRadius: 10
     },
     sprite: {
-        width: 70,
-        height: 70
+        width: 50,
+        height: 50
     },
     nameItem: {
-        fontSize: 20,
-        fontWeight: 'bold'
+        fontSize: 14,
+        textAlign: 'center'
     }
 }

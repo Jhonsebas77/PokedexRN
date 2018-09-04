@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
 import { getAllItems } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import { Actions } from 'react-native-router-flux'
 import { newString, getItemSpriteSource } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
+import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 
 export default class Home extends Component<ItemProps, ItemState> {
@@ -21,6 +22,14 @@ export default class Home extends Component<ItemProps, ItemState> {
         this.setState({ Items, loaded: true })
     }
 
+    renderMiddle() {
+        return (
+            <View style={{ alignItems: 'center' }}>
+                <Text style={styles.title}>{'MOCHILA'}</Text>
+            </View>
+        )
+    }
+
     renderLoadingView() {
         return (
             <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Items'} />
@@ -34,11 +43,17 @@ export default class Home extends Component<ItemProps, ItemState> {
             return this.renderLoadingView()
         }
         return (
-            <View>
-                <Text> {`Items`}</Text>
+            <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
+                <NavBarSimple
+                    icon={'back'}
+                    contentLeft={'<'}
+                    contentCenter={this.renderMiddle()}
+                >
+                </NavBarSimple>
                 <View style={styles.container}>
                     <FlatList
                         data={results}
+                        numColumns={3}
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.ItemDetail({ item }) }}>
@@ -49,7 +64,7 @@ export default class Home extends Component<ItemProps, ItemState> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </View>
+            </ImageBackground>
         )
     }
 }
