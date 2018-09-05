@@ -9,14 +9,11 @@ export default {
         margin: 10,
         justifyContent: 'center',
         overflow: 'hidden',
-        height: 200,
         borderRadius: 10
     },
     head: {
         alignItems: 'center',
-        margin: 10,
-        justifyContent: 'space-between',
-        height: 200
+        justifyContent: 'space-between'
     },
     sprite: {
         width: '100%',

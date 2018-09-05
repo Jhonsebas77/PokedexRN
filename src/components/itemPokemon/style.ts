@@ -12,7 +12,7 @@ export default {
     },
     itemPokemon: {
         alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 1.0)',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
         margin: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -37,6 +37,7 @@ export default {
     },
     type: {
         width: 50,
-        height: 20
+        height: 20,
+        borderRadius: 10
     }
 }

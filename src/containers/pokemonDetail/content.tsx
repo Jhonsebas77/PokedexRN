@@ -44,14 +44,14 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderSpritePokemon(id) {
         const url = getNormalSpriteSource(id)
         return (
-            <View style={styles.spriteContainer}>
+            <View>
                 <Image style={styles.sprite} source={{ uri: url }} />
             </View>
         )
     }
 
     render() {
-        const { name, id, types, sprites } = this.state.pokemon
+        const { name, id, types, sprites, weight, height } = this.state.pokemon
         return (
             <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
                 <NavBarSimple
@@ -74,7 +74,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 </View >
                 <View style={styles.item}>
                     <Text>
-                        {id && name ? `${paddingNumber(id)} ${_.capitalize(name)}` : '-- -----'}
+                        {weight && height ? `Peso: ${weight} Kgs  Altura: ${height} Cms` : '-- -----'}
                     </Text>
                 </View>
             </ImageBackground >

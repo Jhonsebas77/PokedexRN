@@ -11,11 +11,11 @@ export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState>
         return (
             <View style={styles.itemPokemon}>
                 <View style={styles.numberSprite}>
-                    <Text> {number} </Text>
+                    <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} > {number} </Text>
                     <View style={styles.spriteContainer}>
                         <Image style={styles.sprite} source={spriteSource} />
                     </View>
-                    <Text> {name} </Text>
+                    <Text style={{ color: 'white' }}> {name} </Text>
                 </View>
                 <View style={styles.typeContainer}>
                     <Image style={styles.type} source={typeOneSource} />

@@ -11,7 +11,7 @@ export default {
     },
     item: {
         alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 1.0)',
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
         margin: 5,
         padding: 5,
         flexDirection: 'column',
@@ -27,6 +27,7 @@ export default {
     },
     nameItem: {
         fontSize: 14,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'white'
     }
 }

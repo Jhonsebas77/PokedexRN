@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, Image } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import { Text, View, Image, ImageBackground } from 'react-native'
+import NavBarSimple from '../../components/NavBar/Simple'
 import { getPokemonURL } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
 import styles from './style'
@@ -19,27 +19,45 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
         this.setState({ item })
     }
 
-    render() {
-        const { name, sprites } = this.state.item
+    renderMiddle() {
+        const { name } = this.state.item
         return (
-            <View style={styles.container}>
-                <TouchableOpacity
-                    // style={styles.btnContainer}
-                    onPress={() => { Actions.pop() }}>
-                    <Text>BACK</Text>
-                </TouchableOpacity>
-                <View style={styles.item}>
+            <View style={{ alignItems: 'center' }}>
+                <Text style={styles.title}>{name ? `${newString(name)}` : 'Item Detail'}</Text>
+            </View>
+        )
+    }
+
+    renderSpriteItem(id) {
+        return (
+            <View>
+                <Image style={styles.sprite} source={{ uri: id }} />
+            </View>
+        )
+    }
+
+    render() {
+        const { sprites, effect_entries } = this.state.item
+        return (
+            <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
+                <NavBarSimple
+                    icon={'back'}
+                    contentLeft={'<'}
+                    contentCenter={this.renderMiddle()}
+                >
+                </NavBarSimple>
+                <View style={styles.head}>
                     <View style={styles.spriteContainer}>
                         {sprites ?
-                         <Image style={styles.sprite} source={{ uri: sprites.default }} /> :
-                         <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
+                            this.renderSpriteItem(sprites.default) :
+                            <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
                         }
                     </View>
-                    <Text>
-                        {name ? `${newString(name)}` : '-----'}
-                    </Text>
+                </View>
+                <View style={styles.item}>
+                    <Text> {effect_entries ? `${effect_entries[0].short_effect} ` : ''}  </Text>
                 </View >
-            </View >
+            </ImageBackground >
         )
     }
 }
