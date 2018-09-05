@@ -51,7 +51,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        const { name, id, types, sprites, weight, height } = this.state.pokemon
+        const { id, types, sprites, weight, height } = this.state.pokemon
         return (
             <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
                 <NavBarSimple

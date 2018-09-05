@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import _ from '../../../Helpers/Utilities'
 import styles from './style'
 
 export default ({ contentLeft, contentRight, onBack = (() => Actions.pop()), contentCenter }: any) => {
