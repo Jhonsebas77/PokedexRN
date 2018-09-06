@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Image, ImageBackground } from 'react-native'
 import NavBarSimple from '../../components/NavBar/Simple'
-import { getPokemonURL } from '../../util/api'
+import { getURL } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
 import styles from './style'
 
@@ -15,7 +15,7 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
 
     async componentWillMount() {
         let itemUrl = this.props.item.url
-        let item = await getPokemonURL(itemUrl)
+        let item = await getURL(itemUrl)
         this.setState({ item })
     }
 

@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import { Text, View, Image, ImageBackground } from 'react-native'
 import { getURL } from '../../util/api'
-import { paddingNumber, getTypeSource, getNormalSpriteSource } from '../../Helpers/Validators'
+import { newString, getTypeSource, getTypeMoveSource } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 
-export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
+export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     constructor(props) {
         super(props)
         this.state = {
             pokemon: []
         }
         this.renderType = this.renderType.bind(this)
-        this.renderSpritePokemon = this.renderSpritePokemon.bind(this)
+        this.renderCategory = this.renderCategory.bind(this)
     }
 
     async componentWillMount() {
         let pokemonUrl = this.props.item.url
         let pokemon = await getURL(pokemonUrl)
+        console.log('fetch', pokemon);
         this.setState({ pokemon })
     }
 
@@ -31,27 +32,26 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         )
     }
 
-    renderMiddle() {
-        const { name, id } = this.state.pokemon
+    renderCategory(type) {
+        const url = getTypeMoveSource(type)
         return (
-            <View style={{ alignItems: 'center' }}>
-                <Text style={styles.title}>{name ? `${_.capitalize(name)}` : 'Pokemon Detail'}</Text>
-                <Text style={styles.titleId}>{id ? `#${paddingNumber(id)}` : '-- -----'}</Text>
+            <View style={styles.typeContainer}>
+                <Image style={styles.type} source={{ uri: url }} />
             </View>
         )
     }
 
-    renderSpritePokemon(id) {
-        const url = getNormalSpriteSource(id)
+    renderMiddle() {
+        const { name } = this.state.pokemon
         return (
-            <View>
-                <Image style={styles.sprite} source={{ uri: url }} />
+            <View style={{ alignItems: 'center' }}>
+                <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
             </View>
         )
     }
 
     render() {
-        const { id, types, sprites, weight, height } = this.state.pokemon
+        const { accuracy, type, power, pp, damage_class, effect_entries } = this.state.pokemon
         return (
             <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
                 <NavBarSimple
@@ -61,20 +61,19 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 >
                 </NavBarSimple>
                 <View style={styles.head}>
-                    <View style={styles.spriteContainer}>
-                        {sprites ?
-                            this.renderSpritePokemon(id) :
-                            <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
-                        }
-                    </View>
                     <View style={{ flexDirection: 'row' }}>
-                        {types && types[0] ? this.renderType(types[0].type.name) : undefined}
-                        {types && types[1] ? this.renderType(types[1].type.name) : undefined}
+                        {type && this.renderType(type.name)}
+                        {damage_class && this.renderCategory(damage_class.name)}
                     </View>
                 </View >
                 <View style={styles.item}>
                     <Text>
-                        {weight && height ? `Peso: ${weight} Kgs  Altura: ${height} Cms` : '-- -----'}
+                        {effect_entries ? `${effect_entries[0].short_effect} ` : ''}
+                    </Text>
+                </View>
+                <View style={styles.item}>
+                    <Text>
+                        {accuracy && power && pp ? `accuracy: ${accuracy}   power: ${power} pp: ${pp} ` : '-- -----'}
                     </Text>
                 </View>
             </ImageBackground >
