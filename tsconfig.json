@@ -1,27 +1,31 @@
 {
-  "compilerOptions": {
-    "module": "es6",
-    "target": "esnext",
-    "moduleResolution": "node",
-    "jsx": "react",
-    "outDir": "lib",
-    "rootDir": "src",
-    "allowSyntheticDefaultImports": true,
+	"compilerOptions": {
+		"target": "es2015",
+		"module": "es2015",
+		"moduleResolution": "node",
+		"jsx": "react",
+		"outDir": "lib",
+		"rootDir": "src",
+		"allowSyntheticDefaultImports": true,
 		"noImplicitAny": false,
-    "preserveConstEnums": true,
-    "allowJs": false,
-    "sourceMap": false, 
+		"preserveConstEnums": true,
+		"allowJs": false,
 		"noImplicitReturns": true,
 		"noUnusedParameters": true,
 		"noUnusedLocals": true,
-		"declaration": true,
+		"declaration": false,
 		"removeComments": true,
-		"noLib": true,
 		"emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "strict": true,
-  },
-  "filesGlob": [
+		"experimentalDecorators": true,
+		"skipLibCheck": true,
+		"lib": [
+			"es2017",
+			"es6",
+			"es7",
+			"esnext.asynciterable"
+		]
+	},
+	"filesGlob": [
 		"src/**/*.ts",
 		"src/**/*.tsx"
 	],
@@ -30,11 +34,10 @@
 		"react-native",
 		"jest"
 	],
-  "exclude": [
-    "android",
-    "ios",
-    "lib",
-    "node_modules"
-  ],
-  "compileOnSave": false
+	"exclude": [
+		"./android",
+		"./ios",
+		"./lib",
+		"./node_modules"
+	]
 }

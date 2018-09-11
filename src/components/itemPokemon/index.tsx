@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, Image } from 'react-native'
+import styles from './style'
 
-export default class ItemPokemon extends Component<ChipProps, ChipState> {
+export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState> {
     constructor(props) {
         super(props)
     }
     render() {
-        const { name } = this.props
-        // ({ name }) => {
+        const { number, name, spriteSource, typeOneSource, typeTwoSource } = this.props
         return (
-            <View style={{ backgroundColor: 'blue', height: 100, width: 300 }} >
-                <Text> {name} </Text>
+            <View style={styles.itemPokemon}>
+                <View style={styles.numberSprite}>
+                    <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} > {number} </Text>
+                    <View style={styles.spriteContainer}>
+                        <Image style={styles.sprite} source={spriteSource} />
+                    </View>
+                    <Text style={{ color: 'white' }}> {name} </Text>
+                </View>
+                <View style={styles.typeContainer}>
+                    <Image style={styles.type} source={typeOneSource} />
+                    <Image style={styles.type} source={typeTwoSource} />
+                </View>
             </View>
         )
     }

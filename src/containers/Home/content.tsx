@@ -1,57 +1,35 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
-import {
-    Text,
-    FlatList,
-    View,
-    TouchableOpacity
-} from 'react-native'
-import { getAllPokemon, getPokemonData } from '../../util/api'
-import ItemPokemon from '../../components/itemPokemon'
+import React, { Component } from 'react'
+import { View, TouchableOpacity, ImageBackground } from 'react-native'
+import MenuItem from '../../components/MenuItem'
 import { Actions } from 'react-native-router-flux'
-// import styles from './style'
+import styles from './style'
 
-// type Props = {};
-export default class Home extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            pokemones: []
-        }
-    }
-    async componentWillMount() {
-        console.log('HOla Mundo')
-        // const { iAtaOrigin, iAtaDestination, dateIda } = this.props
-
-        let pokemones = await getAllPokemon()
-        let pokemon = await getPokemonData('5')
-        this.setState({ pokemones, pokemon })
-    }
-
+export default class Home extends Component<any, any> {
     render() {
         return (
             <View>
-                <Text>
-                    HOME POKEDEX
-                </Text>
-                <View>
-                    <FlatList
-                        data={this.state.pokemones.results}
-                        renderItem={({ item }) =>
-                            <TouchableOpacity
-                                // style={styles.btnContainer}
-                                onPress={() => { Actions.PokemonDetail({ item }) }}>
-                                <ItemPokemon name={item.name} />
-                            </TouchableOpacity>
-                        } />
+                <View style={styles.container}>
+                    <ImageBackground source={require('../../Assets/images/BG_Home.png')} style={styles.loading}>
+                        <View style={styles.contentContainer}>
+                            <View style={styles.menuItem}>
+                                <TouchableOpacity onPress={() => { Actions.Items() }}>
+                                    <MenuItem name={'ItemDex'} icon={require('../../Assets/images/Icon_Item.png')} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.menuItem}>
+                                <TouchableOpacity onPress={() => { Actions.Pokemon() }}>
+                                    <MenuItem name={'Pokedex'} icon={require('../../Assets/images/Icon_Pokedex.png')} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.menuItem}>
+                                <TouchableOpacity onPress={() => { Actions.Moves() }}>
+                                    <MenuItem name={'Movimientos'} icon={require('../../Assets/images/Icon_Moves.png')} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </ImageBackground>
                 </View>
             </View>
         )
     }
 }
-
