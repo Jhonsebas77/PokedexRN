@@ -39,6 +39,8 @@ export default class Move extends Component<MoveProps, MoveState> {
 
     render() {
         const { loaded, moves } = this.state
+        console.log('moves', moves);
+        
         const { results } = moves
         if (!loaded) {
             return this.renderLoadingView()
@@ -54,6 +56,7 @@ export default class Move extends Component<MoveProps, MoveState> {
                 <View>
                     <FlatList
                         data={results}
+                        keyExtractor={(item) => item.index}
                         renderItem={({ item, index }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.MoveDetail({ item, index }) }}>

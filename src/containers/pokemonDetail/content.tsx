@@ -5,6 +5,8 @@ import { paddingNumber, getTypeSource, getNormalSpriteSource } from '../../Helpe
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
+import TabBarSimple from '../../components/TabBar/Simple'
+import { Actions } from 'react-native-router-flux'
 
 export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     constructor(props) {
@@ -74,9 +76,14 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 </View >
                 <View style={styles.item}>
                     <Text>
-                        {weight && height ? `Peso: ${weight} Kgs  Altura: ${height} Cms` : '-- -----'}
+                        {weight && height ? `Peso: ${_.formatNumberDecimal(weight, 1)} Kg  Altura: ${_.formatNumberDecimal(height, 2)} m` : '-- -----'}
                     </Text>
                 </View>
+                <TabBarSimple
+                    rAbilities={types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                    rStats={types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                    rMoves={types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                />
             </ImageBackground >
         )
     }
