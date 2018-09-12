@@ -6,7 +6,6 @@ import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 import TabBarSimple from '../../components/TabBar/Simple'
-import { Actions } from 'react-native-router-flux'
 
 export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     constructor(props) {
@@ -58,7 +57,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
             <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
                 <NavBarSimple
                     icon={'back'}
-                    contentLeft={'<'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>

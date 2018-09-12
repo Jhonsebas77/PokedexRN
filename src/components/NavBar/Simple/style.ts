@@ -1,19 +1,4 @@
 export default {
-    gradient: {
-        width: 360,
-        paddingTop: 24,
-        height: 80,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    gradientResultHotels: {
-        width: 360,
-        paddingTop: 24,
-        height: 88,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'black'
-    },
     container: {
         width: 500,
         color: 'red'
@@ -68,18 +53,20 @@ export default {
         color: 'white'
     },
     empty: {
-        width: 10
+        width: 60
     },
     navBar: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         margin: 10,
         marginTop: 20,
-        paddingLeft: 20,
-        paddingRight: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 60,
         borderRadius: 50
+    },
+    spriteContainer: {
+        width: 60,
+        height: 60
     }
 }
