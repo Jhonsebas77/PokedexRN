@@ -45,9 +45,9 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderSpritePokemon(id) {
         const url = getNormalSpriteSource(id)
         return (
-            <View>
+            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn.png')} style={styles.spriteContainer}>
                 <Image style={styles.sprite} source={{ uri: url }} />
-            </View>
+            </ImageBackground>
         )
     }
 
@@ -61,7 +61,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 >
                 </NavBarSimple>
                 <View style={styles.head}>
-                    <View style={styles.spriteContainer}>
+                    <View>
                         {sprites ?
                             this.renderSpritePokemon(id) :
                             <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
@@ -72,11 +72,11 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                         {types && types[1] ? this.renderType(types[1].type.name) : undefined}
                     </View>
                 </View >
-                <View style={styles.item}>
+                {/* <View style={styles.item}>
                     <Text>
                         {weight && height ? `Peso: ${_.formatNumberDecimal(weight, 1)} Kg  Altura: ${_.formatNumberDecimal(height, 2)} m` : '-- -----'}
                     </Text>
-                </View>
+                </View> */}
                 <TabBarSimple
                     rAbilities={types && types[0] ? this.renderType(types[0].type.name) : undefined}
                     rStats={types && types[0] ? this.renderType(types[0].type.name) : undefined}

@@ -12,8 +12,7 @@ export default {
         borderRadius: 10
     },
     head: {
-        alignItems: 'center',
-        justifyContent: 'space-between'
+        alignItems: 'center'
     },
     sprite: {
         width: '100%',
@@ -21,9 +20,7 @@ export default {
     },
     spriteContainer: {
         width: 150,
-        height: 150,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        borderRadius: 70
+        height: 150
     },
     title: {
         color: 'white',
@@ -47,6 +44,7 @@ export default {
     },
     type: {
         width: 60,
-        height: 20
+        height: 20,
+        borderRadius: 10
     }
 }
