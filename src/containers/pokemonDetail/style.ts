@@ -3,6 +3,12 @@ export default {
     container: {
         backgroundColor: 'green'
     },
+    listContact: {
+        marginVertical: 10,
+        padding: 10,
+        backgroundColor: 'rgba(230, 225, 255, 1.0)',
+        height: 10
+    },
     item: {
         alignItems: 'center',
         backgroundColor: 'rgba(255, 255, 255, 1.0)',

@@ -41,7 +41,7 @@ export default class Simple extends Component<TabSimpleProps, TabSimpleState> {
                         {this.renderMiddle()}
                         {this.renderRight()}
                     </View>
-                    <View style={{backgroundColor: 'white', height:200}}>
+                    <View style={{ backgroundColor: 'white', height: '100%', margin: 10, width: '100%' }}>
 
                     </View>
                 </View>

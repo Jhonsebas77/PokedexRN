@@ -1,12 +1,38 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground } from 'react-native'
+import { Text, View, Image, ImageBackground, FlatList } from 'react-native'
 import { getURL } from '../../util/api'
 import { paddingNumber, getTypeSource, getNormalSpriteSource } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
-import TabBarSimple from '../../components/TabBar/Simple'
-
+import Chip from '../../components/Chip'
+const dataChip = [
+    {
+        'gender': 'F',
+        'name': 'Informacion',
+        'pressed': 0
+    },
+    {
+        'gender': 'F',
+        'name': 'Evolucion',
+        'pressed': '1'
+    },
+    {
+        'gender': 'F',
+        'name': 'Habilidades',
+        'pressed': '2'
+    },
+    {
+        'gender': 'F',
+        'name': 'Stats',
+        'pressed': '3'
+    },
+    {
+        'gender': 'F',
+        'name': 'Movimientos',
+        'pressed': '4'
+    }
+]
 export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     constructor(props) {
         super(props)
@@ -72,16 +98,25 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                         {types && types[1] ? this.renderType(types[1].type.name) : undefined}
                     </View>
                 </View >
-                {/* <View style={styles.item}>
-                    <Text>
-                        {weight && height ? `Peso: ${_.formatNumberDecimal(weight, 1)} Kg  Altura: ${_.formatNumberDecimal(height, 2)} m` : '-- -----'}
-                    </Text>
-                </View> */}
-                <TabBarSimple
-                    rAbilities={types && types[0] ? this.renderType(types[0].type.name) : undefined}
-                    rStats={types && types[0] ? this.renderType(types[0].type.name) : undefined}
-                    rMoves={types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                <FlatList
+                    style={styles.listContact}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    data={dataChip}
+                    renderItem={({ item, index }: any) =>
+                        <Chip onPress={(item) => {
+                            console.log('item', item)
+                        }}
+                            text={`${item.name} ${item.lastName ? item.lastName.charAt(0) : ''}`}
+                            isFirst={index === 0}
+                            gender={item.gender}
+                            index={index}
+                            pressed={item.pressed}
+                        />}
                 />
+                <View style={{ backgroundColor: 'white', width: 200, height: 200, borderRadius: 20, margin: 20 }}>
+
+                </View>
             </ImageBackground >
         )
     }

@@ -1,7 +1,6 @@
 export default {
     container: {
-        width: 500,
-        color: 'red'
+        width: 500
     },
     row: {
         flexDirection: 'row',
@@ -58,7 +57,7 @@ export default {
     navBar: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         margin: 10,
-        marginTop: 20,
+        marginTop: 40,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
