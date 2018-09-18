@@ -4,10 +4,9 @@ export default {
         backgroundColor: 'green'
     },
     listContact: {
-        marginVertical: 10,
-        padding: 10,
-        backgroundColor: 'rgba(230, 225, 255, 1.0)',
-        height: 10
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 10
     },
     item: {
         alignItems: 'center',

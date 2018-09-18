@@ -98,24 +98,28 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                         {types && types[1] ? this.renderType(types[1].type.name) : undefined}
                     </View>
                 </View >
-                <FlatList
-                    style={styles.listContact}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    data={dataChip}
-                    renderItem={({ item, index }: any) =>
-                        <Chip onPress={(item) => {
-                            console.log('item', item)
-                        }}
-                            text={`${item.name} ${item.lastName ? item.lastName.charAt(0) : ''}`}
-                            isFirst={index === 0}
-                            gender={item.gender}
-                            index={index}
-                            pressed={item.pressed}
-                        />}
-                />
-                <View style={{ backgroundColor: 'white', width: 200, height: 200, borderRadius: 20, margin: 20 }}>
+                <View>
+                    <FlatList
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        data={dataChip}
+                        renderItem={({ item, index }: any) =>
+                            <Chip onPress={(item) => {
+                                console.log('item', item)
+                            }}
+                                text={`${item.name} ${item.lastName ? item.lastName.charAt(0) : ''}`}
+                                isFirst={index === 0}
+                                gender={item.gender}
+                                index={index}
+                                pressed={item.pressed}
+                            />}
+                    />
+                </View>
 
+                <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 310, borderRadius: 20, margin: 30 }}>
+                    <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+                        {'Informacion'}
+                    </Text>
                 </View>
             </ImageBackground >
         )
