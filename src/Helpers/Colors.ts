@@ -8,7 +8,7 @@ export const Colors = {
     bug: '#AFD121',
     ghost: '#502293',
     steel: '#4c669f',
-    fire: '#3b5998',
+    fire: '#FF0000',
     water: '#192f6a',
     grass: '#192f6a',
     electric: '#192f6a',
@@ -24,10 +24,11 @@ export const Colors = {
 export const ColorType = (type1, type2?) => {
     let ColorsType = type1 + (type2 ? '_' + type2 : '')
     const typeColor = {
-        'fire': () => (Colors.fire, Colors.fire),
-        'flying': () => (Colors.flying),
-        'water': () => (Colors.fire)
+        fire: { color: () => [Colors.fire, Colors.fire] },
+        grass_poison: { color: () => [Colors.grass, Colors.poison] },
+        flying: () => (Colors.flying),
+        water: () => (Colors.fire)
     }
-    return typeColor[ColorsType]
+    return typeColor[ColorsType].color()
 
 }

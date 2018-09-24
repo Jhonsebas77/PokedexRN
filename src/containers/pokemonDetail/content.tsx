@@ -111,17 +111,17 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     render() {
         const { id, types, sprites, weight, height, loaded } = this.state.pokemon
         console.log('props', this.props)
-        // const colortype = this.renderColorType(types && types[0] && types[0].type.name, types && types[1] && types[1].type.name)
+        const colortype = ColorType('grass_poison')
         console.log('====================================')
-        const loquesea = ColorType(types && types[0] && types[0].type.name, types && types[1] && types[1].type.name)
+        // const loquesea = ColorType(types && types[0] && types[0].type.name, types && types[1] && types[1].type.name)
         console.log('state', this.state)
-        console.log('Value loquesea:', loquesea, 'Type Variable: ', typeof loquesea)
+        console.log('Value colortype:', colortype)
         console.log('====================================')
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
         return (
-            <LinearGradient colors={[Colors.water, Colors.fight]} style={styles.loading} >
+            <LinearGradient colors={colortype} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
