@@ -23,10 +23,15 @@ export const Colors = {
 
 export const ColorType = (type1, type2) => {
     let ColorsType = type1 + (type2 ? '_' + type2 : '')
-    console.log('ColorsType', ColorsType)
     const typeColor = {
         fire: { color: () => [Colors.fire, Colors.fire] },
+        electric: { color: () => [Colors.electric, Colors.electric] },
+        psychic: { color: () => [Colors.psychic, Colors.psychic] },
+        fairy: { color: () => [Colors.fairy, Colors.fairy] },
+        dragon: { color: () => [Colors.dragon, Colors.dragon] },
         water: { color: () => [Colors.water, Colors.water] },
+        fighting: { color: () => [Colors.fighting, Colors.fighting] },
+        steel: { color: () => [Colors.steel, Colors.steel] },
         poison_grass: { color: () => [Colors.grass, Colors.poison] },
         flying_fire: { color: () => [Colors.fire, Colors.flying] }
     }
