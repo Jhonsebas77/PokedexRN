@@ -1,34 +1,34 @@
 export const Colors = {
     normal: '#E3E1D0',
-    fight: '#7A0F0C',
+    fighting: '#7A0F0C',
     flying: '#B3D3D3',
     poison: '#78309F',
     ground: '#6D3100',
     rock: '#5D554E',
-    bug: '#AFD121',
-    ghost: '#502293',
-    steel: '#4c669f',
-    fire: '#FF0000',
-    water: '#192f6a',
-    grass: '#192f6a',
-    electric: '#192f6a',
-    psychic: '#192f6a',
-    ice: '#192f6a',
-    dragon: '#192f6a',
-    dark: '#192f6a',
-    fairy: '#4c669f',
+    bug: '#196A00',
+    ghost: '#5A1F7A',
+    steel: '#77707B',
+    fire: '#FB0909',
+    water: '#2020B0',
+    grass: '#06AC65',
+    electric: '#FFFD00',
+    psychic: '#D60079',
+    ice: '#3AC3C3',
+    dragon: '#35159D',
+    dark: '#282227',
+    fairy: '#BA2299',
     unknown: '#192f6a',
-    shadow: '#192f6a'
+    shadow: '#1E1C1C'
 }
 
-export const ColorType = (type1, type2?) => {
+export const ColorType = (type1, type2) => {
     let ColorsType = type1 + (type2 ? '_' + type2 : '')
+    console.log('ColorsType', ColorsType)
     const typeColor = {
         fire: { color: () => [Colors.fire, Colors.fire] },
-        grass_poison: { color: () => [Colors.grass, Colors.poison] },
-        flying: () => (Colors.flying),
-        water: () => (Colors.fire)
+        water: { color: () => [Colors.water, Colors.water] },
+        poison_grass: { color: () => [Colors.grass, Colors.poison] },
+        flying_fire: { color: () => [Colors.fire, Colors.flying] }
     }
-    return typeColor[ColorsType].color()
-
+    return typeColor[ColorsType] ? typeColor[ColorsType].color() : [Colors.unknown, Colors.unknown]
 }

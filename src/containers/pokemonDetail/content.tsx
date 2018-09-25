@@ -47,7 +47,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         }
         this.renderType = this.renderType.bind(this)
         this.renderSpritePokemon = this.renderSpritePokemon.bind(this)
-        // this.renderColorType = this.renderColorType.bind(this)
     }
 
     async componentWillMount() {
@@ -93,35 +92,17 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         )
     }
 
-    // renderColorType(type1, type2?) {
-    //     let ColorType
-    //     let ColorsType = type1 + (type2 ? '_' + type2 : '')
-    //     if (ColorsType === 'fire') {
-    //         ColorType = Colors.fire
-    //     } else if (ColorsType === 'poison_grass') {
-    //         ColorType = Colors.poison_grass
-    //     }
-
-    //     console.log('color', ColorType)
-
-    //     // let ColorsType = `Colors.` + type1 + (type2 ? '_' + type2 : '')
-    //     return ColorType
-    // }
-
     render() {
         const { id, types, sprites, weight, height, loaded } = this.state.pokemon
-        console.log('props', this.props)
-        const colortype = ColorType('grass_poison')
-        console.log('====================================')
-        // const loquesea = ColorType(types && types[0] && types[0].type.name, types && types[1] && types[1].type.name)
-        console.log('state', this.state)
-        console.log('Value colortype:', colortype)
-        console.log('====================================')
+        let type1 = types && types[0] ? types[0].type.name : 'fire'
+        let type2 = types && types[1] && types[1].type.name
+        const colortype = types && ColorType(type1, type2)
+
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
         return (
-            <LinearGradient colors={colortype} style={styles.loading} >
+            <LinearGradient colors={types && colortype} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
@@ -139,7 +120,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                         {types && types[0] ? this.renderType(types[0].type.name) : undefined}
                     </View>
                 </View >
-                {/* <View>
+                <View>
                     <FlatList
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
@@ -161,7 +142,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                     <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                         {'Informacion'}
                     </Text>
-                </View> */}
+                </View>
             </LinearGradient >
         )
     }
