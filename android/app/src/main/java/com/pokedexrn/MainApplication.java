@@ -3,6 +3,7 @@ package com.pokedexrn;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.horcrux.svg.SvgPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new LinearGradientPackage(),
             new LottiePackage(),
             new SvgPackage()
       );

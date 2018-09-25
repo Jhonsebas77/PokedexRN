@@ -2,16 +2,18 @@ import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import styles from './style'
+import Btn_Back from '../../Btn_Back'
 
 export default ({ contentLeft, contentRight, onBack = (() => Actions.pop()), contentCenter }: any) => {
     const rightTitle = contentRight
     return (
         <View style={styles.navBar}>
             <TouchableOpacity onPress={onBack}
+                style={styles.spriteContainer}
                 activeOpacity={0.9}>
-                {contentLeft ? <Text style={styles.subbutton}>{contentLeft}</Text> : undefined}
+                {contentLeft ? <Text style={styles.subbutton}>{contentLeft}</Text> : <Btn_Back />}
             </TouchableOpacity>
-            <View >
+            <View>
                 {contentCenter}
             </View>
             {contentRight ?

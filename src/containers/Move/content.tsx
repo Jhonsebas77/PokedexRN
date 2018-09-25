@@ -39,8 +39,6 @@ export default class Move extends Component<MoveProps, MoveState> {
 
     render() {
         const { loaded, moves } = this.state
-        console.log('moves', moves);
-        
         const { results } = moves
         if (!loaded) {
             return this.renderLoadingView()
@@ -49,7 +47,6 @@ export default class Move extends Component<MoveProps, MoveState> {
             <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
                 <NavBarSimple
                     icon={'back'}
-                    contentLeft={'<'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>

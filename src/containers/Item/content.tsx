@@ -46,7 +46,6 @@ export default class Home extends Component<ItemProps, ItemState> {
             <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
                 <NavBarSimple
                     icon={'back'}
-                    contentLeft={'<'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>

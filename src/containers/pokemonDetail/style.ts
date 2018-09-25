@@ -1,7 +1,11 @@
-
 export default {
     container: {
         backgroundColor: 'green'
+    },
+    listContact: {
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 10
     },
     item: {
         alignItems: 'center',
@@ -13,17 +17,15 @@ export default {
     },
     head: {
         alignItems: 'center',
-        justifyContent: 'space-between'
+        paddingBottom: 10
     },
     sprite: {
-        width: '100%',
-        height: '100%'
+        width: 150,
+        height: 150
     },
     spriteContainer: {
         width: 150,
-        height: 150,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        borderRadius: 70
+        height: 150
     },
     title: {
         color: 'white',
@@ -47,6 +49,7 @@ export default {
     },
     type: {
         width: 60,
-        height: 20
+        height: 20,
+        borderRadius: 10
     }
 }
