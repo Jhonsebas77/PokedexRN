@@ -3,7 +3,7 @@ import { Text, View, Image, ImageBackground, FlatList } from 'react-native'
 import { getURL } from '../../util/api'
 import { paddingNumber, getTypeSource, getNormalSpriteSource } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
-import { Colors, ColorType } from '../../Helpers/Colors'
+import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 import Chip from '../../components/Chip'
@@ -52,9 +52,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     async componentWillMount() {
         let pokemonUrl = this.props.item.url
         let pokemon = await getURL(pokemonUrl)
-        console.log('====================================')
-        console.log('pokemon WillMount', pokemon)
-        console.log('====================================')
         this.setState({ pokemon, loaded: true })
     }
 
@@ -93,7 +90,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        const { id, types, sprites, weight, height, loaded } = this.state.pokemon
+        const { id, types, sprites, weight, height } = this.state.pokemon
         let type1 = types && types[0] ? types[0].type.name : 'fire'
         let type2 = types && types[1] && types[1].type.name
         const colortype = types && ColorType(type1, type2)
