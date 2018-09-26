@@ -3,6 +3,7 @@ interface PkmnProps {
 }
 interface PkmnState {
     pokemones?: any,
+    PkmnGO?: any,
     loaded?: any,
     item?: any
 }
