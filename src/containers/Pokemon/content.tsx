@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
-import { getAllPokemon } from '../../util/api'
+import { getAllPokemon, getAllNewPokemon } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
@@ -14,13 +14,15 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
         super(props)
         this.state = {
             pokemones: [],
+            pokedex: [],
             loaded: false
         }
     }
 
     async componentWillMount() {
+        let pokedex = await getAllNewPokemon()
         let pokemones = await getAllPokemon()
-        this.setState({ pokemones, loaded: true })
+        this.setState({ pokemones, pokedex, loaded: true })
     }
 
     renderMiddle() {
@@ -38,8 +40,11 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     }
 
     render() {
-        const { loaded, pokemones } = this.state
+        const { loaded, pokemones, pokedex } = this.state
         const { results } = pokemones
+        console.log('====================================')
+        console.log('Pokedex Data', pokedex)
+        console.log('====================================')
         if (!loaded) {
             return this.renderLoadingView()
         }

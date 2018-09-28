@@ -30,7 +30,7 @@ export default {
         // fontFamily: Fonts.SEMIBOLD
     },
     active: {
-        backgroundColor: 'green'
+        backgroundColor: '#4f8594'
     },
     activeLast: {
         borderStyle: 'solid',
@@ -45,7 +45,7 @@ export default {
         paddingHorizontal: 16
     },
     textActive: {
-        color: 'white'
+        color: '#a3d596'
     },
     shadow: {
         color: 'black',

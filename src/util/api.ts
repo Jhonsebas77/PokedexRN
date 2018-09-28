@@ -22,6 +22,31 @@ export const getAllPokemon =
       })
   }
 
+  export const getAllNewPokemon =
+  () => {
+    return fetch(`http://localhost:5034/pokedex`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+export const getPokemonGO =
+  () => {
+    return fetch(`https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log('--> ', responseJson)
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
 export const getAllMoves =
   () => {
     return fetch(`https://pokeapi.co/api/v2/move/?limit=100`)
