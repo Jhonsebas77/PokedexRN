@@ -4,7 +4,7 @@ import { getAllPokemon, getAllNewPokemon } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
-import { paddingNumber, getTypeSource, getMiniSpriteSource } from '../../Helpers/Validators'
+import { paddingNumber } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
@@ -40,11 +40,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     }
 
     render() {
-        const { loaded, pokemones, pokedex } = this.state
-        const { results } = pokemones
-        console.log('====================================')
-        console.log('Pokedex Data', pokedex)
-        console.log('====================================')
+        const { loaded, pokedex } = this.state
         if (!loaded) {
             return this.renderLoadingView()
         }
@@ -57,16 +53,21 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                 </NavBarSimple>
                 <View>
                     <FlatList
-                        data={results}
+                        data={pokedex}
                         renderItem={({ item, index }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.PokemonDetail({ item, index }) }}>
                                 <ItemPokemon
-                                    number={paddingNumber(index + 1)}
+                                    number={paddingNumber((item as any).idDex)}
                                     name={_.capitalize((item as any).name)}
-                                    spriteSource={{ uri: getMiniSpriteSource(index + 1) }}
-                                    typeOneSource={{ uri: getTypeSource('fire') }}
-                                    typeTwoSource={{ uri: getTypeSource('water') }}
+                                    spriteSource={{ uri: (item as any).urlSprite }}
+                                    typeTwoSource={{
+                                        uri: (item as any).types && (item as any).types[0][0].type ? (item as any).types[0][0].type.urlSprite : undefined
+                                    }}
+                                    typeOneSource={{
+                                        uri: (item as any).types && (item as any).types[1] &&
+                                            (item as any).types[1][0].type ? (item as any).types[1][0].type.urlSprite : undefined
+                                    }}
                                 />
                             </TouchableOpacity>
                         } />

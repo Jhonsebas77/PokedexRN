@@ -27,13 +27,22 @@ export default {
         width: 30,
         height: 30
     },
-    typeContainer: {
+    typeOneContainer: {
         width: 60,
         height: 30,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
         marginRight: 10
+    },
+    typeTwoContainer: {
+        width: 60,
+        height: 30,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 30,
+        marginBottom: 20
     },
     type: {
         width: 50,
