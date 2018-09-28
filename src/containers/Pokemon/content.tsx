@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
-import { getAllPokemon, getPokemonGO } from '../../util/api'
+import { getAllPokemon, getAllNewPokemon } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
@@ -14,15 +14,15 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
         super(props)
         this.state = {
             pokemones: [],
-            PkmnGO: [],
+            pokedex: [],
             loaded: false
         }
     }
 
     async componentWillMount() {
-        let PkmnGO = await getPokemonGO()
+        let pokedex = await getAllNewPokemon()
         let pokemones = await getAllPokemon()
-        this.setState({ pokemones, PkmnGO, loaded: true })
+        this.setState({ pokemones, pokedex, loaded: true })
     }
 
     renderMiddle() {
@@ -33,15 +33,6 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
         )
     }
 
-    getTypeFromGO(PkmnGO, index) {
-        if (PkmnGO) {
-            const typeGO1 = PkmnGO.pokemon ? PkmnGO.pokemon[index - 1].type[0] : '---'
-            const typeGO2 = PkmnGO.pokemon && PkmnGO.pokemon[index - 1] ? PkmnGO.pokemon[index - 1].type[1] : undefined
-            const typeGO = [typeGO1, typeGO2]
-            return typeGO
-        }
-    }
-
     renderLoadingView() {
         return (
             <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
@@ -49,9 +40,11 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     }
 
     render() {
-        const { loaded, pokemones, PkmnGO } = this.state
+        const { loaded, pokemones, pokedex } = this.state
         const { results } = pokemones
-        const algo = PkmnGO ? this.getTypeFromGO(PkmnGO, 4) : '---'
+        console.log('====================================')
+        console.log('Pokedex Data', pokedex)
+        console.log('====================================')
         if (!loaded) {
             return this.renderLoadingView()
         }
