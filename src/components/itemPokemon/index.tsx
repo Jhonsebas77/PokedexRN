@@ -13,11 +13,14 @@ export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState>
                 <View style={styles.numberSprite}>
                     <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} > {number} </Text>
                     <View style={styles.spriteContainer}>
-                        <Image style={styles.sprite} source={spriteSource} />
+                        {spriteSource ?
+                            <Image style={styles.sprite} source={spriteSource} /> :
+                            <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
+                        }
                     </View>
                     <Text style={{ color: 'white', fontWeight: 'bold', paddingLeft: 10 }}> {name} </Text>
                 </View>
-                <View style={typeOneSource.uri !== undefined ? styles.typeOneContainer :  styles.typeTwoContainer}>
+                <View style={typeOneSource.uri !== undefined ? styles.typeOneContainer : styles.typeTwoContainer}>
                     <Image style={styles.type} source={typeOneSource} />
                     <Image style={styles.type} source={typeTwoSource} />
                 </View>

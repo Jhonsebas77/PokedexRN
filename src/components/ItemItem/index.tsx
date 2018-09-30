@@ -11,7 +11,10 @@ export default class ItemItem extends Component<IitemProps, IitemState> {
         return (
             <View style={styles.item}>
                 <View>
-                    <Image style={styles.sprite} source={itemSpriteSource} />
+                {itemSpriteSource ?
+                            <Image style={styles.sprite} source={itemSpriteSource} /> :
+                            <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
+                        }
                 </View>
                 <View>
                     <Text style={styles.nameItem}> {name} </Text>

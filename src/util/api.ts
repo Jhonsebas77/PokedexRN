@@ -22,7 +22,7 @@ export const getAllPokemon =
       })
   }
 
-  export const getAllNewPokemon =
+export const getAllNewPokemon =
   () => {
     return fetch(`http://localhost:5034/pokedex`)
       .then((response) => response.json())
@@ -34,12 +34,11 @@ export const getAllPokemon =
       })
   }
 
-export const getPokemonGO =
+export const getAllNewItem =
   () => {
-    return fetch(`https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json`)
+    return fetch(`http://localhost:5034/itemlist`)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log('--> ', responseJson)
         return responseJson
       })
       .catch((error) => {
