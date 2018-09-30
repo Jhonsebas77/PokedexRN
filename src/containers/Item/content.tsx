@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
-import { getAllItems } from '../../util/api'
+import { getAllNewItem } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import { Actions } from 'react-native-router-flux'
-import { newString, getItemSpriteSource } from '../../Helpers/Validators'
+import { newString } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
@@ -18,7 +18,7 @@ export default class Home extends Component<ItemProps, ItemState> {
     }
 
     async componentWillMount() {
-        let Items = await getAllItems()
+        let Items = await getAllNewItem()
         this.setState({ Items, loaded: true })
     }
 
@@ -38,7 +38,7 @@ export default class Home extends Component<ItemProps, ItemState> {
 
     render() {
         const { loaded, Items } = this.state
-        const { results } = Items
+
         if (!loaded) {
             return this.renderLoadingView()
         }
@@ -51,14 +51,14 @@ export default class Home extends Component<ItemProps, ItemState> {
                 </NavBarSimple>
                 <View style={styles.container}>
                     <FlatList
-                        data={results}
+                        data={Items}
                         numColumns={3}
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.ItemDetail({ item }) }}>
                                 <ItemItem
                                     name={newString((item as any).name)}
-                                    itemSpriteSource={{ uri: getItemSpriteSource((item as any).name) }}
+                                    itemSpriteSource={{ uri: (item as any).urlSprite }}
                                 />
                             </TouchableOpacity>
                         } />
