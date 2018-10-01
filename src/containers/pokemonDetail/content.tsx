@@ -137,7 +137,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
 
     render() {
         const { id, types, sprites, weight, height } = this.state.pokemon
-        let type1 = types && types[0] ? types[0].type.name : 'fire'
+        let type1 = types && types[0] ? types[0].type.name : 'unknown'
         let type2 = types && types[1] && types[1].type.name
         const colortype = types && ColorType(type1, type2)
 

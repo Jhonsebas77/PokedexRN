@@ -17,14 +17,15 @@ export const Colors = {
     dragon: '#7b63e7', dragon1: '#4a3994',
     dark: '#282227',
     fairy: '#f7b5f7', fairy1: '#bd18ce',
-    unknown: '#192f6a',
-    shadow: '#1E1C1C'
+    unknown: '#192f6a', unknown1: '#192f6a',
+    shadow: '#1E1C1C', background: '#a2db96', background1: '#24cca9'
 }
 
 export const ColorType = (type1, type2) => {
     let ColorsType = type1 + (type2 ? '_' + type2 : '')
     const typeColor = {
         fire: { color: () => [Colors.fire, Colors.fire1] },
+        unknown: { color: () => [Colors.unknown, Colors.unknown1] },
         grass: { color: () => [Colors.grass, Colors.grass1] },
         ground: { color: () => [Colors.ground, Colors.ground1] },
         bug: { color: () => [Colors.bug, Colors.bug1] },

@@ -3,12 +3,15 @@ import { View, Text, ImageBackground } from 'react-native'
 import styles from './style'
 import LottieView from 'lottie-react-native'
 import Loading_Pokeball from '../../Assets/animation/Loading_Pokeball.json'
+import LinearGradient from 'react-native-linear-gradient'
+import { Colors } from '../../Helpers/Colors'
+
 export default class Loading extends Component<LoadingProps> {
     render() {
         // this.animation.play()
         return (
             <View style={{ alignItems: 'center' }}>
-                <ImageBackground source={(this.props.imageLoading) as any} style={styles.loading}>
+                <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
                     <View style={styles.containerActivity}>
                         <LottieView
                             loop
@@ -17,7 +20,7 @@ export default class Loading extends Component<LoadingProps> {
                         />
                     </View>
                     <Text style={styles.textLoading}>{this.props.textLoading} </Text>
-                </ImageBackground>
+                </LinearGradient>
             </View >
         )
     }
