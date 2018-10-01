@@ -46,6 +46,18 @@ export const getAllNewItem =
       })
   }
 
+export const getItem =
+  (idDex) => {
+    return fetch(`http://localhost:5034/item/${idDex}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
 export const getAllMoves =
   () => {
     return fetch(`https://pokeapi.co/api/v2/move/?limit=100`)
