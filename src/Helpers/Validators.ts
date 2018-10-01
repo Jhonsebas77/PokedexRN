@@ -50,6 +50,6 @@ export const getMiniSpriteSource = (id: number) => {
 }
 
 export const getNormalSpriteSource = (id: number) => {
-    let urlSprite = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${paddingNumber(id)}.png`
+    let urlSprite = `https://s3.us-east-2.amazonaws.com/pokedex-jsob/Sprites/${id}.png`
     return urlSprite
 }

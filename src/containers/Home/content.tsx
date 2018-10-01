@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, ImageBackground } from 'react-native'
 import MenuItem from '../../components/MenuItem'
 import { Actions } from 'react-native-router-flux'
+import LinearGradient from 'react-native-linear-gradient'
+import { Colors } from '../../Helpers/Colors'
 import styles from './style'
 
 export default class Home extends Component<any, any> {
@@ -9,7 +11,7 @@ export default class Home extends Component<any, any> {
         return (
             <View>
                 <View style={styles.container}>
-                    <ImageBackground source={require('../../Assets/images/BG_Home.png')} style={styles.loading}>
+                <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
                         <View style={styles.contentContainer}>
                             <View style={styles.menuItem}>
                                 <TouchableOpacity onPress={() => { Actions.Items() }}>
@@ -27,7 +29,7 @@ export default class Home extends Component<any, any> {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </ImageBackground>
+                    </LinearGradient>
                 </View>
             </View>
         )

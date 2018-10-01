@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground } from 'react-native'
+import { Text, View, Image, ImageBackground, ScrollView } from 'react-native'
 import NavBarSimple from '../../components/NavBar/Simple'
-import { getURL } from '../../util/api'
+import { getItem } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
 import styles from './style'
+import LinearGradient from 'react-native-linear-gradient'
+import { Colors } from '../../Helpers/Colors'
 
 export default class ItemDetail extends Component<ItemDetailProps, ItemDetailState> {
     constructor(props) {
@@ -14,32 +16,33 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
     }
 
     async componentWillMount() {
-        let itemUrl = this.props.item.url
-        let item = await getURL(itemUrl)
+        let idItem = this.props.item.idDex
+        let item = await getItem(idItem)
         this.setState({ item })
     }
 
     renderMiddle() {
-        const { name } = this.state.item
+        const { name, category } = this.state.item
         return (
             <View style={{ alignItems: 'center' }}>
-                <Text style={styles.title}>{name ? `${newString(name)}` : 'Item Detail'}</Text>
+                <Text style={styles.title}>{name ? `${newString(name)}` : 'Item Name'}</Text>
+                <Text style={styles.subtitle}>{category ? `${category}` : 'Item Detail'}</Text>
             </View>
         )
     }
 
-    renderSpriteItem(id) {
+    renderSpriteItem(urlSprite) {
         return (
-            <View>
-                <Image style={styles.sprite} source={{ uri: id }} />
-            </View>
+            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn.png')} style={styles.spriteContainer}>
+                <Image style={styles.sprite} source={{ uri: urlSprite }} />
+            </ImageBackground>
         )
     }
 
     render() {
-        const { sprites, effect_entries } = this.state.item
+        const { urlSprite, effect_entries } = this.state.item
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
+            <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
@@ -47,16 +50,21 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
                 </NavBarSimple>
                 <View style={styles.head}>
                     <View style={styles.spriteContainer}>
-                        {sprites ?
-                            this.renderSpriteItem(sprites.default) :
+                        {urlSprite ?
+                            this.renderSpriteItem(urlSprite) :
                             <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
                         }
                     </View>
                 </View>
-                <View style={styles.item}>
-                    <Text> {effect_entries ? `${effect_entries[0].short_effect} ` : ''}  </Text>
-                </View >
-            </ImageBackground >
+                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
+                    <View style={styles.itemDetail}>
+                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+                            {'Informacion'}
+                        </Text>
+                        <Text> {effect_entries ? `${effect_entries[0][0].short_effect} ` : ''}  </Text>
+                    </View >
+                </ScrollView>
+            </LinearGradient >
         )
     }
 }

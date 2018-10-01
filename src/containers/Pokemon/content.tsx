@@ -7,6 +7,8 @@ import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
+import LinearGradient from 'react-native-linear-gradient'
+import { Colors } from '../../Helpers/Colors'
 import styles from './style'
 
 export default class Pokemon extends Component<PkmnProps, PkmnState> {
@@ -45,7 +47,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
             return this.renderLoadingView()
         }
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
+            <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
@@ -72,7 +74,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </ImageBackground>
+            </LinearGradient>
         )
     }
 }

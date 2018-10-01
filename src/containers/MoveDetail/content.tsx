@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import { getURL } from '../../util/api'
 import { newString, getTypeSource, getTypeMoveSource } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
+import LinearGradient from 'react-native-linear-gradient'
+import { Colors } from '../../Helpers/Colors'
 import styles from './style'
 
 export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailState> {
@@ -19,7 +21,6 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     async componentWillMount() {
         let pokemonUrl = this.props.item.url
         let pokemon = await getURL(pokemonUrl)
-        console.log('fetch', pokemon);
         this.setState({ pokemon })
     }
 
@@ -53,7 +54,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     render() {
         const { accuracy, type, power, pp, damage_class, effect_entries } = this.state.pokemon
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Loading.png')} style={styles.loading}>
+            <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
@@ -75,7 +76,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                         {accuracy && power && pp ? `accuracy: ${accuracy}   power: ${power} pp: ${pp} ` : '-- -----'}
                     </Text>
                 </View>
-            </ImageBackground >
+            </LinearGradient >
         )
     }
 }

@@ -15,8 +15,6 @@ export default class AnimationLottie extends Component<LottieAnimProps, LottieAn
 
     render() {
         const { _animation } = this.props
-        console.log('props', this.props);
-        
         return (
             <View style={styles.containerActivity}>
                 <LottieView
