@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Image, ImageBackground, ScrollView } from 'react-native'
 import NavBarSimple from '../../components/NavBar/Simple'
-import { getURL, getItem } from '../../util/api'
+import { getItem } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
 import styles from './style'
 import LinearGradient from 'react-native-linear-gradient'
