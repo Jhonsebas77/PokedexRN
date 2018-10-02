@@ -15,17 +15,13 @@ export default {
         overflow: 'hidden',
         borderRadius: 10
     },
-    head: {
-        alignItems: 'center',
-        paddingBottom: 10
-    },
     sprite: {
-        width: 150,
-        height: 150
+        width: 200,
+        height: 200
     },
     spriteContainer: {
-        width: 150,
-        height: 150
+        width: 200,
+        height: 200
     },
     title: {
         color: 'white',
@@ -51,5 +47,15 @@ export default {
         width: 60,
         height: 20,
         borderRadius: 10
+    },
+    containerPkmn: {
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        width: 360,
+        height: 200,
+        borderBottomRightRadius: 100,
+        borderTopRightRadius: 100,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20
     }
 }
