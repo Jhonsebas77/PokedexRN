@@ -37,15 +37,13 @@ export default {
         height: '100%'
     },
     typeContainer: {
-        width: 80,
-        height: 60,
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 5
     },
     type: {
-        width: 60,
-        height: 20,
+        width: 50,
+        height: 50,
         borderRadius: 10
     },
     containerPkmn: {
