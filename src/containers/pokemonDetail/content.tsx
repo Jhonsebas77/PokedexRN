@@ -76,11 +76,10 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderMiddle() {
-        const { name, id } = this.state.pokemon
+        const { name } = this.state.pokemon
         return (
             <View style={{ alignItems: 'center' }}>
                 <Text style={styles.title}>{name ? `${_.capitalize(name)}` : 'Pokemon Detail'}</Text>
-                <Text style={styles.titleId}>{id ? `#${paddingNumber(id)}` : '-- -----'}</Text>
             </View>
         )
     }
@@ -88,7 +87,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderSpritePokemon(id) {
         const url = getNormalSpriteSource(id)
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn.png')} style={styles.spriteContainer}>
+            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
                 <Image style={styles.sprite} source={{ uri: url }} />
             </ImageBackground>
         )
@@ -96,7 +95,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
 
     renderInformation() {
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 310, borderRadius: 20, margin: 30 }}>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 200, borderRadius: 20, margin: 30 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Informacion'}
                 </Text>
@@ -145,34 +144,12 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
             return this.renderLoadingView()
         }
         return (
-            <LinearGradient colors={types && colortype} style={styles.loading} >
+            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 1}}  colors={types && colortype} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>
-                <View style={styles.head}>
-                    <View>
-                        {sprites ?
-                            this.renderSpritePokemon(id) :
-                            <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
-                        }
-                    </View>
-                </View >
-                <ScrollView contentContainerStyle={{ paddingVertical: 20, alignItems: 'center' }}>
-                    <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 70, borderRadius: 20, alignItems: 'center', paddingVertical: 10 }}>
-                        <View style={{ flexDirection: 'row', height: 30 }}>
-                            {types && types[1] ? this.renderType(types[1].type.name) : undefined}
-                            {types && types[0] ? this.renderType(types[0].type.name) : undefined}
-                        </View>
-                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
-                            {` Peso ${weight} - Altura  ${height}`}
-                        </Text>
-                    </View>
-                    <View>
-                        {this.selectChip()}
-                    </View>
-                </ScrollView>
                 <View style={{ marginVertical: 10 }}>
                     <FlatList
                         horizontal={true}
@@ -189,6 +166,28 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                                 pressed={item.pressed}
                             />}
                     />
+                </View>
+                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
+                    <View>
+                        {this.selectChip()}
+                    </View>
+                </ScrollView>
+                <View style={styles.containerPkmn}>
+                    <View style={{ marginLeft: 0 }}>
+                        {types && types[1] ? this.renderType(types[1].type.name) : undefined}
+                        {types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                            {` Peso ${weight}`}
+                        </Text>
+                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                            {`Altura  ${height}`}
+                        </Text>
+                        <Text style={styles.titleId}>{id ? `#${paddingNumber(id)}` : '-- -----'}</Text>
+                    </View>
+                    {sprites ?
+                        this.renderSpritePokemon(id) :
+                        <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
+                    }
                 </View>
             </LinearGradient >
         )

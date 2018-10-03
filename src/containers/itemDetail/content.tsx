@@ -33,7 +33,7 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
 
     renderSpriteItem(urlSprite) {
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn.png')} style={styles.spriteContainer}>
+            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
                 <Image style={styles.sprite} source={{ uri: urlSprite }} />
             </ImageBackground>
         )
