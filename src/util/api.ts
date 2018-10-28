@@ -48,7 +48,7 @@ export const getItem =
 
 export const getAllMoves =
   () => {
-    return fetch(`https://pokeapi.co/api/v2/move/?limit=100`)
+    return fetch(`http://localhost:5034/movelist`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson

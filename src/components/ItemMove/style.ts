@@ -1,4 +1,3 @@
-
 export default {
     contentContainer: {
         flexDirection: 'row',
@@ -29,22 +28,21 @@ export default {
     },
     typeContainer: {
         width: 60,
-        height: 60,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginLeft: 10
+        height: 60
     },
     type: {
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
         borderRadius: 10
+    },
+    category: {
+        width: 50,
+        height: 50
     },
     specs: {
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        margin: 10,
-        padding: 2,
+        margin: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
         height: 50,
@@ -52,8 +50,7 @@ export default {
     },
     col1: {
         alignItems: 'center',
-        margin: 5,
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'space-between'
     }
 }
