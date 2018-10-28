@@ -4,7 +4,7 @@ import { getAllMoves } from '../../util/api'
 import ItemMove from '../../components/ItemMove'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
-import { newString, getTypeMoveSource, getTypeSource } from '../../Helpers/Validators'
+import { newString, getTypeSource } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
@@ -62,7 +62,7 @@ export default class Move extends Component<MoveProps, MoveState> {
                                 <ItemMove
                                     name={newString((item as any).name)}
                                     typeSource={{ uri: getTypeSource('grass') }}
-                                    categorySource={{ uri: getTypeMoveSource('special') }}
+                                    categorySource={{ uri: getTypeSource('special') }}
                                     description={'Short Description...'}
                                 />
                             </TouchableOpacity>

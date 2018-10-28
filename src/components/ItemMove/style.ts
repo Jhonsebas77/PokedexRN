@@ -29,7 +29,7 @@ export default {
     },
     typeContainer: {
         width: 60,
-        height: 30,
+        height: 60,
         flexDirection: 'column',
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -37,14 +37,14 @@ export default {
     },
     type: {
         width: 50,
-        height: 20,
+        height: 50,
         borderRadius: 10
     },
     specs: {
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         margin: 10,
-        padding:2,
+        padding: 2,
         flexDirection: 'row',
         justifyContent: 'space-between',
         height: 50,
@@ -54,6 +54,6 @@ export default {
         alignItems: 'center',
         margin: 5,
         flexDirection: 'column',
-        justifyContent:'center',
+        justifyContent: 'center'
     }
 }

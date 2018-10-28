@@ -13,7 +13,6 @@ export default class ItemPokemon extends Component<ItemMoveProps, ItemMoveState>
             <View style={styles.itemMove}>
                 <View style={styles.typeContainer}>
                     <Image style={styles.type} source={typeSource} />
-                    <Image style={styles.type} source={categorySource} />
                 </View>
                 <View style={styles.numberSprite}>
                     <Text style={{ color: 'white', fontWeight: 'bold' }}> {name} </Text>
@@ -29,8 +28,7 @@ export default class ItemPokemon extends Component<ItemMoveProps, ItemMoveState>
                         <Text style={{ color: 'white' }}> {'100'} </Text>
                     </View>
                     <View style={styles.col1}>
-                        <Text style={{ color: 'white', fontWeight: 'bold' }}> {'PP'} </Text>
-                        <Text style={{ color: 'white' }}> {'25'} </Text>
+                        <Image style={styles.type} source={categorySource} />
                     </View>
                 </View>
             </View>

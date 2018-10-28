@@ -39,13 +39,13 @@ export default {
     },
     typeContainer: {
         width: 80,
-        height: 60,
+        height: 80,
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 5
     },
     type: {
-        width: 60,
-        height: 20
+        width: 80,
+        height: 80
     }
 }

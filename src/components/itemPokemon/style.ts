@@ -32,17 +32,15 @@ export default {
         height: 40,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginRight: 10
+        alignItems: 'center'
     },
     typeTwoContainer: {
         width: 40,
         height: 40,
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 30,
-        marginBottom: 20
+        marginRight: 20
     },
     type: {
         width: 40,

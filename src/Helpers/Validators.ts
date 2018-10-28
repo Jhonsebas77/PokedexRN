@@ -33,11 +33,6 @@ export const getTypeSource = (type: string) => {
     return urlType
 }
 
-export const getTypeMoveSource = (type: string) => {
-    let urlType = `https://www.serebii.net/attackdex-bw/type/${type}.png`
-    return urlType
-}
-
 export const getItemSpriteSource = (item: string) => {
     let nitem = newStringItem(item)
     let urlType = `https://www.serebii.net/itemdex/sprites/${nitem}.png`

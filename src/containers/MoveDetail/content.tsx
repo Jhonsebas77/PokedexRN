@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Image } from 'react-native'
 import { getURL } from '../../util/api'
-import { newString, getTypeSource, getTypeMoveSource } from '../../Helpers/Validators'
+import { newString, getTypeSource } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
@@ -15,7 +15,6 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
             pokemon: []
         }
         this.renderType = this.renderType.bind(this)
-        this.renderCategory = this.renderCategory.bind(this)
     }
 
     async componentWillMount() {
@@ -26,15 +25,6 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
 
     renderType(type) {
         const url = getTypeSource(type)
-        return (
-            <View style={styles.typeContainer}>
-                <Image style={styles.type} source={{ uri: url }} />
-            </View>
-        )
-    }
-
-    renderCategory(type) {
-        const url = getTypeMoveSource(type)
         return (
             <View style={styles.typeContainer}>
                 <Image style={styles.type} source={{ uri: url }} />
@@ -63,7 +53,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                 <View style={styles.head}>
                     <View style={{ flexDirection: 'row' }}>
                         {type && this.renderType(type.name)}
-                        {damage_class && this.renderCategory(damage_class.name)}
+                        {damage_class && this.renderType(damage_class.name)}
                     </View>
                 </View >
                 <View style={styles.item}>

@@ -12,18 +12,6 @@ export const getURL =
 
 export const getAllPokemon =
   () => {
-    return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=150`)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        return responseJson
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
-
-export const getAllNewPokemon =
-  () => {
     return fetch(`http://localhost:5034/pokedex`)
       .then((response) => response.json())
       .then((responseJson) => {
