@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Image } from 'react-native'
-import { getURL } from '../../util/api'
-import { newString, getTypeSource, getTypeMoveSource } from '../../Helpers/Validators'
+import { getURL, getMove } from '../../util/api'
+import { newString } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
@@ -12,38 +12,17 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     constructor(props) {
         super(props)
         this.state = {
-            pokemon: []
+            move: []
         }
-        this.renderType = this.renderType.bind(this)
-        this.renderCategory = this.renderCategory.bind(this)
     }
 
     async componentWillMount() {
-        let pokemonUrl = this.props.item.url
-        let pokemon = await getURL(pokemonUrl)
-        this.setState({ pokemon })
-    }
-
-    renderType(type) {
-        const url = getTypeSource(type)
-        return (
-            <View style={styles.typeContainer}>
-                <Image style={styles.type} source={{ uri: url }} />
-            </View>
-        )
-    }
-
-    renderCategory(type) {
-        const url = getTypeMoveSource(type)
-        return (
-            <View style={styles.typeContainer}>
-                <Image style={styles.type} source={{ uri: url }} />
-            </View>
-        )
+        let move = await getMove(this.props.item.idDex)
+        this.setState({ move })
     }
 
     renderMiddle() {
-        const { name } = this.state.pokemon
+        const { name } = this.state.move
         return (
             <View style={{ alignItems: 'center' }}>
                 <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
@@ -52,7 +31,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     }
 
     render() {
-        const { accuracy, type, power, pp, damage_class, effect_entries } = this.state.pokemon
+        const { accuracy = 0, battleType = {}, basePower = 0, pp = 0, category = {}, effect_entries = {} } = this.state.move
         return (
             <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
                 <NavBarSimple
@@ -62,18 +41,33 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                 </NavBarSimple>
                 <View style={styles.head}>
                     <View style={{ flexDirection: 'row' }}>
-                        {type && this.renderType(type.name)}
-                        {damage_class && this.renderCategory(damage_class.name)}
+                        {battleType &&
+                            <View style={styles.typeContainer}>
+                                <Image style={styles.type} source={{ uri: battleType.sprite }} />
+                            </View>
+                        }
+                        {category && <View style={styles.typeContainer}>
+                            <Image style={styles.type} source={{ uri: category.sprite }} />
+                        </View>}
                     </View>
                 </View >
                 <View style={styles.item}>
                     <Text>
-                        {effect_entries ? `${effect_entries[0].short_effect} ` : ''}
+                        {effect_entries ? `${effect_entries.short_effect} ` : ''}
+                    </Text>
+                    <Text>
+                        {effect_entries ? `${effect_entries.effect} ` : ''}
                     </Text>
                 </View>
                 <View style={styles.item}>
                     <Text>
-                        {accuracy && power && pp ? `accuracy: ${accuracy}   power: ${power} pp: ${pp} ` : '-- -----'}
+                        {accuracy ? `accuracy: ${accuracy} ` : '-- -----'}
+                    </Text>
+                    <Text>
+                        {basePower ? `power: ${basePower} ` : '-- -----'}
+                    </Text>
+                    <Text>
+                        {pp && `pp: ${pp} `}
                     </Text>
                 </View>
             </LinearGradient >

@@ -21,7 +21,7 @@ export const newStringItem = (value: string) => {
     } else {
         return undefined
     }
-} 
+}
 
 export const paddingNumber = (id: number) => {
     const number = (id < 10 ? '00' : id < 100 ? '0' : '') + id
@@ -29,12 +29,7 @@ export const paddingNumber = (id: number) => {
 }
 
 export const getTypeSource = (type: string) => {
-    let urlType = `https://www.serebii.net/pokedex-bw/type/${type}.gif`
-    return urlType
-}
-
-export const getTypeMoveSource = (type: string) => {
-    let urlType = `https://www.serebii.net/attackdex-bw/type/${type}.png`
+    let urlType = `https://s3.us-east-2.amazonaws.com/pokedex-jsob/Types/${type}.png`
     return urlType
 }
 

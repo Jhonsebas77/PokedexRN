@@ -56,7 +56,7 @@ export const ColorType = (type1, type2) => {
         ground_poison: { color: () => [Colors.poison, Colors.ground] },
         ground_rock: { color: () => [Colors.rock, Colors.ground1] },
         rock_ground: { color: () => [Colors.ground1, Colors.rock] },
-        flying_fire: { color: () => [Colors.fire, Colors.flying] },
+        flying_fire: { color: () => [Colors.fire, Colors.fire, Colors.flying, Colors.flying] },
         flying_rock: { color: () => [Colors.rock1, Colors.flying] },
         flying_bug: { color: () => [Colors.bug, Colors.flying] },
         flying_poison: { color: () => [Colors.poison, Colors.flying] },

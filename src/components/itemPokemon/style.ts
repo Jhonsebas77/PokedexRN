@@ -28,25 +28,23 @@ export default {
         height: 30
     },
     typeOneContainer: {
-        width: 60,
-        height: 30,
+        width: 40,
+        height: 40,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        alignItems: 'center',
-        marginRight: 10
+        alignItems: 'center'
     },
     typeTwoContainer: {
-        width: 60,
-        height: 30,
-        flexDirection: 'column',
+        width: 40,
+        height: 40,
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 30,
-        marginBottom: 20
+        marginRight: 20
     },
     type: {
-        width: 50,
-        height: 20,
+        width: 40,
+        height: 40,
         borderRadius: 10
     }
 }

@@ -4,7 +4,7 @@ import { getAllMoves } from '../../util/api'
 import ItemMove from '../../components/ItemMove'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
-import { newString, getTypeMoveSource, getTypeSource } from '../../Helpers/Validators'
+import { newString } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
@@ -41,7 +41,6 @@ export default class Move extends Component<MoveProps, MoveState> {
 
     render() {
         const { loaded, moves } = this.state
-        const { results } = moves
         if (!loaded) {
             return this.renderLoadingView()
         }
@@ -54,16 +53,17 @@ export default class Move extends Component<MoveProps, MoveState> {
                 </NavBarSimple>
                 <View>
                     <FlatList
-                        data={results}
-                        keyExtractor={(item) => item.index}
+                        data={moves}
+                        keyExtractor={(item) => (item as any).index}
                         renderItem={({ item, index }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.MoveDetail({ item, index }) }}>
                                 <ItemMove
                                     name={newString((item as any).name)}
-                                    typeSource={{ uri: getTypeSource('grass') }}
-                                    categorySource={{ uri: getTypeMoveSource('special') }}
-                                    description={'Short Description...'}
+                                    typeSource={{ uri: (item as any).spriteBattleType }}
+                                    categorySource={{ uri: (item as any).spriteCategory }}
+                                    power={(item as any).basePower}
+                                    accuracy={(item as any).accuracy}
                                 />
                             </TouchableOpacity>
                         } />
