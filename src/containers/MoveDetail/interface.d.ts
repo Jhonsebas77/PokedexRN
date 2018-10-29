@@ -3,5 +3,6 @@ interface PkmnDetailProps {
 }
 interface PkmnDetailState {
     pokemon?: any,
+    move?: any,
     item?: any
 }

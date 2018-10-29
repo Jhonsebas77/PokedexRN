@@ -46,6 +46,18 @@ export const getItem =
       })
   }
 
+export const getMove =
+  (idDex) => {
+    return fetch(`http://localhost:5034/move/${idDex}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
 export const getAllMoves =
   () => {
     return fetch(`http://localhost:5034/movelist`)
