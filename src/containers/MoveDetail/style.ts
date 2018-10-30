@@ -12,7 +12,13 @@ export default {
     },
     head: {
         alignItems: 'center',
-        justifyContent: 'space-between'
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        marginHorizontal: 5,
+        overflow: 'hidden',
+        borderRadius: 50,
+        borderWidth: 5,
+        width: 300,
+        height: 400
     },
     sprite: {
         width: '100%',
@@ -35,9 +41,14 @@ export default {
     },
     loading: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        alignItems: 'center',
     },
     typeContainer: {
+        width: 80,
+        height: 80,
+    },
+    categoryContainer: {
         width: 80,
         height: 80,
         flexDirection: 'row',

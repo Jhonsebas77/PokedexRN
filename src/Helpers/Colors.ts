@@ -1,5 +1,7 @@
+import _ from './Utilities'
+
 export const Colors = {
-    normal: '#ada594', normal1: '#525252',
+    normal: '#ada594', normal1: '#525252', normal_border: '#808080',
     fighting: '#a55239', fighting1: '#4a3931',
     flying: '#9cadf7', flying1: '#425294',
     poison: '#b55aa5', poison1: '#4a3952',
@@ -21,7 +23,12 @@ export const Colors = {
     shadow: '#1E1C1C', background: '#a2db96', background1: '#24cca9'
 }
 
-export const ColorType = (type1, type2) => {
+export const GetColorType = (type) => {
+    const typeBorder = `${type}_border`
+    return _.findProperty(Colors, typeBorder)
+}
+
+export const ColorType = (type1, type2?) => {
     let ColorsType = type1 + (type2 ? '_' + type2 : '')
     const typeColor = {
         fire: { color: () => [Colors.fire, Colors.fire1] },
