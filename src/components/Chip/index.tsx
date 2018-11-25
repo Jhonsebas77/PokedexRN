@@ -1,15 +1,6 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View, Image } from 'react-native'
-// import { Icon } from '../../Helpers/Icons'
-// import Shadow from '../../Components/Wrapper/Shadow'
-// import { getComponentStyle } from '../../Helpers/Stylus'
+import { Text, TouchableOpacity, View } from 'react-native'
 import styles from './style'
-// import Svg from 'am-mobile-svg'
-const genderImage = {
-    F: '../../Assets/images/Pokeball-Fill-B.png',
-    M: '../../Assets/images/Pokeball-Fill.png'
-}
-// const styles = getComponentStyle(_styles)
 
 export default class Chip extends Component<ChipProps, ChipState> {
     constructor(props) {
@@ -27,13 +18,11 @@ export default class Chip extends Component<ChipProps, ChipState> {
         }
     }
     render() {
-        const { onPress, pressed, text, image, icon, subtext, index, isLast, isFirst, gender, alignItems } = this.props
-        const { container, active, imageChip, iconStyle, activeLast, containerTextChip, textChip, textLast, textActive,
-            subtextChip, shadow, marginFistChip } = styles
+        const { onPress, pressed, text, index, isLast, isFirst, alignItems } = this.props
+        const { container, active, activeLast, containerTextChip, textChip, textLast, textActive, marginFistChip } = styles
         const isActived = index === pressed
         return (
             <View style={[{ marginRight: 8, paddingLeft: 2 }, isFirst ? marginFistChip : {}]}>
-                {/* <Shadow settings={shadow} stylesShadow={{ width: this.logic() }}> */}
                 <TouchableOpacity activeOpacity={1} onPress={() => onPress()}>
                     <View style={[container, isLast && activeLast, isActived && active]}>
                         <View style={[containerTextChip, { alignItems: (alignItems || 'center') }]}>
@@ -41,7 +30,6 @@ export default class Chip extends Component<ChipProps, ChipState> {
                         </View>
                     </View>
                 </TouchableOpacity>
-                {/* </Shadow> */}
             </View >
         )
     }

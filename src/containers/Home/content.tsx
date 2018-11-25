@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import MenuItem from '../../components/MenuItem'
 import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Router from './routes'
-import { StatusBar, View, StyleSheet, ImageBackground } from 'react-native';
+import { StatusBar, View } from 'react-native';
 console.disableYellowBox = true
 console.error = (error) => error.apply
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllNewItem } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import { Actions } from 'react-native-router-flux'
