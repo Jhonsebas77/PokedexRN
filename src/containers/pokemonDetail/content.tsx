@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground, FlatList, ScrollView, TouchableHighlight } from 'react-native'
-import { getURL } from '../../util/api'
-import { paddingNumber, getTypeSource, getNormalSpriteSource } from '../../Helpers/Validators'
+import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
+import { getPokemon } from '../../util/api'
+import { paddingNumber} from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 import Chip from '../../components/Chip'
 import Loading from '../../components/Loading'
-import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 
 const dataChip = [
@@ -46,8 +45,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
             pokemon: [],
             loaded: false
         }
-        this.renderType = this.renderType.bind(this)
-        this.renderSpritePokemon = this.renderSpritePokemon.bind(this)
         this.renderInformation = this.renderInformation.bind(this)
         this.renderEvolution = this.renderEvolution.bind(this)
         this.renderHability = this.renderHability.bind(this)
@@ -55,18 +52,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     async componentWillMount() {
-        let pokemonUrl = this.props.item.url
-        let pokemon = await getURL(pokemonUrl)
+        let pokemon = await getPokemon(this.props.item.idDex)
         this.setState({ pokemon, loaded: true })
-    }
-
-    renderType(type) {
-        const url = getTypeSource(type)
-        return (
-            <View style={styles.typeContainer}>
-                <Image style={styles.type} source={{ uri: url }} />
-            </View>
-        )
     }
 
     renderLoadingView() {
@@ -79,17 +66,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         const { name } = this.state.pokemon
         return (
             <View style={{ alignItems: 'center' }}>
-                <Text style={styles.title}>{name ? `${_.capitalize(name)}` : 'Pokemon Detail'}</Text>
+                <Text style={styles.title}>{name ? name : 'Pokemon Detail'}</Text>
             </View>
-        )
-    }
-
-    renderSpritePokemon(id) {
-        const url = getNormalSpriteSource(id)
-        return (
-            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
-                <Image style={styles.sprite} source={{ uri: url }} />
-            </ImageBackground>
         )
     }
 
@@ -135,16 +113,15 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        const { id, types, sprites, weight, height } = this.state.pokemon
-        let type1 = types && types[0] ? types[0].type.name : 'unknown'
-        let type2 = types && types[1] && types[1].type.name
+        const { idDex, types, sprites, weight, height } = this.state.pokemon
+        let type1 = types && types[0][0].type ? types[0][0].type.name : 'unknown'
+        let type2 = types && types[1][0].type && types[1][0].type.name
         const colortype = types && ColorType(type1, type2)
-
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
         return (
-            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 1}}  colors={types && colortype} style={styles.loading} >
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
@@ -174,18 +151,30 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 </ScrollView>
                 <View style={styles.containerPkmn}>
                     <View style={{ marginLeft: 0 }}>
-                        {types && types[1] ? this.renderType(types[1].type.name) : undefined}
-                        {types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                        <View style={styles.containerTypes}>
+                            {types && types[1][0].type &&
+                                <View style={styles.typeContainer}>
+                                    <Image style={styles.type} source={{ uri: types[1][0].type.urlSprite }} />
+                                </View>
+                            }
+                            {types && types[0][0].type &&
+                                <View style={styles.typeContainer}>
+                                    <Image style={styles.type} source={{ uri: types[0][0].type.urlSprite }} />
+                                </View>
+                            }
+                        </View>
                         <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
                             {` Peso ${weight}`}
                         </Text>
                         <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
                             {`Altura  ${height}`}
                         </Text>
-                        <Text style={styles.titleId}>{id ? `#${paddingNumber(id)}` : '-- -----'}</Text>
+                        <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
                     </View>
                     {sprites ?
-                        this.renderSpritePokemon(id) :
+                        <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
+                            <Image style={styles.sprite} source={{ uri: sprites.normal }} />
+                        </ImageBackground> :
                         <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
                     }
                 </View>
