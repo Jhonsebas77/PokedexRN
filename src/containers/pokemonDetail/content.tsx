@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
 import { getPokemon } from '../../util/api'
-import { paddingNumber} from '../../Helpers/Validators'
+import { paddingNumber } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../../components/NavBar/Simple'
@@ -13,28 +13,23 @@ import LinearGradient from 'react-native-linear-gradient'
 const dataChip = [
     {
         'gender': 'F',
-        'name': 'Informacion',
+        'name': 'Normal',
         'pressed': 0
     },
     {
         'gender': 'F',
-        'name': 'Evolucion',
-        'pressed': '1'
-    },
-    {
-        'gender': 'F',
-        'name': 'Habilidades',
+        'name': 'Shiny',
         'pressed': '2'
     },
     {
         'gender': 'F',
-        'name': 'Stats',
-        'pressed': '3'
+        'name': 'Mega Evolucion X',
+        'pressed': '1'
     },
     {
         'gender': 'F',
-        'name': 'Movimientos',
-        'pressed': '4'
+        'name': 'Mega Evolucion Y',
+        'pressed': 0
     }
 ]
 export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
@@ -72,18 +67,56 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderInformation() {
+        const { dex_entry = {} } = this.state.pokemon
+        const { flavor_text = {} } = dex_entry
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 200, borderRadius: 20, margin: 30 }}>
+            <View style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
+                marginHorizontal: 30
+            }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Informacion'}
                 </Text>
+                <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                    {flavor_text}
+                </Text>
+            </View>
+        )
+    }
+
+    renderStats() {
+        const { stats = {} } = this.state.pokemon
+        const { attack = {}, defense = {}, hp = {}, special_attack = {}, special_defense = {}, speed = {} } = stats
+        return (
+            <View style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
+                marginHorizontal: 30, marginTop: 10
+            }}>
+                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+                    {'Estadisticas'}
+                </Text>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-around'
+                }}>
+                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                        {`Ataque: ${attack}\n`}
+                        {`Defensa: ${defense}\n`}
+                        {`Salud: ${hp}`}
+                    </Text>
+                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                        {`Ataque Especial: ${special_attack}\n`}
+                        {`Defensa Especial: ${special_defense}\n`}
+                        {`Velocidad: ${speed}\n`}
+                    </Text>
+                </View>
             </View>
         )
     }
 
     renderEvolution() {
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 310, borderRadius: 20, margin: 30 }}>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Evolucion'}
                 </Text>
@@ -93,7 +126,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
 
     renderHability() {
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 310, borderRadius: 20, margin: 30 }}>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Habilidad'}
                 </Text>
@@ -113,7 +146,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        const { idDex, types, sprites, weight, height } = this.state.pokemon
+        const { idDex, types, sprites, weight, height, dex_entry = {} } = this.state.pokemon
+        const { classification = {} } = dex_entry
         let type1 = types && types[0][0].type ? types[0][0].type.name : 'unknown'
         let type2 = types && types[1][0].type && types[1][0].type.name
         const colortype = types && ColorType(type1, type2)
@@ -127,6 +161,14 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>
+                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
+                    <View>
+                        {this.renderInformation()}
+                        {this.renderStats()}
+                        {this.renderEvolution()}
+                        {this.renderHability()}
+                    </View>
+                </ScrollView>
                 <View style={{ marginVertical: 10 }}>
                     <FlatList
                         horizontal={true}
@@ -144,13 +186,12 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                             />}
                     />
                 </View>
-                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
-                    <View>
-                        {this.selectChip()}
-                    </View>
-                </ScrollView>
                 <View style={styles.containerPkmn}>
-                    <View style={{ marginLeft: 0 }}>
+                    <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center' }}>
+                        {classification && <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                            {`${classification}`}
+                        </Text>}
+                        <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
                         <View style={styles.containerTypes}>
                             {types && types[1][0].type &&
                                 <View style={styles.typeContainer}>
@@ -169,7 +210,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                         <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
                             {`Altura  ${height}`}
                         </Text>
-                        <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
                     </View>
                     {sprites ?
                         <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
