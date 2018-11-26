@@ -8,5 +8,9 @@ export default {
         color: 'white',
         fontSize: 30,
         fontWeight: 'bold'
+    },
+    sprite: {
+        width: 200,
+        height: 200
     }
 }

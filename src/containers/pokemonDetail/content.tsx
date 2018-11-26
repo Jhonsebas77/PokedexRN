@@ -72,14 +72,18 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         return (
             <View style={{
                 backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
-                marginHorizontal: 30
+                marginHorizontal: 30, alignItems: 'center', paddingTop: 5
             }}>
-                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
-                    {'Informacion'}
-                </Text>
-                <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
-                    {flavor_text}
-                </Text>
+                <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', borderRadius: 20, paddingBottom: 10, paddingHorizontal: 10 }}>
+                    <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+                        {'Informacion'}
+                    </Text>
+                </View>
+                <View>
+                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                        {flavor_text}
+                    </Text>
+                </View>
             </View>
         )
     }
@@ -174,6 +178,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         data={dataChip}
+                        keyExtractor={(item) => (item as any).index}
                         renderItem={({ item, index }: any) =>
                             <Chip onPress={() => {
                                 this.selectChip(item.name)
