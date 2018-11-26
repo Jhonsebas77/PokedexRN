@@ -55,6 +55,7 @@ export default class Home extends Component<ItemProps, ItemState> {
                     <FlatList
                         data={Items}
                         numColumns={3}
+                        keyExtractor={(item) => (item as any).index}
                         renderItem={({ item }) =>
                             <TouchableOpacity
                                 onPress={() => { Actions.ItemDetail({ item }) }}>
