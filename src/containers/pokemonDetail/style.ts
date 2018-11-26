@@ -41,6 +41,10 @@ export default {
         justifyContent: 'space-between',
         padding: 5
     },
+    containerTypes: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     type: {
         width: 50,
         height: 50,

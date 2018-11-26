@@ -81,3 +81,15 @@ export const getAllItems =
         console.error(error)
       })
   }
+
+export const getPokemon =
+  (idDex) => {
+    return fetch(`http://localhost:5034/pokemon/${idDex}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }

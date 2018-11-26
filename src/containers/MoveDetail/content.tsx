@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { Text, View, Image } from 'react-native'
 import { getMove } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
-import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
-import { ColorType, GetColorType } from '../../Helpers/Colors';
+import { ColorType, GetColorType } from '../../Helpers/Colors'
 import styles from './style'
 
 export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailState> {
@@ -47,7 +46,6 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                 }
                 <View style={[{ borderColor }, styles.head]}>
                     <View >
-
                         <View style={{ alignItems: 'center' }}>
                             <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
                         </View>
@@ -58,21 +56,10 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                             <Image style={styles.type} source={{ uri: category.sprite }} />
                         </View>}
                     </View>
-
-
-                    <Text>
-                        {effect_entries ? `${effect_entries.effect} ` : ''}
-                    </Text>
-
-                    <Text>
-                        {accuracy ? `accuracy: ${accuracy}% ` : '-- -----'}
-                    </Text>
-                    <Text>
-                        {basePower ? `power: ${basePower} ` : '-- -----'}
-                    </Text>
-                    <Text>
-                        {pp && `pp: ${pp} `}
-                    </Text>
+                    <Text> {effect_entries ? `${effect_entries.effect} ` : ''} </Text>
+                    <Text> {accuracy ? `accuracy: ${accuracy}% ` : '-- -----'}  </Text>
+                    <Text>  {basePower ? `power: ${basePower} ` : '-- -----'} </Text>
+                    <Text>  {pp && `pp: ${pp} `}  </Text>
                 </View>
             </LinearGradient >
         )

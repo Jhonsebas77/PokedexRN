@@ -1,41 +1,35 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground, FlatList, ScrollView, TouchableHighlight } from 'react-native'
-import { getURL } from '../../util/api'
-import { paddingNumber, getTypeSource, getNormalSpriteSource } from '../../Helpers/Validators'
+import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
+import { getPokemon } from '../../util/api'
+import { paddingNumber } from '../../Helpers/Validators'
 import _ from '../../Helpers/Utilities'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../../components/NavBar/Simple'
 import styles from './style'
 import Chip from '../../components/Chip'
 import Loading from '../../components/Loading'
-import { Actions } from 'react-native-router-flux'
 import LinearGradient from 'react-native-linear-gradient'
 
 const dataChip = [
     {
         'gender': 'F',
-        'name': 'Informacion',
+        'name': 'Normal',
         'pressed': 0
     },
     {
         'gender': 'F',
-        'name': 'Evolucion',
-        'pressed': '1'
-    },
-    {
-        'gender': 'F',
-        'name': 'Habilidades',
+        'name': 'Shiny',
         'pressed': '2'
     },
     {
         'gender': 'F',
-        'name': 'Stats',
-        'pressed': '3'
+        'name': 'Mega Evolucion X',
+        'pressed': '1'
     },
     {
         'gender': 'F',
-        'name': 'Movimientos',
-        'pressed': '4'
+        'name': 'Mega Evolucion Y',
+        'pressed': 0
     }
 ]
 export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
@@ -46,8 +40,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
             pokemon: [],
             loaded: false
         }
-        this.renderType = this.renderType.bind(this)
-        this.renderSpritePokemon = this.renderSpritePokemon.bind(this)
         this.renderInformation = this.renderInformation.bind(this)
         this.renderEvolution = this.renderEvolution.bind(this)
         this.renderHability = this.renderHability.bind(this)
@@ -55,18 +47,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     async componentWillMount() {
-        let pokemonUrl = this.props.item.url
-        let pokemon = await getURL(pokemonUrl)
+        let pokemon = await getPokemon(this.props.item.idDex)
         this.setState({ pokemon, loaded: true })
-    }
-
-    renderType(type) {
-        const url = getTypeSource(type)
-        return (
-            <View style={styles.typeContainer}>
-                <Image style={styles.type} source={{ uri: url }} />
-            </View>
-        )
     }
 
     renderLoadingView() {
@@ -79,33 +61,66 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         const { name } = this.state.pokemon
         return (
             <View style={{ alignItems: 'center' }}>
-                <Text style={styles.title}>{name ? `${_.capitalize(name)}` : 'Pokemon Detail'}</Text>
+                <Text style={styles.title}>{name ? name : 'Pokemon Detail'}</Text>
             </View>
         )
     }
 
-    renderSpritePokemon(id) {
-        const url = getNormalSpriteSource(id)
+    renderInformation() {
+        const { dex_entry = {} } = this.state.pokemon
+        const { flavor_text = {} } = dex_entry
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
-                <Image style={styles.sprite} source={{ uri: url }} />
-            </ImageBackground>
+            <View style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
+                marginHorizontal: 30, alignItems: 'center', paddingTop: 5
+            }}>
+                <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', borderRadius: 20, paddingBottom: 10, paddingHorizontal: 10 }}>
+                    <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+                        {'Informacion'}
+                    </Text>
+                </View>
+                <View>
+                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                        {flavor_text}
+                    </Text>
+                </View>
+            </View>
         )
     }
 
-    renderInformation() {
+    renderStats() {
+        const { stats = {} } = this.state.pokemon
+        const { attack = {}, defense = {}, hp = {}, special_attack = {}, special_defense = {}, speed = {} } = stats
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 200, borderRadius: 20, margin: 30 }}>
+            <View style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
+                marginHorizontal: 30, marginTop: 10
+            }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
-                    {'Informacion'}
+                    {'Estadisticas'}
                 </Text>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-around'
+                }}>
+                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                        {`Ataque: ${attack}\n`}
+                        {`Defensa: ${defense}\n`}
+                        {`Salud: ${hp}`}
+                    </Text>
+                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                        {`Ataque Especial: ${special_attack}\n`}
+                        {`Defensa Especial: ${special_defense}\n`}
+                        {`Velocidad: ${speed}\n`}
+                    </Text>
+                </View>
             </View>
         )
     }
 
     renderEvolution() {
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 310, borderRadius: 20, margin: 30 }}>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Evolucion'}
                 </Text>
@@ -115,7 +130,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
 
     renderHability() {
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, height: 310, borderRadius: 20, margin: 30 }}>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Habilidad'}
                 </Text>
@@ -135,26 +150,35 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        const { id, types, sprites, weight, height } = this.state.pokemon
-        let type1 = types && types[0] ? types[0].type.name : 'unknown'
-        let type2 = types && types[1] && types[1].type.name
+        const { idDex, types, sprites, weight, height, dex_entry = {} } = this.state.pokemon
+        const { classification = {} } = dex_entry
+        let type1 = types && types[0][0].type ? types[0][0].type.name : 'unknown'
+        let type2 = types && types[1][0].type && types[1][0].type.name
         const colortype = types && ColorType(type1, type2)
-
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
         return (
-            <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 1}}  colors={types && colortype} style={styles.loading} >
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>
+                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
+                    <View>
+                        {this.renderInformation()}
+                        {this.renderStats()}
+                        {this.renderEvolution()}
+                        {this.renderHability()}
+                    </View>
+                </ScrollView>
                 <View style={{ marginVertical: 10 }}>
                     <FlatList
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         data={dataChip}
+                        keyExtractor={(item) => (item as any).index}
                         renderItem={({ item, index }: any) =>
                             <Chip onPress={() => {
                                 this.selectChip(item.name)
@@ -167,25 +191,35 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                             />}
                     />
                 </View>
-                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
-                    <View>
-                        {this.selectChip()}
-                    </View>
-                </ScrollView>
                 <View style={styles.containerPkmn}>
-                    <View style={{ marginLeft: 0 }}>
-                        {types && types[1] ? this.renderType(types[1].type.name) : undefined}
-                        {types && types[0] ? this.renderType(types[0].type.name) : undefined}
+                    <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center' }}>
+                        {classification && <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                            {`${classification}`}
+                        </Text>}
+                        <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
+                        <View style={styles.containerTypes}>
+                            {types && types[1][0].type &&
+                                <View style={styles.typeContainer}>
+                                    <Image style={styles.type} source={{ uri: types[1][0].type.urlSprite }} />
+                                </View>
+                            }
+                            {types && types[0][0].type &&
+                                <View style={styles.typeContainer}>
+                                    <Image style={styles.type} source={{ uri: types[0][0].type.urlSprite }} />
+                                </View>
+                            }
+                        </View>
                         <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
                             {` Peso ${weight}`}
                         </Text>
                         <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
                             {`Altura  ${height}`}
                         </Text>
-                        <Text style={styles.titleId}>{id ? `#${paddingNumber(id)}` : '-- -----'}</Text>
                     </View>
                     {sprites ?
-                        this.renderSpritePokemon(id) :
+                        <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
+                            <Image style={styles.sprite} source={{ uri: sprites.normal }} />
+                        </ImageBackground> :
                         <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
                     }
                 </View>
