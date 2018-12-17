@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity, Image } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity, Image, ImageBackground } from 'react-native'
 import { getAllPokemon } from '../../util/api'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
@@ -7,8 +7,6 @@ import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
-import LinearGradient from 'react-native-linear-gradient'
-import { Colors } from '../../Helpers/Colors'
 import styles from './style'
 
 export default class Pokemon extends Component<PkmnProps, PkmnState> {
@@ -35,7 +33,8 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
 
     renderFailInternet() {
         return (
-            <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
+            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
+                style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
@@ -47,7 +46,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                     <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
                     <Text style={styles.title}>{'Lo sentimos, no hay conexion a internet'}</Text>
                 </View>
-            </LinearGradient>
+            </ImageBackground>
         )
     }
 
@@ -66,13 +65,14 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
             return this.renderFailInternet()
         }
         return (
-            <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
+            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
+                style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>
-                <View>
+                <View style={{ paddingTop: 10 }}>
                     <FlatList
                         data={pokedex}
                         keyExtractor={(item) => (item as any).index}
@@ -94,7 +94,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </LinearGradient>
+            </ImageBackground>
         )
     }
 }

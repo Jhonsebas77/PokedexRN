@@ -1,0 +1,19 @@
+{
+    "options": [
+        {
+            "name": "ItemDex",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Icon_Item.png",
+            "actions": "Items"
+        },
+        {
+            "name": "Pokedex",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Icon_Pokedex.png",
+            "actions": "Pokemon"
+        },
+        {
+            "name": "Movimientos",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Icon_Moves.png",
+            "actions": "Moves"
+        }
+    ]
+}

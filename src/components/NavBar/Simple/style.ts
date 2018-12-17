@@ -2,6 +2,16 @@ export default {
     container: {
         width: 500
     },
+    header: {
+        height: 110,
+        backgroundColor: '#C64934'
+    },
+    navBar: {
+        paddingTop: 30,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+    },
     row: {
         flexDirection: 'row',
         paddingLeft: 16,
@@ -27,9 +37,6 @@ export default {
         color: 'white',
         marginRight: 5
     },
-    content: {
-        justifyContent: 'center'
-    },
     shadow: {
         color: '#000',
         border: 3,
@@ -54,17 +61,9 @@ export default {
     empty: {
         width: 60
     },
-    navBar: {
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        margin: 10,
-        marginTop: 40,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        height: 60,
-        borderRadius: 50
-    },
     spriteContainer: {
+        paddingLeft: 17,
+        paddingTop: 8,
         width: 60,
         height: 60
     }

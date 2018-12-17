@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -37,13 +38,13 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		5F701FC475584F1EB08D6DDA /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55175268442C40D6B9562C31 /* libRNSVG.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		A990FE53BE394C52B5A10211 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 853F1DFE7B66412B982A42F8 /* libBVLinearGradient.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		F34C99472142316600A71187 /* libLottie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F34C99462142316600A71187 /* libLottie.a */; };
 		F34C99492142318D00A71187 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F34C99482142318D00A71187 /* libLottieReactNative.a */; };
 		F34C994A214231E900A71187 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F34C9936214225C900A71187 /* Lottie.framework */; };
 		F34C994B214231E900A71187 /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F34C9936214225C900A71187 /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F7773F22B9EF4C0E9E2FFB23 /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58260C7BAC1B4B959B0C762B /* libRNSVG-tvOS.a */; };
-		A990FE53BE394C52B5A10211 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 853F1DFE7B66412B982A42F8 /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -376,6 +377,20 @@
 			remoteGlobalIDString = 62CA59B71E3C173B002D7188;
 			remoteInfo = Lottie_iOS;
 		};
+		F396C08F21C751D7006F1434 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE0797605F704028AF8FC609 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
+		F396C09121C751D7006F1434 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE0797605F704028AF8FC609 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64AA15081EF7F30100718508;
+			remoteInfo = "BVLinearGradient-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -423,14 +438,14 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		82B3F84BC4BA4F8A8929E9C2 /* libLottieReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libLottieReactNative.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		853F1DFE7B66412B982A42F8 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		9A5A4238F1FE476C8B2FC132 /* libLottie.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libLottie.a; sourceTree = "<group>"; };
 		A133E9A1FA77485FAF628283 /* Lottie.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Lottie.xcodeproj; path = "../node_modules/lottie-ios/Lottie.xcodeproj"; sourceTree = "<group>"; };
 		AA0B92DE7A2645C6B92E9462 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = System/Library/Frameworks/Lottie.framework; sourceTree = SDKROOT; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		CE0797605F704028AF8FC609 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		F34C99462142316600A71187 /* libLottie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLottie.a; path = "build/Build/Products/Debug-iphonesimulator/libLottie.a"; sourceTree = "<group>"; };
 		F34C99482142318D00A71187 /* libLottieReactNative.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLottieReactNative.a; path = "build/Build/Products/Debug-iphonesimulator/libLottieReactNative.a"; sourceTree = "<group>"; };
-		CE0797605F704028AF8FC609 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		853F1DFE7B66412B982A42F8 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -713,6 +728,7 @@
 				9A5A4238F1FE476C8B2FC132 /* libLottie.a */,
 				82B3F84BC4BA4F8A8929E9C2 /* libLottieReactNative.a */,
 				58260C7BAC1B4B959B0C762B /* libRNSVG-tvOS.a */,
+				853F1DFE7B66412B982A42F8 /* libBVLinearGradient.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -741,6 +757,15 @@
 			isa = PBXGroup;
 			children = (
 				F34C993F214225C900A71187 /* libLottieReactNative.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F396C08B21C751D6006F1434 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F396C09021C751D7006F1434 /* libBVLinearGradient.a */,
+				F396C09221C751D7006F1434 /* libBVLinearGradient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -858,6 +883,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = F396C08B21C751D6006F1434 /* Products */;
+					ProjectRef = CE0797605F704028AF8FC609 /* BVLinearGradient.xcodeproj */;
+				},
 				{
 					ProductGroup = F34C992D214225C800A71187 /* Products */;
 					ProjectRef = A133E9A1FA77485FAF628283 /* Lottie.xcodeproj */;
@@ -1236,6 +1265,20 @@
 			fileType = archive.ar;
 			path = "libRNSVG-tvOS.a";
 			remoteRef = F34C9944214225C900A71187 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F396C09021C751D7006F1434 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = F396C08F21C751D7006F1434 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F396C09221C751D7006F1434 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = F396C09121C751D7006F1434 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

@@ -6,15 +6,16 @@ export default {
     },
     loading: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        backgroundColor: '#C64934',
+        alignItems: 'center'
     },
     contentContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         flexWrap: 'wrap',
         padding: 5
     },
     menuItem: {
-        padding: 5,
-        flex: 1
+        padding: 10
     }
 }
