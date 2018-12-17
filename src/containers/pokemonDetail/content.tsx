@@ -47,20 +47,24 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     async componentWillMount() {
-        let pokemon = await getPokemon(this.props.item.idDex)
+        const { item = {} } = { ...this.state }
+        const { idDex = '006' } = item
+        let pokemon = await getPokemon(idDex)
         this.setState({ pokemon, loaded: true })
     }
 
     renderLoadingView() {
+        const { item = {} } = { ...this.state }
+        const { idDex = '006' } = item
         return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando el detalle'} />
+            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={` ${idDex}`} />
         )
     }
 
     renderMiddle() {
         const { name } = this.state.pokemon
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: 'center', paddingLeft: 2 }}>
                 <Text style={styles.title}>{name ? name : 'Pokemon Detail'}</Text>
             </View>
         )
@@ -74,7 +78,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
                 marginHorizontal: 30, alignItems: 'center', paddingTop: 5
             }}>
-                <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', borderRadius: 20, paddingBottom: 10, paddingHorizontal: 10 }}>
+                <View>
                     <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                         {'Informacion'}
                     </Text>
@@ -150,80 +154,89 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        const { idDex, types, sprites, weight, height, dex_entry = {} } = this.state.pokemon
+        const { idDex = '', types = [], sprites = {}, weight = '', height = '', dex_entry = {} } = this.state.pokemon
         const { classification = {} } = dex_entry
-        let type1 = types && types[0][0].type ? types[0][0].type.name : 'unknown'
-        let type2 = types && types[1][0].type && types[1][0].type.name
-        const colortype = types && ColorType(type1, type2)
+        const [principalType = [], secundaryType = []] = types
+        const [typeppal] = principalType
+        const [typesecond] = secundaryType
+        const { type: { name: type2 = '', urlSprite: type2_urlSprite = {} } = {} } = { ...typeppal }
+        const { type: { name: type1 = '', urlSprite: type1_urlSprite = '' } = {} } = { ...typesecond }
+        const colortype = types && ColorType(type2, type1)
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
         return (
-            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
+            <View style={styles.background} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>
-                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
-                    <View>
-                        {this.renderInformation()}
-                        {this.renderStats()}
-                        {this.renderEvolution()}
-                        {this.renderHability()}
-                    </View>
-                </ScrollView>
-                <View style={{ marginVertical: 10 }}>
-                    <FlatList
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        data={dataChip}
-                        keyExtractor={(item) => (item as any).index}
-                        renderItem={({ item, index }: any) =>
-                            <Chip onPress={() => {
-                                this.selectChip(item.name)
-                            }}
-                                text={`${item.name} ${item.lastName ? item.lastName.charAt(0) : ''}`}
-                                isFirst={index === 0}
-                                gender={item.gender}
-                                index={index}
-                                pressed={item.pressed}
-                            />}
-                    />
-                </View>
-                <View style={styles.containerPkmn}>
-                    <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center' }}>
-                        {classification && <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
-                            {`${classification}`}
-                        </Text>}
-                        <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
-                        <View style={styles.containerTypes}>
-                            {types && types[1][0].type &&
-                                <View style={styles.typeContainer}>
-                                    <Image style={styles.type} source={{ uri: types[1][0].type.urlSprite }} />
+                <View style={{ backgroundColor: '#C64934', padding: 10 }}>
+                    {/* <View style={styles.loading} > */}
+                        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
+                        <ScrollView contentContainerStyle={{ alignItems: 'center', paddingTop: 10 }}>
+                            <View>
+                                {this.renderInformation()}
+                                {this.renderStats()}
+                                {this.renderEvolution()}
+                                {this.renderHability()}
+                            </View>
+                        </ScrollView>
+                        <View style={{ marginVertical: 10 }}>
+                            <FlatList
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                data={dataChip}
+                                keyExtractor={(item) => (item as any).index}
+                                renderItem={({ item, index }: any) =>
+                                    <Chip onPress={() => {
+                                        this.selectChip(item.name)
+                                    }}
+                                        text={`${item.name} ${item.lastName ? item.lastName.charAt(0) : ''}`}
+                                        isFirst={index === 0}
+                                        gender={item.gender}
+                                        index={index}
+                                        pressed={item.pressed}
+                                    />}
+                            />
+                        </View>
+                        <View style={styles.containerPkmn}>
+                            <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center' }}>
+                                {classification && <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                                    {`${classification}`}
+                                </Text>}
+                                <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
+                                <View style={styles.containerTypes}>
+                                    {types && type1 &&
+                                        <View style={styles.typeContainer}>
+                                            <Image style={styles.type} source={{ uri: type1_urlSprite }} />
+                                        </View>
+                                    }
+                                    {types && type2 &&
+                                        <View style={styles.typeContainer}>
+                                            <Image style={styles.type} source={{ uri: type2_urlSprite }} />
+                                        </View>
+                                    }
                                 </View>
-                            }
-                            {types && types[0][0].type &&
-                                <View style={styles.typeContainer}>
-                                    <Image style={styles.type} source={{ uri: types[0][0].type.urlSprite }} />
-                                </View>
+                                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                                    {` Peso ${weight}`}
+                                </Text>
+                                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
+                                    {`Altura  ${height}`}
+                                </Text>
+                            </View>
+                            {sprites ?
+                                <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
+                                    <Image style={styles.sprite} source={{ uri: sprites.normal }} />
+                                </ImageBackground> :
+                                <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
                             }
                         </View>
-                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
-                            {` Peso ${weight}`}
-                        </Text>
-                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
-                            {`Altura  ${height}`}
-                        </Text>
-                    </View>
-                    {sprites ?
-                        <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
-                            <Image style={styles.sprite} source={{ uri: sprites.normal }} />
-                        </ImageBackground> :
-                        <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
-                    }
+                    {/* </View> */}
+                    </LinearGradient >
                 </View>
-            </LinearGradient >
+            </View >
         )
     }
 }

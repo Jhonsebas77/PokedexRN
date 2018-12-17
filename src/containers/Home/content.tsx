@@ -1,35 +1,32 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, FlatList } from 'react-native'
 import MenuItem from '../../components/MenuItem'
 import { Actions } from 'react-native-router-flux'
-import LinearGradient from 'react-native-linear-gradient'
-import { Colors } from '../../Helpers/Colors'
 import styles from './style'
+import Menu_Item from '../../Assets/json/Menu_home.json'
+import NavBarSimple from '../../components/NavBar/Simple'
 
 export default class Home extends Component<any, any> {
     render() {
+        const { options } = Menu_Item
         return (
-            <View>
-                <View style={styles.container}>
-                <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
-                        <View style={styles.contentContainer}>
-                            <View style={styles.menuItem}>
-                                <TouchableOpacity onPress={() => { Actions.Items() }}>
-                                    <MenuItem name={'ItemDex'} icon={require('../../Assets/images/Icon_Item.png')} />
+            <View style={styles.container}>
+                <NavBarSimple isHome={true} />
+                <View style={styles.loading} >
+                    <View style={styles.contentContainer}>
+                        <FlatList
+                            data={options}
+                            keyExtractor={(item) => (item as any).index}
+                            renderItem={({ item }) =>
+                                <TouchableOpacity
+                                    onPress={() => { Actions.push(`${(item as any).actions}`) }}>
+                                    <MenuItem
+                                        name={(item as any).name}
+                                        icon={{ uri: (item as any).icon }}
+                                    />
                                 </TouchableOpacity>
-                            </View>
-                            <View style={styles.menuItem}>
-                                <TouchableOpacity onPress={() => { Actions.Pokemon() }}>
-                                    <MenuItem name={'Pokedex'} icon={require('../../Assets/images/Icon_Pokedex.png')} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.menuItem}>
-                                <TouchableOpacity onPress={() => { Actions.Moves() }}>
-                                    <MenuItem name={'Movimientos'} icon={require('../../Assets/images/Icon_Moves.png')} />
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </LinearGradient>
+                            } />
+                    </View>
                 </View>
             </View>
         )

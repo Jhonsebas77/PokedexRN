@@ -12,7 +12,7 @@ export const getURL =
 
 export const getAllPokemon =
   () => {
-    return fetch(`http://localhost:5034/pokedex`)
+    return fetch(`https://pokedexrn-api.herokuapp.com/pokedex`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -24,7 +24,7 @@ export const getAllPokemon =
 
 export const getAllNewItem =
   () => {
-    return fetch(`http://localhost:5034/itemlist`)
+    return fetch(`https://pokedexrn-api.herokuapp.com/itemlist`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -36,7 +36,7 @@ export const getAllNewItem =
 
 export const getItem =
   (idDex) => {
-    return fetch(`http://localhost:5034/item/${idDex}`)
+    return fetch(`https://pokedexrn-api.herokuapp.com/item/${idDex}`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -48,7 +48,7 @@ export const getItem =
 
 export const getMove =
   (idDex) => {
-    return fetch(`http://localhost:5034/move/${idDex}`)
+    return fetch(`https://pokedexrn-api.herokuapp.com/move/${idDex}`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -60,7 +60,7 @@ export const getMove =
 
 export const getAllMoves =
   () => {
-    return fetch(`http://localhost:5034/movelist`)
+    return fetch(`https://pokedexrn-api.herokuapp.com/movelist`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -84,7 +84,7 @@ export const getAllItems =
 
 export const getPokemon =
   (idDex) => {
-    return fetch(`http://localhost:5034/pokemon/${idDex}`)
+    return fetch(`https://pokedexrn-api.herokuapp.com/pokemon/${idDex}`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson

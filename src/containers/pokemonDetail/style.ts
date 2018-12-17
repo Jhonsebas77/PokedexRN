@@ -33,6 +33,11 @@ export default {
         fontSize: 14
     },
     loading: {
+        width: 356,
+        height: 540,
+        borderRadius: 30
+    },
+    background: {
         width: '100%',
         height: '100%'
     },
@@ -52,12 +57,11 @@ export default {
     },
     containerPkmn: {
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        width: 360,
+        width: 350,
         height: 200,
         borderBottomRightRadius: 100,
         borderTopRightRadius: 100,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 20
+        justifyContent: 'space-between'
     }
 }

@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
 import { getAllNewItem } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import { Actions } from 'react-native-router-flux'
 import { newString } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
-import LinearGradient from 'react-native-linear-gradient'
-import { Colors } from '../../Helpers/Colors'
 import styles from './style'
 
 export default class Home extends Component<ItemProps, ItemState> {
@@ -45,11 +43,9 @@ export default class Home extends Component<ItemProps, ItemState> {
             return this.renderLoadingView()
         }
         return (
-            <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
-                <NavBarSimple
-                    icon={'back'}
-                    contentCenter={this.renderMiddle()}
-                >
+            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
+                style={styles.loading} >
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} >
                 </NavBarSimple>
                 <View style={styles.container}>
                     <FlatList
@@ -66,7 +62,7 @@ export default class Home extends Component<ItemProps, ItemState> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </LinearGradient>
+            </ImageBackground>
         )
     }
 }

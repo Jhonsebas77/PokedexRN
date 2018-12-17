@@ -42,7 +42,7 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
     render() {
         const { urlSprite, effect_entries } = this.state.item
         return (
-            <LinearGradient colors={[Colors.background, Colors.background1]} style={styles.loading} >
+            <View style={styles.loading} >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
@@ -64,7 +64,7 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
                         <Text> {effect_entries ? `${effect_entries[0][0].short_effect} ` : ''}  </Text>
                     </View >
                 </ScrollView>
-            </LinearGradient >
+            </View >
         )
     }
 }
