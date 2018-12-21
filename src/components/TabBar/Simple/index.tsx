@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import styles from './style'
+import { getComponentStyle } from '../../../Helpers/Stylus'
+import style from './style'
 
+const styles = getComponentStyle(style)
 export default class Simple extends Component<TabSimpleProps, TabSimpleState> {
 
     renderLeft() {

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
-import styles from './style'
+import { getComponentStyle } from '../../Helpers/Stylus'
+import style from './style'
 
+const styles = getComponentStyle(style)
 export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState> {
     constructor(props) {
         super(props)

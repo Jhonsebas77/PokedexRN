@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, Image, ImageBackground } from 'react-native'
 import { getAllPokemon } from '../../util/api'
+import { getComponentStyle } from '../../Helpers/Stylus'
 import ItemPokemon from '../../components/itemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
-import styles from './style'
+import style from './style'
 
+const styles = getComponentStyle(style)
 export default class Pokemon extends Component<PkmnProps, PkmnState> {
     constructor(props) {
         super(props)

@@ -3,10 +3,10 @@ import { Text, View, Image, ImageBackground, ScrollView } from 'react-native'
 import NavBarSimple from '../../components/NavBar/Simple'
 import { getItem } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
-import styles from './style'
-import LinearGradient from 'react-native-linear-gradient'
-import { Colors } from '../../Helpers/Colors'
+import style from './style'
+import { getComponentStyle } from '../../Helpers/Stylus'
 
+const styles = getComponentStyle(style)
 export default class ItemDetail extends Component<ItemDetailProps, ItemDetailState> {
     constructor(props) {
         super(props)

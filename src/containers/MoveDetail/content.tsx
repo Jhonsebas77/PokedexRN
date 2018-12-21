@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Text, View, Image } from 'react-native'
+import { getComponentStyle } from '../../Helpers/Stylus'
 import { getMove } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
 import { ColorType, GetColorType } from '../../Helpers/Colors'
-import styles from './style'
+import style from './style'
 
+const styles = getComponentStyle(style)
 export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     constructor(props) {
         super(props)

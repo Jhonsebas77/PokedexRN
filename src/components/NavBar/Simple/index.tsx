@@ -1,9 +1,11 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, ImageBackground } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import styles from './style'
+import { getComponentStyle } from '../../../Helpers/Stylus'
+import style from './style'
 import Btn_Back from '../../Btn_Back'
 
+const styles = getComponentStyle(style)
 export default ({ contentLeft, contentRight, onBack = (() => Actions.pop()), contentCenter, isHome }: any) => {
     const rightTitle = contentRight
     return (
