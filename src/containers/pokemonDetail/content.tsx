@@ -5,6 +5,8 @@ import { getComponentStyle } from '../../Helpers/Stylus'
 import { paddingNumber } from '../../Helpers/Validators'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../../components/NavBar/Simple'
+import Abilities from '../../components/Abilities'
+import LineEvolutive from '../../components/LineEvolutive'
 import style from './style'
 import Chip from '../../components/Chip'
 import Loading from '../../components/Loading'
@@ -15,7 +17,7 @@ const dataChip = [
         'gender': 'M',
         'name': 'Male',
         'pressed': 0
-    },    {
+    }, {
         'gender': 'F',
         'name': 'Female',
         'pressed': '2'
@@ -57,7 +59,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         }
         this.renderInformation = this.renderInformation.bind(this)
         this.renderEvolution = this.renderEvolution.bind(this)
-        this.renderHability = this.renderHability.bind(this)
+        this.renderAbility = this.renderAbility.bind(this)
         this.selectChip = this.selectChip.bind(this)
     }
 
@@ -138,21 +140,37 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderEvolution() {
+        const { prev_evolution = [], next_evolution = [], sprites = {} } = this.state.pokemon
+        const { mini = '' } = { ...sprites }
+        let evolution_line = {
+            prev_evolution,
+            next_evolution,
+            mini
+        }
         return (
             <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Evolucion'}
                 </Text>
+                <LineEvolutive data={evolution_line} />
             </View>
         )
     }
 
-    renderHability() {
+    renderAbility() {
+        const { abilities = {} } = this.state.pokemon
         return (
             <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Habilidad'}
                 </Text>
+                <FlatList
+                    horizontal={false}
+                    showsHorizontalScrollIndicator={false}
+                    data={abilities}
+                    keyExtractor={(item) => (item as any).index}
+                    renderItem={({ item }: any) => <Abilities data={item} />}
+                />
             </View>
         )
     }
@@ -196,7 +214,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                                 {this.renderInformation()}
                                 {this.renderStats()}
                                 {this.renderEvolution()}
-                                {this.renderHability()}
+                                {this.renderAbility()}
                             </View>
                         </ScrollView>
                         <View style={{ marginVertical: 10 }}>
