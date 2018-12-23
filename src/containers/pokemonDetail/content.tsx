@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
 import { getPokemon } from '../../util/api'
+import { getComponentStyle } from '../../Helpers/Stylus'
 import { paddingNumber } from '../../Helpers/Validators'
-import _ from '../../Helpers/Utilities'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../../components/NavBar/Simple'
-import styles from './style'
+import style from './style'
 import Chip from '../../components/Chip'
 import Loading from '../../components/Loading'
 import LinearGradient from 'react-native-linear-gradient'
@@ -32,6 +32,7 @@ const dataChip = [
         'pressed': 0
     }
 ]
+const styles = getComponentStyle(style)
 export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     TypeColor: any
     constructor(props) {

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, ImageBackground } from 'react-native'
-import styles from './style'
+import { getComponentStyle } from '../../Helpers/Stylus'
+import style from './style'
 import LottieView from 'lottie-react-native'
 import Loading_Pokeball from '../../Assets/animation/Loading_Pokeball.json'
 
+const styles = getComponentStyle(style)
 export default class Loading extends Component<LoadingProps> {
     render() {
         return (

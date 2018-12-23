@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
 import { getAllMoves } from '../../util/api'
+import { getComponentStyle } from '../../Helpers/Stylus'
 import ItemMove from '../../components/ItemMove'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import { newString } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
-import styles from './style'
+import style from './style'
 
+const styles = getComponentStyle(style)
 export default class Move extends Component<MoveProps, MoveState> {
     constructor(props) {
         super(props)

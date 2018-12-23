@@ -6,8 +6,10 @@ import { Actions } from 'react-native-router-flux'
 import { newString } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
-import styles from './style'
+import style from './style'
+import { getComponentStyle } from '../../Helpers/Stylus'
 
+const styles = getComponentStyle(style)
 export default class Home extends Component<ItemProps, ItemState> {
     constructor(props) {
         super(props)

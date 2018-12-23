@@ -1,8 +1,10 @@
+import { Dimensions } from 'react-native'
 
+const { height, width } = Dimensions.get('window')
 export default {
     container: {
-        width: '100%',
-        height: '100%'
+        width,
+        height
     },
     loading: {
         width: '100%',
