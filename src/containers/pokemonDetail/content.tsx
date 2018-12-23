@@ -152,7 +152,9 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Evolucion'}
                 </Text>
-                <LineEvolutive data={evolution_line} />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 10 }}>
+                    <LineEvolutive data={evolution_line} />
+                </View>
             </View>
         )
     }
