@@ -140,20 +140,14 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderEvolution() {
-        const { prev_evolution = [], next_evolution = [], sprites = {} } = this.state.pokemon
-        const { mini = '' } = { ...sprites }
-        let evolution_line = {
-            prev_evolution,
-            next_evolution,
-            mini
-        }
+        const { prev_evolution = [] } = this.state.pokemon
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10, paddingBottom: 20 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Evolucion'}
                 </Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 10 }}>
-                    <LineEvolutive data={evolution_line} />
+                    <LineEvolutive data={prev_evolution} />
                 </View>
             </View>
         )
