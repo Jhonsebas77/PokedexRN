@@ -12,24 +12,38 @@ import LinearGradient from 'react-native-linear-gradient'
 
 const dataChip = [
     {
-        'gender': 'F',
-        'name': 'Normal',
+        'gender': 'M',
+        'name': 'Male',
         'pressed': 0
+    },    {
+        'gender': 'F',
+        'name': 'Female',
+        'pressed': '2'
     },
     {
-        'gender': 'F',
-        'name': 'Shiny',
+        'gender': 'M',
+        'name': 'Shiny Male',
         'pressed': '2'
     },
     {
         'gender': 'F',
-        'name': 'Mega Evolucion X',
+        'name': 'Shiny Female',
+        'pressed': '2'
+    },
+    {
+        'gender': 'M',
+        'name': 'Mega Evolution 1',
         'pressed': '1'
     },
     {
-        'gender': 'F',
-        'name': 'Mega Evolucion Y',
-        'pressed': 0
+        'gender': 'M',
+        'name': 'Mega Evolution 2',
+        'pressed': '1'
+    },
+    {
+        'gender': 'M',
+        'name': 'Alola',
+        'pressed': '1'
     }
 ]
 const styles = getComponentStyle(style)
@@ -48,7 +62,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     async componentWillMount() {
-        const { item = {} } = { ...this.state }
+        const { item = {} } = { ...this.props }
         const { idDex = '006' } = item
         let pokemon = await getPokemon(idDex)
         this.setState({ pokemon, loaded: true })
@@ -160,9 +174,10 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         const [principalType = [], secundaryType = []] = types
         const [typeppal] = principalType
         const [typesecond] = secundaryType
-        const { type: { name: type2 = '', urlSprite: type2_urlSprite = {} } = {} } = { ...typeppal }
-        const { type: { name: type1 = '', urlSprite: type1_urlSprite = '' } = {} } = { ...typesecond }
-        const colortype = types && ColorType(type2, type1)
+        const { type: { name: type1 = '', urlSprite: type1_urlSprite = '' } = {} } = { ...typeppal }
+        const { type: { name: type2 = '', urlSprite: type2_urlSprite = '' } = {} } = { ...typesecond }
+        let hasSecondType = (types && type2 && type2_urlSprite !== '') ? true : false
+        const colortype = types && ColorType(type1, type2)
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
@@ -175,7 +190,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 </NavBarSimple>
                 <View style={{ backgroundColor: '#C64934', padding: 10 }}>
                     {/* <View style={styles.loading} > */}
-                        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
+                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
                         <ScrollView contentContainerStyle={{ alignItems: 'center', paddingTop: 10 }}>
                             <View>
                                 {this.renderInformation()}
@@ -214,7 +229,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                                             <Image style={styles.type} source={{ uri: type1_urlSprite }} />
                                         </View>
                                     }
-                                    {types && type2 &&
+                                    {hasSecondType &&
                                         <View style={styles.typeContainer}>
                                             <Image style={styles.type} source={{ uri: type2_urlSprite }} />
                                         </View>
@@ -234,7 +249,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                                 <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
                             }
                         </View>
-                    {/* </View> */}
+                        {/* </View> */}
                     </LinearGradient >
                 </View>
             </View >
