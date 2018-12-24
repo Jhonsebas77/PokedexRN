@@ -1,0 +1,34 @@
+{
+    "options": [
+        {
+            "name": "Male",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Male_normal.png",
+            "icon_Press": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Male_normal_Press.png",
+            "id": "1"
+        },
+        {
+            "name": "Male_Shiny",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Male_shiny.png",
+            "icon_Press": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Male_shiny_Press.png",
+            "id": "2"
+        },
+        {
+            "name": "Female",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Female_normal.png",
+            "icon_Press": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Female_normal_Press.png",
+            "id": "3"
+        },
+        {
+            "name": "Female_Shiny",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Female_shiny.png",
+            "icon_Press": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Female_shiny_Press.png",
+            "id": "4"
+        },
+        {
+            "name": "Mega_Single",
+            "icon": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Mega.png",
+            "icon_Press": "https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Chip_Mega_Press.png",
+            "id": "4"
+        }
+    ]
+}

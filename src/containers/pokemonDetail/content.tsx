@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
+import { Text, View, Image, ImageBackground, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import { getPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { paddingNumber } from '../../Helpers/Validators'
@@ -8,46 +8,12 @@ import NavBarSimple from '../../components/NavBar/Simple'
 import Abilities from '../../components/Abilities'
 import LineEvolutive from '../../components/LineEvolutive'
 import style from './style'
-import Chip from '../../components/Chip'
+import ChipSprites from '../../components/ChipSprites'
+import Chip from '../../Assets/json/Chip_Pokemon_Detail.json'
 import Loading from '../../components/Loading'
+
 import LinearGradient from 'react-native-linear-gradient'
 
-const dataChip = [
-    {
-        'gender': 'M',
-        'name': 'Male',
-        'pressed': 0
-    }, {
-        'gender': 'F',
-        'name': 'Female',
-        'pressed': '2'
-    },
-    {
-        'gender': 'M',
-        'name': 'Shiny Male',
-        'pressed': '2'
-    },
-    {
-        'gender': 'F',
-        'name': 'Shiny Female',
-        'pressed': '2'
-    },
-    {
-        'gender': 'M',
-        'name': 'Mega Evolution 1',
-        'pressed': '1'
-    },
-    {
-        'gender': 'M',
-        'name': 'Mega Evolution 2',
-        'pressed': '1'
-    },
-    {
-        'gender': 'M',
-        'name': 'Alola',
-        'pressed': '1'
-    }
-]
 const styles = getComponentStyle(style)
 export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
     TypeColor: any
@@ -190,6 +156,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         const [typesecond] = secundaryType
         const { type: { name: type1 = '', urlSprite: type1_urlSprite = '' } = {} } = { ...typeppal }
         const { type: { name: type2 = '', urlSprite: type2_urlSprite = '' } = {} } = { ...typesecond }
+        const { options } = Chip
         let hasSecondType = (types && type2 && type2_urlSprite !== '') ? true : false
         const colortype = types && ColorType(type1, type2)
         if (!this.state.loaded) {
@@ -213,23 +180,26 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                                 {this.renderAbility()}
                             </View>
                         </ScrollView>
-                        <View style={{ marginVertical: 10 }}>
+                        <View style={{
+                            marginTop: 10,
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            justifyContent: 'flex-start'
+                        }}>
                             <FlatList
+                                data={options}
                                 horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                                data={dataChip}
                                 keyExtractor={(item) => (item as any).index}
-                                renderItem={({ item, index }: any) =>
-                                    <Chip onPress={() => {
-                                        this.selectChip(item.name)
-                                    }}
-                                        text={`${item.name} ${item.lastName ? item.lastName.charAt(0) : ''}`}
-                                        isFirst={index === 0}
-                                        gender={item.gender}
-                                        index={index}
-                                        pressed={item.pressed}
-                                    />}
-                            />
+                                renderItem={({ item }) =>
+                                    <TouchableOpacity
+                                        onPress={() => { console.log(`${(item as any).name}`) }}>
+                                        <ChipSprites
+                                            name={(item as any).name}
+                                            icon={{ uri: (item as any).icon }}
+                                            icon_Press={{ uri: (item as any).icon_Press }}
+                                        />
+                                    </TouchableOpacity>
+                                } />
                         </View>
                         <View style={styles.containerPkmn}>
                             <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center' }}>
