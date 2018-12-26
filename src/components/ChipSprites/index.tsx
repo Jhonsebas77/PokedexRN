@@ -1,20 +1,40 @@
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View, Image, TouchableOpacity } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default class ChipSprites extends Component<MenuItemProps> {
+export default class ChipSprites extends Component<ChipItemProps, ChipItemState> {
     constructor(props) {
         super(props)
+        this.state = {
+            value: false
+        }
+        this.pressChip = this.pressChip.bind(this)
+    }
+    pressChip() {
+        const { value } = this.state
+        if (!value) {
+            this.setState({ value: true })
+        } else {
+            this.setState({ value: false })
+        }
     }
     render() {
-        const { icon } = this.props
+        const { data = {} } = { ...this.props }
+        const { value = false } = { ...this.state }
+        const { icon = '', icon_Press = '' } = { ...data }
         return (
             <View style={styles.item}>
-                <View style={styles.spriteContainer}>
-                    <Image style={styles.sprite} source={icon} />
-                </View>
+                <TouchableOpacity
+                    onPress={this.pressChip}>
+                    <View style={styles.spriteContainer}>
+                        {value ?
+                            <Image style={styles.sprite} source={{ uri: icon_Press }} /> :
+                            <Image style={styles.sprite} source={{ uri: icon }} />
+                        }
+                    </View>
+                </TouchableOpacity>
             </View>
         )
     }

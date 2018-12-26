@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground, TouchableOpacity, FlatList, ScrollView } from 'react-native'
+import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
 import { getPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { paddingNumber } from '../../Helpers/Validators'
@@ -181,25 +181,18 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                             </View>
                         </ScrollView>
                         <View style={{
-                            marginTop: 10,
+                            margin: 5,
+                            marginLeft: 10,
+                            width: 330,
                             alignItems: 'center',
-                            flexDirection: 'row',
-                            justifyContent: 'flex-start'
+                            justifyContent: 'space-between',
+                            flexDirection: 'row'
                         }}>
                             <FlatList
                                 data={options}
                                 horizontal={true}
                                 keyExtractor={(item) => (item as any).index}
-                                renderItem={({ item }) =>
-                                    <TouchableOpacity
-                                        onPress={() => { console.log(`${(item as any).name}`) }}>
-                                        <ChipSprites
-                                            name={(item as any).name}
-                                            icon={{ uri: (item as any).icon }}
-                                            icon_Press={{ uri: (item as any).icon_Press }}
-                                        />
-                                    </TouchableOpacity>
-                                } />
+                                renderItem={({ item }) => <ChipSprites data={item} />} />
                         </View>
                         <View style={styles.containerPkmn}>
                             <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center' }}>
