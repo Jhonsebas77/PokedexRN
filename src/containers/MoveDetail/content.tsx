@@ -8,7 +8,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { ColorType, GetColorType } from '../../Helpers/Colors'
 import MenuItem from '../../components/MenuItem'
 import Loading from '../../components/Loading'
-import { Actions } from 'react-native-router-flux'
+// import { Actions } from 'react-native-router-flux'
 import style from './style'
 
 const styles = getComponentStyle(style)
