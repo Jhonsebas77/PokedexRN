@@ -39,7 +39,7 @@ export default class Home extends Component<ItemProps, ItemState> {
     }
 
     render() {
-        const { loaded, Items } = this.state
+        const { loaded = false, Items = {} } = { ...this.state }
 
         if (!loaded) {
             return this.renderLoadingView()
