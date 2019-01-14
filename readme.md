@@ -25,3 +25,7 @@ En caso del error:
 
         Ejecutar:
 <kbd>sed -i '' 's/compileOnly "com.facebook.react:react-native:+"/provided "com.facebook.react:react-native:+"/g' ./node_modules/react-native-linear-gradient/android/build.gradle</kbd> 
+
+## Preview [Work in progress]
+
+![Preview](https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Git_Preview.png)
