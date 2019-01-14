@@ -1,3 +1,6 @@
+import { Dimensions } from 'react-native'
+const { width, height } = Dimensions.get('window')
+
 export default {
     container: {
         backgroundColor: 'green'
@@ -13,12 +16,20 @@ export default {
     head: {
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        marginHorizontal: 5,
+        margin: 10,
         overflow: 'hidden',
         borderRadius: 50,
         borderWidth: 5,
-        width: 300,
-        height: 400
+        width: 350,
+        height: 360
+    },
+    textContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        overflow: 'hidden',
+        borderRadius: 50,
+        borderWidth: 2
     },
     sprite: {
         width: '100%',
@@ -42,21 +53,26 @@ export default {
     loading: {
         width: '100%',
         height: '100%',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     typeContainer: {
         width: 80,
         height: 80,
+        justifyContent: 'center'
     },
     categoryContainer: {
         width: 80,
         height: 80,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 5
+        margin: 5
     },
     type: {
         width: 80,
         height: 80
+    },
+    background: {
+        width: width,
+        height: height,
+        backgroundColor: '#C64934'
     }
 }

@@ -59,7 +59,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     }
 
     render() {
-        const { loaded, pokedex } = this.state
+        const { loaded = false, pokedex = {} } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }

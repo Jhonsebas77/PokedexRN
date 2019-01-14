@@ -22,11 +22,11 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
     }
 
     renderMiddle() {
-        const { name, category } = this.state.item
+        const { name = 'Item Name', category = 'Item Detail' } = { ...this.state.item }
         return (
             <View style={{ alignItems: 'center' }}>
-                <Text style={styles.title}>{name ? `${newString(name)}` : 'Item Name'}</Text>
-                <Text style={styles.subtitle}>{category ? `${category}` : 'Item Detail'}</Text>
+                <Text style={styles.title}>{`${newString(name)}`}</Text>
+                <Text style={styles.subtitle}>{`${category}`}</Text>
             </View>
         )
     }

@@ -30,15 +30,13 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     async componentWillMount() {
-        const { item = {} } = { ...this.props }
-        const { idDex = '006' } = item
+        const { item: { idDex = '006' } = {} } = { ...this.props }
         let pokemon = await getPokemon(idDex)
         this.setState({ pokemon, loaded: true })
     }
 
     renderLoadingView() {
-        const { item = {} } = { ...this.state }
-        const { idDex = '006' } = item
+        const { item: { idDex = '006' } = {} } = { ...this.props }
         return (
             <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={` ${idDex}`} />
         )
@@ -54,8 +52,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderInformation() {
-        const { dex_entry = {} } = this.state.pokemon
-        const { flavor_text = {} } = dex_entry
+        const { dex_entry: { flavor_text = {} } = {} } = this.state.pokemon
         return (
             <View style={{
                 backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
@@ -76,8 +73,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderStats() {
-        const { stats = {} } = this.state.pokemon
-        const { attack = {}, defense = {}, hp = {}, special_attack = {}, special_defense = {}, speed = {} } = stats
+        const { attack = 0, defense = 0, hp = 0, special_attack = 0, special_defense = 0, speed = 0 } = { ...this.state.pokemon.stats }
         return (
             <View style={{
                 backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
@@ -149,8 +145,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        const { idDex = '', types = [], sprites = {}, weight = '', height = '', dex_entry = {} } = this.state.pokemon
-        const { classification = {} } = dex_entry
+        const { idDex = '006', types = [], sprites = {}, weight = '', height = '', dex_entry: { classification = {} } = {} } = this.state.pokemon
         const [principalType = [], secundaryType = []] = types
         const [typeppal] = principalType
         const [typesecond] = secundaryType
@@ -170,7 +165,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 >
                 </NavBarSimple>
                 <View style={{ backgroundColor: '#C64934', padding: 10 }}>
-                    {/* <View style={styles.loading} > */}
                     <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
                         <ScrollView contentContainerStyle={{ alignItems: 'center', paddingTop: 10 }}>
                             <View>
@@ -226,7 +220,6 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                                 <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
                             }
                         </View>
-                        {/* </View> */}
                     </LinearGradient >
                 </View>
             </View >
