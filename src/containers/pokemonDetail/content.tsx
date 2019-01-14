@@ -102,14 +102,14 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderEvolution() {
-        const { prev_evolution = [] } = this.state.pokemon
+        const { line_evolution = [] } = this.state.pokemon
         return (
             <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10, paddingBottom: 20 }}>
                 <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
                     {'Evolucion'}
                 </Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 10 }}>
-                    <LineEvolutive data={prev_evolution} />
+                    <LineEvolutive data={line_evolution} />
                 </View>
             </View>
         )
@@ -215,7 +215,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                             </View>
                             {sprites ?
                                 <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
-                                    <Image style={styles.sprite} source={{ uri: sprites.normal }} />
+                                    <Image style={styles.sprite} source={{ uri: sprites.male }} />
                                 </ImageBackground> :
                                 <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
                             }
