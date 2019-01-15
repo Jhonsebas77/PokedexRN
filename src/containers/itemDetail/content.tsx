@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, ImageBackground, ScrollView } from 'react-native'
+import { Text, View, Image, ImageBackground } from 'react-native'
 import NavBarSimple from '../../components/NavBar/Simple'
 import { getItem } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
@@ -42,28 +42,24 @@ export default class ItemDetail extends Component<ItemDetailProps, ItemDetailSta
     render() {
         const { urlSprite, effect_entries } = this.state.item
         return (
-            <View style={styles.loading} >
+            <View >
                 <NavBarSimple
                     icon={'back'}
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>
-                <View style={styles.head}>
+                <View style={styles.loading} >
                     <View style={styles.spriteContainer}>
                         {urlSprite ?
                             this.renderSpriteItem(urlSprite) :
                             <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
                         }
                     </View>
-                </View>
-                <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
-                    <View style={styles.itemDetail}>
-                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
-                            {'Informacion'}
-                        </Text>
-                        <Text> {effect_entries ? `${effect_entries[0][0].short_effect} ` : ''}  </Text>
+                    <View style={{ paddingTop: 20 }} >
+                        <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10, fontSize: 25 }}>
+                            {effect_entries ? `${effect_entries[0][0].short_effect} ` : ''}  </Text>
                     </View >
-                </ScrollView>
+                </View >
             </View >
         )
     }
