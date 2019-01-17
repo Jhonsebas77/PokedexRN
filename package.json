@@ -11,10 +11,13 @@
     "watch": "npm run build -- -w",
     "emulator": "emulator @Nexus_5_API_26 -dns-server 8.8.8.8,8.8.4.4",
     "clean": "rimraf lib",
+    "cleancache": "sudo npm cache clean -f",
     "cleanall": "yarn cache clean --force && rm -rf yarn.lock && npm cache clean --force && rm -rf node_modules/ && rm -rf package-lock.json && rm -rf ios/build && rm -rf android/app/build && git clean -xdf",
     "clock:android": "adb shell \"date `date +%m%d%H%M%Y.%S`\"",
     "pod": "cd ./ios && rm -rf Podfile.lock && rm -rf Pods && pod install",
     "ios": "react-native run-ios",
+    "iosX": "react-native run-ios --simulator \"iPhone ${1:-X}\"",
+    "iosXr": "react-native run-ios --simulator \"iPhone ${1:-XR}\"",
     "android": "react-native run-android",
     "android:release": "npm run build && react-native run-android --variant=release"
   },
