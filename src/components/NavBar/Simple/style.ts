@@ -1,3 +1,6 @@
+import { Dimensions } from 'react-native'
+const { width } = Dimensions.get('window')
+
 export default {
     container: {
         width: 500
@@ -16,7 +19,7 @@ export default {
         flexDirection: 'row',
         paddingLeft: 16,
         paddingRight: 16,
-        width: '100%',
+        width: width,
         justifyContent: 'space-between',
         alignItems: 'center'
     },

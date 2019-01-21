@@ -1,3 +1,5 @@
+import { Dimensions } from 'react-native'
+const { height, width } = Dimensions.get('window')
 
 export default {
     container: {
@@ -6,8 +8,8 @@ export default {
         justifyContent: 'center'
     },
     loading: {
-        width: '100%',
-        height: '100%'
+        width: width,
+        height: height
     },
     title: {
         color: 'white',

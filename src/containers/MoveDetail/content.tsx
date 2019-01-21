@@ -8,7 +8,6 @@ import LinearGradient from 'react-native-linear-gradient'
 import { ColorType, GetColorType } from '../../Helpers/Colors'
 import MenuItem from '../../components/MenuItem'
 import Loading from '../../components/Loading'
-// import { Actions } from 'react-native-router-flux'
 import style from './style'
 
 const styles = getComponentStyle(style)
@@ -65,7 +64,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     renderMoveStats() {
         const { accuracy = 0, basePower = 0, pp = 0 } = { ...this.state.move }
         return (
-            <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+            <View style={styles.containerStats}>
                 <Text> {accuracy ? `accuracy: ${accuracy}% ` : '-- -----'}  </Text>
                 <Text>  {basePower ? `power: ${basePower} ` : '-- -----'} </Text>
                 <Text>  {pp && `pp: ${pp} `}  </Text>
@@ -78,6 +77,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
             battleType: { sprite: spriteBattleType = '', name: nameBattleType = '' } = {} } = this.state.move
         const colortype = ColorType(nameBattleType)
         const borderColor = GetColorType(nameBattleType)
+        const { short_effect = '', effect = '' } = { ...effect_entries }
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
@@ -87,21 +87,21 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                 <View style={[{ borderColor }, styles.head]}>
                     <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >
                         {this.renderSphere(spriteBattleType)}
-                        <View style={{ alignItems: 'center' }}>
-                            <View style={{ alignItems: 'center' }}>
+                        <View style={styles.viewAlignItem}>
+                            <View style={styles.viewAlignItem}>
                                 <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
                             </View>
                             {this.renderMoveStats()}
                             <View style={[{ borderColor }, styles.textContainer]}>
-                                <Text style={{ padding: 10 }}>
-                                    {effect_entries ? `${effect_entries.short_effect} ` : ''}
+                                <Text style={styles.paddingText}>
+                                    {effect_entries ? `${short_effect} ` : ''}
                                 </Text>
                             </View>
                         </View>
-                        <View style={{ alignItems: 'center', flexDirection: 'row', paddingVertical: 10 }}>
+                        <View style={styles.containerCategoryInfo}>
                             {this.renderSphere(spriteCategory)}
-                            <View style={[{ borderColor, width: 200, height: 100 }, styles.textContainer]}>
-                                <Text style={{ padding: 10 }}> {effect_entries ? `${effect_entries.effect} ` : ''} </Text>
+                            <View style={[{ borderColor }, styles.textContainer, styles.containerCategory]}>
+                                <Text style={styles.paddingText}> {effect_entries ? `${effect} ` : ''} </Text>
                             </View>
                         </View>
                     </LinearGradient>

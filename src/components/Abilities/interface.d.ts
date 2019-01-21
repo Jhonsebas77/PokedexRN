@@ -1,7 +1,7 @@
 interface AbilitiesProps {
     is_hidden?: boolean,
-    ability?: any,
-    data?: any
+    nameAbility?: any,
+    descriptionAbility?: any
 }
 interface AbilitiesState {
     widthChip: any

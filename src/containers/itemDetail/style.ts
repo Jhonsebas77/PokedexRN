@@ -1,3 +1,5 @@
+import { Dimensions } from 'react-native'
+const { width, height } = Dimensions.get('window')
 export default {
     container: {
         backgroundColor: 'green'
@@ -19,9 +21,13 @@ export default {
         height: 250
     },
     loading: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#C64934'
+        width: width,
+        height: height,
+        backgroundColor: '#C64934',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        flexDirection: 'column',
+        paddingTop: width / 5
     },
     title: {
         color: 'white',
@@ -33,8 +39,6 @@ export default {
         fontSize: 20
     },
     head: {
-        alignItems: 'center',
-        margin: 10,
-        justifyContent: 'space-between'
+        alignItems: 'center'
     }
 }

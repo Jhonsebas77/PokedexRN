@@ -6,22 +6,13 @@ import LottieView from 'lottie-react-native'
 export default class AnimationLottie extends Component<LottieAnimProps, LottieAnimState> {
     constructor(props) {
         super(props)
-        // this.animation = this.animation.bind(this)
     }
-
-    componentDidMount() {
-        // this.animation.play()
-    }
-
     render() {
         const { _animation } = this.props
         return (
             <View style={styles.containerActivity}>
                 <LottieView
                     loop
-                    // ref={animation => {
-                    //     this.animation = animation;
-                    //   }}
                     autoPlay
                     source={_animation}
                 />

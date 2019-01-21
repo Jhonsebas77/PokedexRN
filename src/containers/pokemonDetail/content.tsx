@@ -36,17 +36,16 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderLoadingView() {
-        const { item: { idDex = '006' } = {} } = { ...this.props }
         return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={` ${idDex}`} />
+            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={`Cargando la información del Pokémon seleccionado`} />
         )
     }
 
     renderMiddle() {
-        const { name } = this.state.pokemon
+        const { name = 'Pokemon Detail' } = this.state.pokemon
         return (
-            <View style={{ alignItems: 'center', paddingLeft: 2 }}>
-                <Text style={styles.title}>{name ? name : 'Pokemon Detail'}</Text>
+            <View style={styles.textMiddle}>
+                <Text style={styles.title}>{name}</Text>
             </View>
         )
     }
@@ -54,17 +53,12 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderInformation() {
         const { dex_entry: { flavor_text = {} } = {} } = this.state.pokemon
         return (
-            <View style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
-                marginHorizontal: 30, alignItems: 'center', paddingTop: 5
-            }}>
+            <View style={styles.containerInfoPkmn}>
                 <View>
-                    <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+                    <Text style={styles.titleCardInfo}>
                         {'Informacion'}
                     </Text>
-                </View>
-                <View>
-                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
+                    <Text style={styles.textStats}>
                         {flavor_text}
                     </Text>
                 </View>
@@ -75,26 +69,16 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderStats() {
         const { attack = 0, defense = 0, hp = 0, special_attack = 0, special_defense = 0, speed = 0 } = { ...this.state.pokemon.stats }
         return (
-            <View style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20,
-                marginHorizontal: 30, marginTop: 10
-            }}>
-                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+            <View style={styles.containerStats}>
+                <Text style={styles.titleCardInfo}>
                     {'Estadisticas'}
                 </Text>
-                <View style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-around'
-                }}>
-                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
-                        {`Ataque: ${attack}\n`}
-                        {`Defensa: ${defense}\n`}
-                        {`Salud: ${hp}`}
+                <View style={styles.textContainerColumnStats}>
+                    <Text style={styles.textStats}>
+                        {`Ataque: ${attack}\n Defensa: ${defense}\n Salud: ${hp}`}
                     </Text>
-                    <Text style={{ color: 'white', textAlign: 'center', paddingVertical: 10 }}>
-                        {`Ataque Especial: ${special_attack}\n`}
-                        {`Defensa Especial: ${special_defense}\n`}
-                        {`Velocidad: ${speed}\n`}
+                    <Text style={styles.textStats}>
+                        {`Ataque Especial: ${special_attack}\n Defensa Especial: ${special_defense}\n Velocidad: ${speed}\n`}
                     </Text>
                 </View>
             </View>
@@ -104,11 +88,11 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderEvolution() {
         const { line_evolution = [] } = this.state.pokemon
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10, paddingBottom: 20 }}>
-                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+            <View style={styles.containerEvolution}>
+                <Text style={styles.titleCardInfo}>
                     {'Evolucion'}
                 </Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 10 }}>
+                <View style={styles.containerEvolutionLine}>
                     <LineEvolutive data={line_evolution} />
                 </View>
             </View>
@@ -118,8 +102,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderAbility() {
         const { abilities = {} } = this.state.pokemon
         return (
-            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', width: 340, borderRadius: 20, marginHorizontal: 30, marginTop: 10 }}>
-                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10 }}>
+            <View style={styles.containerAbility}>
+                <Text style={styles.titleCardInfo}>
                     {'Habilidad'}
                 </Text>
                 <FlatList
@@ -144,15 +128,65 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         } return this.renderInformation()
     }
 
-    render() {
+    renderChipSprites() {
+        const { options } = Chip
+        return (
+            <View style={styles.chipContainer}>
+                <FlatList
+                    data={options}
+                    horizontal={true}
+                    keyExtractor={(item) => (item as any).index}
+                    renderItem={({ item }) => <ChipSprites data={item} />} />
+            </View>
+        )
+    }
+
+    renderPkmn() {
         const { idDex = '006', types = [], sprites = {}, weight = '', height = '', dex_entry: { classification = {} } = {} } = this.state.pokemon
         const [principalType = [], secundaryType = []] = types
         const [typeppal] = principalType
         const [typesecond] = secundaryType
         const { type: { name: type1 = '', urlSprite: type1_urlSprite = '' } = {} } = { ...typeppal }
         const { type: { name: type2 = '', urlSprite: type2_urlSprite = '' } = {} } = { ...typesecond }
-        const { options } = Chip
         let hasSecondType = (types && type2 && type2_urlSprite !== '') ? true : false
+        return (
+            <View style={styles.containerPkmn}>
+                <View style={styles.containerPkmnInfo}>
+                    {classification && <Text style={styles.titleInfo}>
+                        {`${classification}`}
+                    </Text>}
+                    <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
+                    <View style={styles.containerTypes}>
+                        {types && type1 &&
+                            <View style={styles.typeContainer}>
+                                <Image style={styles.type} source={{ uri: type1_urlSprite }} />
+                            </View>
+                        }
+                        {hasSecondType &&
+                            <View style={styles.typeContainer}>
+                                <Image style={styles.type} source={{ uri: type2_urlSprite }} />
+                            </View>
+                        }
+                    </View>
+                    <Text style={styles.titleInfo}>  {` Peso: ${weight} \n Altura:  ${height}`} </Text>
+                </View>
+                {sprites ?
+                    <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
+                        <Image style={styles.sprite} source={{ uri: sprites.male }} />
+                    </ImageBackground> :
+                    <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
+                }
+            </View>
+        )
+    }
+
+    render() {
+        const { types = [] } = this.state.pokemon
+        const [principalType = [], secundaryType = []] = types
+        const [typeppal] = principalType
+        const [typesecond] = secundaryType
+        const { type: { name: type1 = '' } = {} } = { ...typeppal }
+        const { type: { name: type2 = '' } = {} } = { ...typesecond }
         const colortype = types && ColorType(type1, type2)
         if (!this.state.loaded) {
             return this.renderLoadingView()
@@ -164,9 +198,9 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                     contentCenter={this.renderMiddle()}
                 >
                 </NavBarSimple>
-                <View style={{ backgroundColor: '#C64934', padding: 10 }}>
+                <View style={styles.content}>
                     <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
-                        <ScrollView contentContainerStyle={{ alignItems: 'center', paddingTop: 10 }}>
+                        <ScrollView contentContainerStyle={styles.scrollContainer}>
                             <View>
                                 {this.renderInformation()}
                                 {this.renderStats()}
@@ -174,52 +208,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                                 {this.renderAbility()}
                             </View>
                         </ScrollView>
-                        <View style={{
-                            margin: 5,
-                            marginLeft: 10,
-                            width: 330,
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            flexDirection: 'row'
-                        }}>
-                            <FlatList
-                                data={options}
-                                horizontal={true}
-                                keyExtractor={(item) => (item as any).index}
-                                renderItem={({ item }) => <ChipSprites data={item} />} />
-                        </View>
-                        <View style={styles.containerPkmn}>
-                            <View style={{ marginLeft: 20, alignItems: 'center', justifyContent: 'center' }}>
-                                {classification && <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
-                                    {`${classification}`}
-                                </Text>}
-                                <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
-                                <View style={styles.containerTypes}>
-                                    {types && type1 &&
-                                        <View style={styles.typeContainer}>
-                                            <Image style={styles.type} source={{ uri: type1_urlSprite }} />
-                                        </View>
-                                    }
-                                    {hasSecondType &&
-                                        <View style={styles.typeContainer}>
-                                            <Image style={styles.type} source={{ uri: type2_urlSprite }} />
-                                        </View>
-                                    }
-                                </View>
-                                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
-                                    {` Peso ${weight}`}
-                                </Text>
-                                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>
-                                    {`Altura  ${height}`}
-                                </Text>
-                            </View>
-                            {sprites ?
-                                <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
-                                    <Image style={styles.sprite} source={{ uri: sprites.male }} />
-                                </ImageBackground> :
-                                <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
-                            }
-                        </View>
+                        {this.renderChipSprites()}
+                        {this.renderPkmn()}
                     </LinearGradient >
                 </View>
             </View >

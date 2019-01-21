@@ -1,14 +1,4 @@
 export default {
-    contentContainer: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        padding: 5
-    },
-    numberSprite: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start'
-    },
     itemMove: {
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -17,14 +7,6 @@ export default {
         justifyContent: 'space-between',
         height: 60,
         borderRadius: 50
-    },
-    sprite: {
-        width: 30,
-        height: 30
-    },
-    spriteContainer: {
-        width: 30,
-        height: 30
     },
     typeContainer: {
         width: 60,
@@ -39,7 +21,7 @@ export default {
         width: 50,
         height: 50
     },
-    specs: {
+    stats: {
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         margin: 5,
@@ -52,5 +34,19 @@ export default {
         alignItems: 'center',
         flexDirection: 'column',
         justifyContent: 'space-between'
+    },
+    textName: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+    titleCol: {
+        color: 'white',
+        fontWeight: 'bold',
+        marginLeft: 5
+    },
+    containerCol: {
+        color: 'white',
+        marginLeft: 5
     }
 }
