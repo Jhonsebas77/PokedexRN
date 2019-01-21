@@ -7,8 +7,8 @@ export default {
         height: height / 2
     },
     loading: {
-        width: '100%',
-        height: '100%',
+        width: width,
+        height: height,
         alignContent: 'center',
         alignItems: 'center',
         justifyContent: 'center'

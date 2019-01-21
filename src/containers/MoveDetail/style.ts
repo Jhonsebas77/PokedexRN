@@ -2,17 +2,6 @@ import { Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
 
 export default {
-    container: {
-        backgroundColor: 'green'
-    },
-    item: {
-        alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 1.0)',
-        margin: 10,
-        justifyContent: 'center',
-        overflow: 'hidden',
-        borderRadius: 10
-    },
     head: {
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
@@ -31,34 +20,15 @@ export default {
         borderRadius: 50,
         borderWidth: 2
     },
-    sprite: {
-        width: '100%',
-        height: '100%'
-    },
-    spriteContainer: {
-        width: 150,
-        height: 150,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        borderRadius: 70
-    },
     title: {
         color: 'white',
         fontSize: 30,
         fontWeight: 'bold'
     },
-    titleId: {
-        color: 'white',
-        fontSize: 14
-    },
     loading: {
-        width: '100%',
-        height: '100%',
+        width: width,
+        height: height,
         alignItems: 'center'
-    },
-    typeContainer: {
-        width: 80,
-        height: 80,
-        justifyContent: 'center'
     },
     categoryContainer: {
         width: 80,
@@ -74,5 +44,24 @@ export default {
         width: width,
         height: height,
         backgroundColor: '#C64934'
+    },
+    containerStats: {
+        alignItems: 'center',
+        paddingBottom: 10
+    },
+    viewAlignItem: {
+        alignItems: 'center'
+    },
+    paddingText: {
+        padding: 10
+    },
+    containerCategoryInfo: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingVertical: 10
+    },
+    containerCategory: {
+        width: 200,
+        height: 100
     }
 }

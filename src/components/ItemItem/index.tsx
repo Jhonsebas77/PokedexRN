@@ -1,27 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, Text, Image } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default class ItemItem extends Component<IitemProps, IitemState> {
-    constructor(props) {
-        super(props)
-    }
-    render() {
-        const { name, itemSpriteSource } = this.props
-        return (
-            <View style={styles.item}>
-                <View>
+export default ({ name = '', itemSpriteSource }: IitemProps) => {
+    return (
+        <View style={styles.item}>
+            <View>
                 {itemSpriteSource ?
-                            <Image style={styles.sprite} source={itemSpriteSource} /> :
-                            <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
-                        }
-                </View>
-                <View>
-                    <Text style={styles.nameItem}> {name} </Text>
-                </View>
+                    <Image style={styles.sprite} source={itemSpriteSource} /> :
+                    <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
+                }
             </View>
-        )
-    }
+            <View>
+                <Text style={styles.nameItem}> {name} </Text>
+            </View>
+        </View>
+    )
 }

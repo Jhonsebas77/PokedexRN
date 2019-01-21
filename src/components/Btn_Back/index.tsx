@@ -1,8 +1,10 @@
 import React from 'react'
 import { Image, TouchableOpacity } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import styles from './style'
+import { getComponentStyle } from '../../Helpers/Stylus'
+import style from './style'
 
+const styles = getComponentStyle(style)
 export default ({ onBack = (() => Actions.pop()) }: any) => {
     return (
             <TouchableOpacity onPress={onBack}
