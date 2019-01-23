@@ -42,7 +42,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     }
     renderBtnPokemon() {
         return (
-            <View>
+            <View style={styles.head}>
                 <TouchableOpacity
                     // onPress={() => { Actions.push(`Pokemon`) }}>
                     onPress={() => console.log('Presiono')}>
@@ -77,7 +77,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
             battleType: { sprite: spriteBattleType = '', name: nameBattleType = '' } = {} } = this.state.move
         const colortype = ColorType(nameBattleType)
         const borderColor = GetColorType(nameBattleType)
-        const { short_effect = '', effect = '' } = { ...effect_entries }
+        const { short_effect = '' } = { ...effect_entries }
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
@@ -86,28 +86,23 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} > </NavBarSimple>
                 <View style={[{ borderColor }, styles.head]}>
                     <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >
-                        {this.renderSphere(spriteBattleType)}
                         <View style={styles.viewAlignItem}>
-                            <View style={styles.viewAlignItem}>
-                                <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
-                            </View>
-                            {this.renderMoveStats()}
-                            <View style={[{ borderColor }, styles.textContainer]}>
-                                <Text style={styles.paddingText}>
-                                    {effect_entries ? `${short_effect} ` : ''}
-                                </Text>
-                            </View>
+                            <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
                         </View>
-                        <View style={styles.containerCategoryInfo}>
+                        <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
+                            {this.renderSphere(spriteBattleType)}
                             {this.renderSphere(spriteCategory)}
-                            <View style={[{ borderColor }, styles.textContainer, styles.containerCategory]}>
-                                <Text style={styles.paddingText}> {effect_entries ? `${effect} ` : ''} </Text>
-                            </View>
+                            {this.renderMoveStats()}
+                        </View>
+                        <View style={[{ borderColor }, styles.textContainer]}>
+                            <Text style={styles.paddingText}>
+                                {effect_entries ? `${short_effect} ` : ''}
+                            </Text>
                         </View>
                     </LinearGradient>
                 </View>
                 {this.renderBtnPokemon()}
-            </View>
+            </View >
         )
     }
 }

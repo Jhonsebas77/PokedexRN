@@ -10,7 +10,7 @@ export default {
         borderRadius: 50,
         borderWidth: 5,
         width: 350,
-        height: 360
+        height: 210
     },
     textContainer: {
         alignItems: 'center',
@@ -18,7 +18,8 @@ export default {
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
         overflow: 'hidden',
         borderRadius: 50,
-        borderWidth: 2
+        borderWidth: 2,
+        width: 300
     },
     title: {
         color: 'white',
@@ -53,7 +54,8 @@ export default {
         alignItems: 'center'
     },
     paddingText: {
-        padding: 10
+        padding: 10,
+        color: 'white'
     },
     containerCategoryInfo: {
         alignItems: 'center',
