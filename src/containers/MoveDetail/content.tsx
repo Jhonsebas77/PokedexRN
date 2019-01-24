@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { Text, View, Image, TouchableOpacity } from 'react-native'
+import { Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getMove } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
+import { Actions } from 'react-native-router-flux'
 import { ColorType, GetColorType } from '../../Helpers/Colors'
-import MenuItem from '../../components/MenuItem'
+import Itempokemonmove from '../../components/itemPokemonMove'
+import _ from '../../Helpers/Utilities'
+import { paddingNumber } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import style from './style'
 
@@ -40,17 +43,27 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
             </View>
         )
     }
-    renderBtnPokemon() {
+    renderListPokemonLearn() {
+        const { pokemon_learn: [pokemonMoves = {}] = [] } = { ...this.state.move }
         return (
-            <View style={styles.head}>
-                <TouchableOpacity
-                    // onPress={() => { Actions.push(`Pokemon`) }}>
-                    onPress={() => console.log('Presiono')}>
-                    <MenuItem
-                        name={'Aprenden el Movimiento'}
-                        icon={{ uri: 'https://s3.us-east-2.amazonaws.com/pokedex-jsob/UI/Menu_Item/Icon_MoveLearn.png' }}
-                    />
-                </TouchableOpacity>
+            <View style={styles.head2}>
+                <View style={styles.viewAlignItem}>
+                    <Text style={styles.title2}>{'Pokémon que aprenden \n este movimiento'}</Text>
+                </View>
+                <FlatList
+                    data={pokemonMoves}
+                    keyExtractor={(item) => (item as any).index}
+                    renderItem={({ item, index }) =>
+                        <TouchableOpacity
+                            onPress={() => { Actions.PokemonDetail({ item, index }) }}>
+                            <Itempokemonmove
+                                number={paddingNumber((item as any).idDex)}
+                                name={_.capitalize((item as any).name)}
+                                method={_.capitalize((item as any).method)}
+                                spriteSource={{ uri: (item as any).urlSprite }}
+                            />
+                        </TouchableOpacity>
+                    } />
             </View>
         )
     }
@@ -101,7 +114,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                         </View>
                     </LinearGradient>
                 </View>
-                {this.renderBtnPokemon()}
+                {this.renderListPokemonLearn()}
             </View >
         )
     }

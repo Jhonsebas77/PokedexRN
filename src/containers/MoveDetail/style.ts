@@ -12,6 +12,16 @@ export default {
         width: 350,
         height: 210
     },
+    head2: {
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        margin: 10,
+        overflow: 'hidden',
+        borderRadius: 50,
+        borderWidth: 5,
+        width: 350,
+        height: 300
+    },
     textContainer: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -25,6 +35,13 @@ export default {
         color: 'white',
         fontSize: 30,
         fontWeight: 'bold'
+    },
+    title2: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        paddingTop: 10
     },
     loading: {
         width: width,
