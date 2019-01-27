@@ -10,7 +10,17 @@ export default {
         borderRadius: 50,
         borderWidth: 5,
         width: 350,
-        height: 360
+        height: 210
+    },
+    head2: {
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        margin: 10,
+        overflow: 'hidden',
+        borderRadius: 50,
+        borderWidth: 5,
+        width: 350,
+        height: 300
     },
     textContainer: {
         alignItems: 'center',
@@ -18,12 +28,20 @@ export default {
         backgroundColor: 'rgba(0, 0, 0, 0.1)',
         overflow: 'hidden',
         borderRadius: 50,
-        borderWidth: 2
+        borderWidth: 2,
+        width: 300
     },
     title: {
         color: 'white',
         fontSize: 30,
         fontWeight: 'bold'
+    },
+    title2: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        paddingTop: 10
     },
     loading: {
         width: width,
@@ -53,7 +71,8 @@ export default {
         alignItems: 'center'
     },
     paddingText: {
-        padding: 10
+        padding: 10,
+        color: 'white'
     },
     containerCategoryInfo: {
         alignItems: 'center',
