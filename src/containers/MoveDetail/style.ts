@@ -22,6 +22,14 @@ export default {
         width: 350,
         height: 300
     },
+    head3: {
+        alignItems: 'center',
+        margin: 10,
+        overflow: 'hidden',
+        borderRadius: 50,
+        borderWidth: 5,
+        height: 200
+    },
     textContainer: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -34,6 +42,11 @@ export default {
     title: {
         color: 'white',
         fontSize: 30,
+        fontWeight: 'bold'
+    },
+    titleNavBar: {
+        color: 'white',
+        fontSize: 24,
         fontWeight: 'bold'
     },
     title2: {

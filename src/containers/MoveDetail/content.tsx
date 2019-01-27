@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
+import { Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getMove } from '../../util/api'
 import { newString } from '../../Helpers/Validators'
@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { Actions } from 'react-native-router-flux'
 import { ColorType, GetColorType } from '../../Helpers/Colors'
 import Itempokemonmove from '../../components/itemPokemonMove'
+import Cristalzmove from '../../components/CristalZ_Move'
 import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
@@ -31,7 +32,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     renderMiddle() {
         return (
             <View style={{ alignItems: 'center' }}>
-                <Text style={styles.title}>{'MOVIMIENTOS'}</Text>
+                <Text style={styles.titleNavBar}>{'MOVIMIENTOS'}</Text>
             </View>
         )
     }
@@ -67,6 +68,15 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
             </View>
         )
     }
+    renderCristalzmove() {
+        const { zPower = {} } = { ...this.state.move }
+        const { basePower = 0, effect = '', name = '', urlSprite = '' } = { ...zPower }
+        return (
+            <View style={styles.head3}>
+                <Cristalzmove name={name} urlSprite={urlSprite} basePower={basePower} effect={effect} />
+            </View>
+        )
+    }
 
     renderLoadingView() {
         return (
@@ -78,9 +88,9 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
         const { accuracy = 0, basePower = 0, pp = 0 } = { ...this.state.move }
         return (
             <View style={styles.containerStats}>
-                <Text> {accuracy ? `accuracy: ${accuracy}% ` : '-- -----'}  </Text>
-                <Text>  {basePower ? `power: ${basePower} ` : '-- -----'} </Text>
-                <Text>  {pp && `pp: ${pp} `}  </Text>
+                <Text> {accuracy ? `Precisión: ${accuracy}% ` : '-- -----'}  </Text>
+                <Text>  {basePower ? `Poder: ${basePower} ` : '-- -----'} </Text>
+                <Text>  {pp && `PP: ${pp} `}  </Text>
             </View>
         )
     }
@@ -97,24 +107,27 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
         return (
             <View style={styles.background} >
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} > </NavBarSimple>
-                <View style={[{ borderColor }, styles.head]}>
-                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >
-                        <View style={styles.viewAlignItem}>
-                            <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
-                        </View>
-                        <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
-                            {this.renderSphere(spriteBattleType)}
-                            {this.renderSphere(spriteCategory)}
-                            {this.renderMoveStats()}
-                        </View>
-                        <View style={[{ borderColor }, styles.textContainer]}>
-                            <Text style={styles.paddingText}>
-                                {effect_entries ? `${short_effect} ` : ''}
-                            </Text>
-                        </View>
-                    </LinearGradient>
-                </View>
-                {this.renderListPokemonLearn()}
+                <ScrollView>
+                    <View style={[{ borderColor }, styles.head]}>
+                        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >
+                            <View style={styles.viewAlignItem}>
+                                <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
+                            </View>
+                            <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
+                                {this.renderSphere(spriteBattleType)}
+                                {this.renderSphere(spriteCategory)}
+                                {this.renderMoveStats()}
+                            </View>
+                            <View style={[{ borderColor }, styles.textContainer]}>
+                                <Text style={styles.paddingText}>
+                                    {effect_entries ? `${short_effect} ` : ''}
+                                </Text>
+                            </View>
+                        </LinearGradient>
+                    </View>
+                    {this.renderCristalzmove()}
+                    {this.renderListPokemonLearn()}
+                </ScrollView>
             </View >
         )
     }
