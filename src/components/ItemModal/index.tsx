@@ -28,6 +28,7 @@ export default class FilterModal extends Component<any, any> {
         })
     }
     openModal(selectItem) {
+        console.log('sel', selectItem)
         this.setState({ modal: true, item: { ...selectItem } })
         Animated.timing(this.state.opacity, { toValue: 1, duration: 1000 }).start()
     }
@@ -47,8 +48,11 @@ export default class FilterModal extends Component<any, any> {
         )
     }
     render() {
-        const { modal, opacity } = this.state
-        const { name = '', itemSpriteSource, type = 'pokeball', effect_entries = {}, category } = this.props
+        const { modal, opacity, item } = this.state
+        const { name = '', itemSpriteSource, type = 'pokeball', effect_entries = {}, category } = item
+        console.log('====================================');
+        console.log('[STATE]', this.state);
+        console.log('====================================');
         let extraStyle = {}
         if (type === 'large') { extraStyle = styles.largeContainer } else
             if (type === 'medium') { extraStyle = styles.chartContainer } else

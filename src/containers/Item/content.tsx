@@ -38,17 +38,11 @@ export default class Home extends Component<ItemProps, ItemState> {
             <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Items'} />
         )
     }
-    renderModal(item) {
-        const { name = 'Objeto', urlSprite = '', type = 'medium', effect_entries = {}, category = 'Objeto' } = { ...item }
+    renderModal() {
+        // const { name = 'Objeto', urlSprite = '', type = 'medium', effect_entries = {}, category = 'Objeto' } = { ...item }
         return (
             <ItemModal
-                ref={(ref) => { this.modal = ref }}
-                name={newString(name)}
-                itemSpriteSource={{ uri: urlSprite }}
-                type={type}
-                effect_entries={effect_entries}
-                category={category}
-            />
+                ref={(ref) => { this.modal = ref }} />
         )
     }
     render() {
@@ -73,9 +67,9 @@ export default class Home extends Component<ItemProps, ItemState> {
                                     name={newString((item as any).name)}
                                     itemSpriteSource={{ uri: (item as any).urlSprite }}
                                 />
-                                {this.renderModal(item)}
                             </TouchableOpacity>
                         } />
+                    {this.renderModal()}
                 </View>
             </ImageBackground>
         )
