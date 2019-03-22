@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
 import { getAllNewItem } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
-import { Actions } from 'react-native-router-flux'
+import ItemModal from '../../components/ItemModal'
 import { newString } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
@@ -11,6 +11,7 @@ import { getComponentStyle } from '../../Helpers/Stylus'
 
 const styles = getComponentStyle(style)
 export default class Home extends Component<ItemProps, ItemState> {
+    modal: any
     constructor(props) {
         super(props)
         this.state = {
@@ -40,7 +41,6 @@ export default class Home extends Component<ItemProps, ItemState> {
 
     render() {
         const { loaded = false, Items = {} } = { ...this.state }
-
         if (!loaded) {
             return this.renderLoadingView()
         }
@@ -56,13 +56,14 @@ export default class Home extends Component<ItemProps, ItemState> {
                         keyExtractor={(item) => (item as any).index}
                         renderItem={({ item }) =>
                             <TouchableOpacity
-                                onPress={() => { Actions.ItemDetail({ item }) }}>
+                                onPress={() => this.modal.openModal(item)}>
                                 <ItemItem
                                     name={newString((item as any).name)}
                                     itemSpriteSource={{ uri: (item as any).urlSprite }}
                                 />
                             </TouchableOpacity>
                         } />
+                    <ItemModal ref={(ref) => { this.modal = ref }} />
                 </View>
             </ImageBackground>
         )
