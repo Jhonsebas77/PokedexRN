@@ -38,13 +38,7 @@ export default class Home extends Component<ItemProps, ItemState> {
             <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Items'} />
         )
     }
-    renderModal() {
-        // const { name = 'Objeto', urlSprite = '', type = 'medium', effect_entries = {}, category = 'Objeto' } = { ...item }
-        return (
-            <ItemModal
-                ref={(ref) => { this.modal = ref }} />
-        )
-    }
+
     render() {
         const { loaded = false, Items = {} } = { ...this.state }
         if (!loaded) {
@@ -69,7 +63,7 @@ export default class Home extends Component<ItemProps, ItemState> {
                                 />
                             </TouchableOpacity>
                         } />
-                    {this.renderModal()}
+                    <ItemModal ref={(ref) => { this.modal = ref }} />
                 </View>
             </ImageBackground>
         )

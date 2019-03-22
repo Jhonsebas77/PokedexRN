@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Modal, Animated, PanResponder, Image, ImageBackground } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
+import { newString } from '../../Helpers/Validators'
 import style from './style'
 const styles = getComponentStyle(style)
 export default class FilterModal extends Component<any, any> {
@@ -37,11 +38,11 @@ export default class FilterModal extends Component<any, any> {
             this.setState({ modal: false })
         })
     }
-    renderSpriteItem(itemSpriteSource) {
+    renderSpriteItem(urlSprite) {
         return (
             <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
-                {itemSpriteSource ?
-                    <Image style={styles.sprite} source={itemSpriteSource} /> :
+                {urlSprite ?
+                    <Image style={styles.sprite} source={{ uri: urlSprite }} /> :
                     <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
                 }
             </ImageBackground>
@@ -49,10 +50,7 @@ export default class FilterModal extends Component<any, any> {
     }
     render() {
         const { modal, opacity, item } = this.state
-        const { name = '', itemSpriteSource, type = 'pokeball', effect_entries = {}, category } = item
-        console.log('====================================');
-        console.log('[STATE]', this.state);
-        console.log('====================================');
+        const { name = '', urlSprite, type = 'pokeball', effect_entries = {}, category = '' } = item
         let extraStyle = {}
         if (type === 'large') { extraStyle = styles.largeContainer } else
             if (type === 'medium') { extraStyle = styles.chartContainer } else
@@ -66,13 +64,13 @@ export default class FilterModal extends Component<any, any> {
                     <View style={styles.bar}></View>
                     <View style={[styles.container, extraStyle]}>
                         <View style={styles.header}>
-                            <Text style={styles.title}>{name}</Text>
+                            <Text style={styles.title}>{newString(name)}</Text>
                             <Text style={styles.subtitle}>{category}</Text>
                         </View>
                         <View style={styles.loading} >
                             <View style={styles.spriteContainer}>
-                                {itemSpriteSource ?
-                                    this.renderSpriteItem(itemSpriteSource) :
+                                {urlSprite ?
+                                    this.renderSpriteItem(urlSprite) :
                                     <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
                                 }
                             </View>
