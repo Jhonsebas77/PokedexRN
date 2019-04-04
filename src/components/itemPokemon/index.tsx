@@ -9,18 +9,18 @@ export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState>
         super(props)
     }
     render() {
-        const { number, name, spriteSource, typeOneSource, typeTwoSource } = this.props
+        const { number = '', name = '', spriteSource = '', typeOneSource = {}, typeTwoSource = {} } = { ...this.props }
         return (
             <View style={styles.itemPokemon}>
                 <View style={styles.numberSprite}>
-                    <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} > {number} </Text>
+                    <Text style={styles.textNumber} > {number} </Text>
                     <View style={styles.spriteContainer}>
                         {spriteSource ?
                             <Image style={styles.sprite} source={spriteSource} /> :
                             <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
                         }
                     </View>
-                    <Text style={{ color: 'white', fontWeight: 'bold', paddingLeft: 10 }}> {name} </Text>
+                    <Text style={styles.textName}> {name} </Text>
                 </View>
                 <View style={typeOneSource.uri === undefined ? styles.typeOneContainer : styles.typeTwoContainer}>
                     <Image style={styles.type} source={typeOneSource} />

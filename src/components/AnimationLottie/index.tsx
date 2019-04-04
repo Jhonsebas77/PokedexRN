@@ -8,14 +8,10 @@ export default class AnimationLottie extends Component<LottieAnimProps, LottieAn
         super(props)
     }
     render() {
-        const { _animation } = this.props
+        const { _animation } = { ...this.props }
         return (
             <View style={styles.containerActivity}>
-                <LottieView
-                    loop
-                    autoPlay
-                    source={_animation}
-                />
+                <LottieView loop autoPlay source={_animation} />
             </View>
         )
     }

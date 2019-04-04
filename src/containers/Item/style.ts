@@ -15,5 +15,8 @@ export default {
         color: 'white',
         fontSize: 30,
         fontWeight: 'bold'
+    },
+    contentTitle: {
+        alignItems: 'center'
     }
 }

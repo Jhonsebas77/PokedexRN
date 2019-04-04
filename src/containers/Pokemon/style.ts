@@ -14,5 +14,17 @@ export default {
     sprite: {
         width: 200,
         height: 200
+    },
+    contentTitle: {
+        alignItems: 'center'
+    },
+    contentLoading: {
+        flex: 1,
+        justifyContent: 'space-around',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    contentItemPokemon: {
+        paddingTop: 10
     }
 }

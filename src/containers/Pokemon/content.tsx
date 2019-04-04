@@ -27,7 +27,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
 
     renderMiddle() {
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={styles.contentTitle}>
                 <Text style={styles.title}>{'POKÉDEX'}</Text>
             </View>
         )
@@ -37,14 +37,8 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
         return (
             <ImageBackground source={require('../../Assets/images/BG_Home.png')}
                 style={styles.loading} >
-                <NavBarSimple
-                    icon={'back'}
-                    contentCenter={this.renderMiddle()}
-                >
-                </NavBarSimple>
-                <View style={{
-                    flex: 1, justifyContent: 'space-around', flexDirection: 'column', alignItems: 'center'
-                }}>
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+                <View style={styles.contentLoading}>
                     <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
                     <Text style={styles.title}>{'Lo sentimos, no hay conexion a internet'}</Text>
                 </View>
@@ -69,12 +63,8 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
         return (
             <ImageBackground source={require('../../Assets/images/BG_Home.png')}
                 style={styles.loading} >
-                <NavBarSimple
-                    icon={'back'}
-                    contentCenter={this.renderMiddle()}
-                >
-                </NavBarSimple>
-                <View style={{ paddingTop: 10 }}>
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+                <View style={styles.contentItemPokemon}>
                     <FlatList
                         data={pokedex}
                         keyExtractor={(item) => (item as any).index}

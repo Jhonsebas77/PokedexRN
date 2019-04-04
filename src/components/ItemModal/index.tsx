@@ -4,7 +4,7 @@ import { getComponentStyle } from '../../Helpers/Stylus'
 import { newString } from '../../Helpers/Validators'
 import style from './style'
 const styles = getComponentStyle(style)
-export default class FilterModal extends Component<any, any> {
+export default class ItemModal extends Component<any, any> {
     _panResponder: any
     constructor(props) {
         super(props)
@@ -29,7 +29,6 @@ export default class FilterModal extends Component<any, any> {
         })
     }
     openModal(selectItem) {
-        console.log('sel', selectItem)
         this.setState({ modal: true, item: { ...selectItem } })
         Animated.timing(this.state.opacity, { toValue: 1, duration: 1000 }).start()
     }
@@ -48,13 +47,18 @@ export default class FilterModal extends Component<any, any> {
             </ImageBackground>
         )
     }
+    renderTypeModal(type) {
+        const context = {
+            large: { ...styles.largeContainer },
+            medium: { ...styles.chartContainer },
+            pokeball: { ...styles.smallContainer }
+        }
+        return context[type] || context['pokeball']
+    }
     render() {
         const { modal, opacity, item } = this.state
-        const { name = '', urlSprite, type = 'pokeball', effect_entries = {}, category = '' } = item
-        let extraStyle = {}
-        if (type === 'large') { extraStyle = styles.largeContainer } else
-            if (type === 'medium') { extraStyle = styles.chartContainer } else
-                if (type === 'pokeball') { extraStyle = styles.smallContainer }
+        const { name = '', urlSprite, type = 'pokeball', effect_entries: { effect = '' } = {}, category = '' } = item
+        let extraStyle = this.renderTypeModal(type)
         return (
             <Modal animationType={'slide'} transparent={true}
                 onRequestClose={() => this.closeModal()} visible={modal}>
@@ -74,9 +78,10 @@ export default class FilterModal extends Component<any, any> {
                                     <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
                                 }
                             </View>
-                            <View style={{ paddingTop: 20 }} >
-                                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold', paddingTop: 10, fontSize: 18 }}>
-                                    {effect_entries.effect}  </Text>
+                            <View style={styles.containerEffect} >
+                                <Text style={styles.textEffect}>
+                                    {effect}
+                                </Text>
                             </View >
                         </View >
                     </View>

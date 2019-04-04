@@ -95,5 +95,13 @@ export default {
     containerCategory: {
         width: 200,
         height: 100
+    },
+    middle: {
+        alignItems: 'center'
+    },
+    containerStatics: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
 }

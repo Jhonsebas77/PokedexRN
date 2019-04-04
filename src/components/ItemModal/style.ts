@@ -106,5 +106,15 @@ export default {
     },
     head: {
         alignItems: 'center'
+    },
+    textEffect: {
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        paddingTop: 10,
+        fontSize: 18
+    },
+    containerEffect: {
+        paddingTop: 20
     }
 }

@@ -77,5 +77,42 @@ export default {
         height: 50,
         backgroundColor: 'white',
         borderRadius: 100
+    },
+    containerEvo_1: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 10
+    },
+    textNextEvo: {
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        paddingTop: 10,
+        paddingLeft: 10
+    },
+    containerRow: {
+        flexDirection: 'row'
+    },
+    containerMega: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    containerMegaItem: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        paddingHorizontal: 10
+    },
+    textMegaItem: {
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    containerLineEvo: {
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    containerNormalEvo: {
+        flexDirection: 'row',
+        paddingBottom: 10
     }
 }

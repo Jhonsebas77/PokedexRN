@@ -9,15 +9,14 @@ export default class Cristalzmove extends Component<any, any> {
         super(props)
     }
     render() {
-        const { basePower, effect, name, urlSprite } = this.props
-
+        const { basePower = '', effect = '', name = '', urlSprite = null } = { ...this.props }
         return (
             <View style={styles.itemPokemon}>
                 <Text style={styles.title}>{'CRISTAL Z'} </Text>
-                <View style={{ flexDirection: 'row', paddingTop: 20 }}>
-                    <View style={{ flexDirection: 'column' }}>
-                        <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} >{name} </Text>
-                        <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} >{`Poder Base: ${basePower}`} </Text>
+                <View style={styles.containerSpriteTitle}>
+                    <View style={styles.containerNameTitle}>
+                        <Text style={styles.textNameTitle} >{name} </Text>
+                        <Text style={styles.textNameTitle} >{`Poder Base: ${basePower}`} </Text>
                     </View>
                     <View style={styles.spriteContainer}>
                         {urlSprite ?
@@ -26,7 +25,7 @@ export default class Cristalzmove extends Component<any, any> {
                         }
                     </View>
                 </View>
-                <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} >{effect} </Text>
+                <Text style={styles.textEffect} >{effect} </Text>
             </View>
         )
     }

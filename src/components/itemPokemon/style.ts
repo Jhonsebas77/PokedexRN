@@ -46,5 +46,15 @@ export default {
         width: 40,
         height: 40,
         borderRadius: 10
+    },
+    textNumber: {
+        color: 'white',
+        fontWeight: 'bold',
+        paddingHorizontal: 10
+    },
+    textName: {
+        color: 'white',
+        fontWeight: 'bold',
+        paddingLeft: 10
     }
 }

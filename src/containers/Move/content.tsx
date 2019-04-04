@@ -27,7 +27,7 @@ export default class Move extends Component<MoveProps, MoveState> {
 
     renderMiddle() {
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={styles.contentTitle}>
                 <Text style={styles.title}>{'MOVIMIENTOS'}</Text>
             </View>
         )
@@ -40,18 +40,14 @@ export default class Move extends Component<MoveProps, MoveState> {
     }
 
     render() {
-        const { loaded, moves } = this.state
+        const { loaded = false, moves = {} } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }
         return (
             <ImageBackground source={require('../../Assets/images/BG_Home.png')}
                 style={styles.loading} >
-                <NavBarSimple
-                    icon={'back'}
-                    contentCenter={this.renderMiddle()}
-                >
-                </NavBarSimple>
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View>
                     <FlatList
                         data={moves}

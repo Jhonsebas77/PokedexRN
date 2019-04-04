@@ -47,5 +47,25 @@ export default {
         width: 40,
         height: 40,
         borderRadius: 10
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        paddingHorizontal: 10
+    },
+    textName: {
+        color: 'white',
+        fontWeight: 'bold',
+        paddingLeft: 10,
+        fontSize: 20
+    },
+    textMethod: {
+        color: 'white',
+        fontWeight: 'bold',
+        paddingLeft: 10
+    },
+    containerNameMethod: {
+        flexDirection: 'column',
+        marginRight: 20
     }
 }

@@ -9,19 +9,19 @@ export default class Itempokemonmove extends Component<any, any> {
         super(props)
     }
     render() {
-        const { number, name, spriteSource, method } = this.props
+        const { number = '', name = '', spriteSource = '', method = '' } = { ...this.props }
         return (
             <View style={styles.itemPokemon}>
-                <Text style={{ color: 'white', fontWeight: 'bold', paddingHorizontal: 10 }} >{`# ${number}`} </Text>
+                <Text style={styles.textStyle} >{`# ${number}`} </Text>
                 <View style={styles.spriteContainer}>
                     {spriteSource ?
                         <Image style={styles.sprite} source={spriteSource} /> :
                         <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
                     }
                 </View>
-                <View style={{ flexDirection: 'column', marginRight: 20 }}>
-                    <Text style={{ color: 'white', fontWeight: 'bold', paddingLeft: 10, fontSize: 20 }}> {name} </Text>
-                    <Text style={{ color: 'white', fontWeight: 'bold', paddingLeft: 10 }}> {method} </Text>
+                <View style={styles.containerNameMethod}>
+                    <Text style={styles.textName}> {name} </Text>
+                    <Text style={styles.textMethod}> {method} </Text>
                 </View>
             </View>
         )

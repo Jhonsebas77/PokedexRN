@@ -31,7 +31,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
 
     renderMiddle() {
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={styles.middle}>
                 <Text style={styles.titleNavBar}>{'MOVIMIENTOS'}</Text>
             </View>
         )
@@ -106,14 +106,14 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
         }
         return (
             <View style={styles.background} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} > </NavBarSimple>
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <ScrollView>
                     <View style={[{ borderColor }, styles.head]}>
                         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >
                             <View style={styles.viewAlignItem}>
                                 <Text style={styles.title}>{name ? `${newString(name)}` : 'Move Detail'}</Text>
                             </View>
-                            <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
+                            <View style={styles.containerStatics}>
                                 {this.renderSphere(spriteBattleType)}
                                 {this.renderSphere(spriteCategory)}
                                 {this.renderMoveStats()}

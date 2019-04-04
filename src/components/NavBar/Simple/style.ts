@@ -69,5 +69,8 @@ export default {
         paddingTop: 8,
         width: 60,
         height: 60
+    },
+    stylePadding: {
+        paddingLeft: 20
     }
 }
