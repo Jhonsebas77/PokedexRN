@@ -4,5 +4,5 @@ interface ItemProps {
 }
 interface ItemState {
     loaded: any,
-    Items: any
+    items: any
 }

@@ -21,5 +21,8 @@ export default {
     lottieAnimation: {
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    styleCenter: {
+        alignItems: 'center'
     }
 }

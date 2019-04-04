@@ -9,15 +9,11 @@ const styles = getComponentStyle(style)
 export default class Loading extends Component<LoadingProps> {
     render() {
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={styles.styleCenter}>
                 <ImageBackground source={require('../../Assets/images/BG_Home.png')}
                     style={styles.loading} >
                     <View style={styles.containerActivity}>
-                        <LottieView
-                            loop
-                            autoPlay
-                            source={Loading_Pokeball}
-                        />
+                        <LottieView loop autoPlay source={Loading_Pokeball} />
                     </View>
                     <Text style={styles.textLoading}>{this.props.textLoading} </Text>
                 </ImageBackground>

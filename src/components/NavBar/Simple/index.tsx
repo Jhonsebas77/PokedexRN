@@ -16,7 +16,7 @@ export default ({ contentLeft, contentRight, onBack = (() => Actions.pop()), con
                     activeOpacity={0.9}>
                     {contentLeft ? <Text style={styles.subbutton}>{contentLeft}</Text> : <Btn_Back />}
                 </TouchableOpacity>}
-                <View style={{ paddingLeft: 20 }}>
+                <View style={styles.stylePadding}>
                     {contentCenter}
                 </View>
                 {contentRight ?

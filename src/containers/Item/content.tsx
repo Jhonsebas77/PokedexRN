@@ -15,19 +15,19 @@ export default class Home extends Component<ItemProps, ItemState> {
     constructor(props) {
         super(props)
         this.state = {
-            Items: [],
+            items: [],
             loaded: false
         }
     }
 
     async componentWillMount() {
-        let Items = await getAllNewItem()
-        this.setState({ Items, loaded: true })
+        let items = await getAllNewItem()
+        this.setState({ items, loaded: true })
     }
 
     renderMiddle() {
         return (
-            <View style={{ alignItems: 'center' }}>
+            <View style={styles.contentTitle}>
                 <Text style={styles.title}>{'MOCHILA'}</Text>
             </View>
         )
@@ -40,18 +40,17 @@ export default class Home extends Component<ItemProps, ItemState> {
     }
 
     render() {
-        const { loaded = false, Items = {} } = { ...this.state }
+        const { loaded = false, items = {} } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }
         return (
             <ImageBackground source={require('../../Assets/images/BG_Home.png')}
                 style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} >
-                </NavBarSimple>
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.container}>
                     <FlatList
-                        data={Items}
+                        data={items}
                         numColumns={3}
                         keyExtractor={(item) => (item as any).index}
                         renderItem={({ item }) =>

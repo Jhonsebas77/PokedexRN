@@ -10,7 +10,7 @@ import NavBarSimple from '../../components/NavBar/Simple'
 const styles = getComponentStyle(style)
 export default class Home extends Component<any, any> {
     render() {
-        const { options } = Menu_Item
+        const { options = {} } = { ...Menu_Item }
         return (
             <View style={styles.container}>
                 <NavBarSimple isHome={true} />

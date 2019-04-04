@@ -4,7 +4,7 @@ import { getComponentStyle } from '../../Helpers/Stylus'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default ({ name, typeSource, categorySource, power, accuracy }: ItemMoveProps) => {
+export default ({ name = '', typeSource = '', categorySource = '', power = '', accuracy = '' }: ItemMoveProps) => {
     return (
         <View style={styles.itemMove}>
             <View style={styles.typeContainer}>

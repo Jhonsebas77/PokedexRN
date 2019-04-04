@@ -9,7 +9,7 @@ export default class MenuItem extends Component<MenuItemProps> {
         super(props)
     }
     render() {
-        const { icon } = this.props
+        const { icon } = {...this.props}
         return (
             <View style={styles.item}>
                 <View style={styles.spriteContainer}>

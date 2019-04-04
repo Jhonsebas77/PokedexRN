@@ -16,16 +16,13 @@ export default class LineEvolutive extends Component<AbilitiesProps, AbilitiesSt
             spriteURL: evo1_spriteURL = '' } = { ...evo1_data }
         return (
             <View>
-                {!evo1_item ? <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10 }}>
+                {!evo1_item ? <View style={styles.containerEvo_1}>
                     <View style={styles.spriteContainer}>
                         <Image style={styles.sprite} source={{ uri: evo1_spriteURL }} />
                     </View>
-                    {evo1_lv_next !== 0 && <Text style={{
-                        color: 'white', textAlign: 'center',
-                        fontWeight: 'bold', paddingTop: 10, paddingLeft: 10
-                    }}> {`LV\n${evo1_lv_next}`}</Text>}
+                    {evo1_lv_next !== 0 && <Text style={styles.textNextEvo}> {`LV\n${evo1_lv_next}`}</Text>}
                 </View> :
-                    <View style={{ flexDirection: 'row' }}>
+                    <View style={styles.containerRow}>
                         <Image style={styles.sprite} source={{ uri: evo1_spriteURL }} />
                         <Image style={styles.sprite} source={{ uri: evo1_itemSprite }} />
                         <Text> {`->  ${evo1_nameItem}\n ->`}</Text>
@@ -40,10 +37,10 @@ export default class LineEvolutive extends Component<AbilitiesProps, AbilitiesSt
         return (
             <View>
                 {!mega_item &&
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <View style={{ flexDirection: 'column', alignItems: 'center', paddingHorizontal: 10 }}>
+                    <View style={styles.containerMega}>
+                        <View style={styles.containerMegaItem}>
                             <Image style={styles.sprite} source={{ uri: mega_itemSprite }} />
-                            <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}> {`${mega_nameItem}`}</Text>
+                            <Text style={styles.textMegaItem}> {`${mega_nameItem}`}</Text>
                         </View>
                         <View style={styles.spriteContainer}>
                             <Image style={styles.sprite} source={{ uri: mega_spriteURL }} />
@@ -57,8 +54,8 @@ export default class LineEvolutive extends Component<AbilitiesProps, AbilitiesSt
         const { data = [] } = { ...this.props }
         const [evo1 = [], evo2 = [], evo3 = [], mega1 = [], mega2 = []] = data
         return (
-            <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-                <View style={{ flexDirection: 'row', paddingBottom: 10 }}>
+            <View style={styles.containerLineEvo}>
+                <View style={styles.containerNormalEvo}>
                     {evo1.length !== 0 && this.renderEvo(evo1)}
                     {evo2.length !== 0 && this.renderEvo(evo2)}
                     {evo3.length !== 0 && this.renderEvo(evo3)}
