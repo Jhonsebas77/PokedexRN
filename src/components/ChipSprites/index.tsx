@@ -21,9 +21,8 @@ export default class ChipSprites extends Component<ChipItemProps, ChipItemState>
         }
     }
     render() {
-        const { data = {} } = { ...this.props }
+        const { data: { icon = '', icon_Press = '' } = {} } = { ...this.props }
         const { value = false } = { ...this.state }
-        const { icon = '', icon_Press = '' } = { ...data }
         return (
             <View style={styles.item}>
                 <TouchableOpacity

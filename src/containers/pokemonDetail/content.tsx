@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
 import { getPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
-import { paddingNumber } from '../../Helpers/Validators'
+import { paddingNumber } from '../../Helpers/Tools'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../../components/NavBar/Simple'
 import Abilities from '../../components/Abilities'
@@ -42,8 +42,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderMiddle() {
-        const { pokemon = {} } = { ...this.state }
-        const { name = 'Pokemon Detail' } = { ...pokemon }
+        const { pokemon: { name = 'Pokemon Detail' } = {} } = { ...this.state }
         return (
             <View style={styles.textMiddle}>
                 <Text style={styles.title}>{name}</Text>
@@ -52,7 +51,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderInformation() {
-        const { dex_entry: { flavor_text = {} } = {} } = this.state.pokemon
+        const { dex_entry: { flavor_text = {} } = {} } = { ...this.state.pokemon }
         return (
             <View style={styles.containerInfoPkmn}>
                 <View>
@@ -64,8 +63,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderStats() {
-        const { pokemon: { stats = {} } = {} } = { ...this.state }
-        const { attack = 0, defense = 0, hp = 0, special_attack = 0, special_defense = 0, speed = 0 } = { ...stats }
+        const { pokemon: { stats: { attack = 0, defense = 0, hp = 0, special_attack = 0, special_defense = 0, speed = 0 } = {} } = {} } = { ...this.state }
         return (
             <View style={styles.containerStats}>
                 <Text style={styles.titleCardInfo}>  {'Estadisticas'} </Text>
@@ -82,8 +80,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderEvolution() {
-        const { pokemon = {} } = { ...this.state }
-        const { line_evolution = [] } = { ...pokemon }
+        const { pokemon: { line_evolution = [] } = {} } = { ...this.state }
         return (
             <View style={styles.containerEvolution}>
                 <Text style={styles.titleCardInfo}>
@@ -97,8 +94,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderAbility() {
-        const { pokemon = {} } = { ...this.state }
-        const { abilities = {} } = { ...pokemon }
+        const { pokemon: { abilities = {} } = {} } = { ...this.state }
         return (
             <View style={styles.containerAbility}>
                 <Text style={styles.titleCardInfo}> {'Habilidad'} </Text>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getMove } from '../../util/api'
-import { newString } from '../../Helpers/Validators'
+import { newString, paddingNumber } from '../../Helpers/Tools'
 import NavBarSimple from '../../components/NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
 import { Actions } from 'react-native-router-flux'
@@ -10,7 +10,6 @@ import { ColorType, GetColorType } from '../../Helpers/Colors'
 import Itempokemonmove from '../../components/itemPokemonMove'
 import Cristalzmove from '../../components/CristalZ_Move'
 import _ from '../../Helpers/Utilities'
-import { paddingNumber } from '../../Helpers/Validators'
 import Loading from '../../components/Loading'
 import style from './style'
 
@@ -96,11 +95,10 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
     }
 
     render() {
-        const { name = '', effect_entries = {}, category: { sprite: spriteCategory = '' } = {},
+        const { name = '', effect_entries: { short_effect = '' } = {}, category: { sprite: spriteCategory = '' } = {},
             battleType: { sprite: spriteBattleType = '', name: nameBattleType = '' } = {} } = this.state.move
         const colortype = ColorType(nameBattleType)
         const borderColor = GetColorType(nameBattleType)
-        const { short_effect = '' } = { ...effect_entries }
         if (!this.state.loaded) {
             return this.renderLoadingView()
         }
@@ -120,7 +118,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
                             </View>
                             <View style={[{ borderColor }, styles.textContainer]}>
                                 <Text style={styles.paddingText}>
-                                    {effect_entries ? `${short_effect} ` : ''}
+                                    {short_effect ? `${short_effect} ` : ''}
                                 </Text>
                             </View>
                         </LinearGradient>

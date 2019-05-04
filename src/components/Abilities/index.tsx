@@ -6,8 +6,7 @@ import style from './style'
 const styles = getComponentStyle(style)
 export default ({ data = [] }: AbilitiesProps) => {
     const [pokemon_abilities] = data
-    const { is_hidden = false, ability = {} } = pokemon_abilities
-    const { name = '', description = '' } = { ...ability }
+    const { is_hidden = false, ability: { name = '', description = '' } = {} } = pokemon_abilities
     return (
         <View style={styles.containerAbility}>
             {is_hidden &&

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, Text } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
+import _ from '../../Helpers/Utilities'
 import style from './style'
 
 const styles = getComponentStyle(style)
@@ -56,12 +57,12 @@ export default class LineEvolutive extends Component<AbilitiesProps, AbilitiesSt
         return (
             <View style={styles.containerLineEvo}>
                 <View style={styles.containerNormalEvo}>
-                    {evo1.length !== 0 && this.renderEvo(evo1)}
-                    {evo2.length !== 0 && this.renderEvo(evo2)}
-                    {evo3.length !== 0 && this.renderEvo(evo3)}
+                    {_.arrayHasItems(evo1) && this.renderEvo(evo1)}
+                    {_.arrayHasItems(evo2) && this.renderEvo(evo2)}
+                    {_.arrayHasItems(evo3) && this.renderEvo(evo3)}
                 </View>
-                {mega1.length !== 0 && this.renderMega(mega1)}
-                {mega2.length !== 0 && this.renderMega(mega2)}
+                {_.arrayHasItems(mega1) && this.renderMega(mega1)}
+                {_.arrayHasItems(mega2) && this.renderMega(mega2)}
             </View>
         )
     }
