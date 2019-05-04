@@ -27,24 +27,3 @@ export const paddingNumber = (id: number) => {
     const number = (id < 10 ? '00' : id < 100 ? '0' : '') + id
     return number
 }
-
-export const getTypeSource = (type: string) => {
-    let urlType = `https://s3.us-east-2.amazonaws.com/pokedex-jsob/Types/${type}.png`
-    return urlType
-}
-
-export const getItemSpriteSource = (item: string) => {
-    let nitem = newStringItem(item)
-    let urlType = `https://www.serebii.net/itemdex/sprites/${nitem}.png`
-    return urlType
-}
-
-export const getMiniSpriteSource = (id: number) => {
-    let urlSprite = `https://www.serebii.net/pokedex-xy/icon/${paddingNumber(id)}.png`
-    return urlSprite
-}
-
-export const getNormalSpriteSource = (id: number) => {
-    let urlSprite = `https://s3.us-east-2.amazonaws.com/pokedex-jsob/Sprites/${id}.png`
-    return urlSprite
-}

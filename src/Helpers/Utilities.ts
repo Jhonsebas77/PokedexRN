@@ -25,5 +25,11 @@ export default {
             return false
         })
         return value
+    },
+    arrayHasItems(arr: any = []) {
+        if (Array.isArray(arr)) {
+            return arr.length > 0
+        }
+        return false
     }
 }

@@ -3,7 +3,7 @@ import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-n
 import { getAllNewItem } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import ItemModal from '../../components/ItemModal'
-import { newString } from '../../Helpers/Validators'
+import { newString } from '../../Helpers/Tools'
 import Loading from '../../components/Loading'
 import NavBarSimple from '../../components/NavBar/Simple'
 import style from './style'
