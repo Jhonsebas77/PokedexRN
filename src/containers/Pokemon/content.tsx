@@ -15,6 +15,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     constructor(props) {
         super(props)
         this.state = {
+            newPokemonData: [],
             pokedex: [],
             loaded: false
         }
@@ -22,7 +23,8 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
 
     async componentWillMount() {
         let pokedex = await getAllPokemon()
-        this.setState({ pokedex, loaded: true })
+        const newPokemonData = pokedex && this.preparePokemon(pokedex)
+        this.setState({ newPokemonData, loaded: true })
     }
 
     renderMiddle() {
@@ -52,8 +54,17 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
         )
     }
 
+    preparePokemon(pokedex) {
+        const newPokemonData = pokedex.map((pokemon) => {
+            const { idDex = 0, name = '', url = '', urlSprite = '', types: [pokemonTypes] = {} } = { ...pokemon }
+            const { typeOneName = '', typeOneURL = '', typeOneUrlSprite = '', typeTwoName = '', typeTwoURL = '', typeTwoUrlSprite = '' } = pokemonTypes
+            return { idDex, name, url, urlSprite, typeOneName, typeOneURL, typeOneUrlSprite, typeTwoName, typeTwoURL, typeTwoUrlSprite }
+        })
+        return newPokemonData
+    }
+
     render() {
-        const { loaded = false, pokedex = {} } = { ...this.state }
+        const { loaded = false, newPokemonData = [] } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }
@@ -66,7 +77,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.contentItemPokemon}>
                     <FlatList
-                        data={pokedex}
+                        data={newPokemonData}
                         keyExtractor={(item) => (item as any).index}
                         renderItem={({ item, index }) =>
                             <TouchableOpacity
@@ -76,11 +87,10 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                                     name={_.capitalize((item as any).name)}
                                     spriteSource={{ uri: (item as any).urlSprite }}
                                     typeTwoSource={{
-                                        uri: (item as any).types && (item as any).types[0][0].type ? (item as any).types[0][0].type.urlSprite : undefined
+                                        uri: (item as any).typeTwoUrlSprite ? (item as any).typeTwoUrlSprite : undefined
                                     }}
                                     typeOneSource={{
-                                        uri: (item as any).types && (item as any).types[1] &&
-                                            (item as any).types[1][0].type ? (item as any).types[1][0].type.urlSprite : undefined
+                                        uri: (item as any).typeOneUrlSprite ? (item as any).typeOneUrlSprite : undefined
                                     }}
                                 />
                             </TouchableOpacity>
