@@ -86,7 +86,8 @@ export default {
     textStats: {
         color: 'white',
         textAlign: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        paddingHorizontal: 5
     },
     textContainerColumnStats: {
         flexDirection: 'row',
@@ -130,5 +131,15 @@ export default {
         marginHorizontal: 30,
         alignItems: 'center',
         paddingTop: 5
+    },
+    contentFailInternet: {
+        flex: 1,
+        justifyContent: 'space-around',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    failInternet: {
+        width: width,
+        height: height
     }
 }

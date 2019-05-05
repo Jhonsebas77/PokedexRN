@@ -42,7 +42,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderMiddle() {
-        const { pokemon: { name = 'Pokemon Detail' } = {} } = { ...this.state }
+        const { pokemon: { name = '' } = {} } = { ...this.state }
         return (
             <View style={styles.textMiddle}>
                 <Text style={styles.title}>{name}</Text>
@@ -54,10 +54,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         const { dex_entry: { flavor_text = {} } = {} } = { ...this.state.pokemon }
         return (
             <View style={styles.containerInfoPkmn}>
-                <View>
-                    <Text style={styles.titleCardInfo}> {'Informacion'}  </Text>
-                    <Text style={styles.textStats}>  {flavor_text}  </Text>
-                </View>
+                <Text style={styles.titleCardInfo}> {'Informacion'}  </Text>
+                <Text style={styles.textStats}>  {flavor_text}  </Text>
             </View>
         )
     }
@@ -130,6 +128,19 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         )
     }
 
+    renderFailInternet() {
+        return (
+            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
+                style={styles.failInternet} >
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+                <View style={styles.contentFailInternet}>
+                    <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
+                    <Text style={styles.title}>{'Lo sentimos, \nalgo salio mal'}</Text>
+                </View>
+            </ImageBackground>
+        )
+    }
+
     renderPkmn() {
         const { idDex = '006', types = [], sprites = {}, weight = '', height = '', dex_entry: { classification = {} } = {} } = this.state.pokemon
         const [principalType = [], secundaryType = []] = types
@@ -170,6 +181,9 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
+        if (this.state.pokemon === undefined) {
+            return this.renderFailInternet()
+        }
         const { types = [] } = this.state.pokemon
         const [principalType = [], secundaryType = []] = types
         const [typeppal] = principalType
