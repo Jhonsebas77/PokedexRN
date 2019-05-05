@@ -25,6 +25,7 @@ export default {
         alignItems: 'center'
     },
     contentItemPokemon: {
-        paddingTop: 10
+        paddingTop: 10,
+        height: 550
     }
 }
