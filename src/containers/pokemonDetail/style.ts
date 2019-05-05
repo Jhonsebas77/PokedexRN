@@ -86,7 +86,8 @@ export default {
     textStats: {
         color: 'white',
         textAlign: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        paddingHorizontal: 5
     },
     textContainerColumnStats: {
         flexDirection: 'row',

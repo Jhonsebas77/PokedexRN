@@ -54,10 +54,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         const { dex_entry: { flavor_text = {} } = {} } = { ...this.state.pokemon }
         return (
             <View style={styles.containerInfoPkmn}>
-                <View>
-                    <Text style={styles.titleCardInfo}> {'Informacion'}  </Text>
-                    <Text style={styles.textStats}>  {flavor_text}  </Text>
-                </View>
+                <Text style={styles.titleCardInfo}> {'Informacion'}  </Text>
+                <Text style={styles.textStats}>  {flavor_text}  </Text>
             </View>
         )
     }
