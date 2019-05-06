@@ -21,7 +21,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         super(props)
         this.state = {
             pokemon: [],
-            loaded: false
+            loaded: false,
+            colortype: []
         }
         this.renderInformation = this.renderInformation.bind(this)
         this.renderEvolution = this.renderEvolution.bind(this)
@@ -32,7 +33,10 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     async componentWillMount() {
         const { item: { idDex = '001' } = {} } = { ...this.props }
         let pokemon = await getPokemon(idDex)
-        this.setState({ pokemon, loaded: true })
+        const { types: [pokemonTypes] = {} } = pokemon
+        const { typeOneName = '', typeTwoName = '' } = pokemonTypes
+        const colortype = ColorType(typeOneName, typeTwoName)
+        this.setState({ pokemon, loaded: true, colortype })
     }
 
     renderLoadingView() {
@@ -142,13 +146,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     renderPkmn() {
-        const { idDex = '006', types = [], sprites = {}, weight = '', height = '', dex_entry: { classification = {} } = {} } = this.state.pokemon
-        const [principalType = [], secundaryType = []] = types
-        const [typeppal] = principalType
-        const [typesecond] = secundaryType
-        const { type: { name: type1 = '', urlSprite: type1_urlSprite = '' } = {} } = { ...typeppal }
-        const { type: { name: type2 = '', urlSprite: type2_urlSprite = '' } = {} } = { ...typesecond }
-        let hasSecondType = (types && type2 && type2_urlSprite !== '') ? true : false
+        const { idDex = '006', types: [pokemonTypes] = {}, sprites = {}, weight = '', height = '', dex_entry: { classification = {} } = {} } = this.state.pokemon
+        const { typeOneUrlSprite = '', typeTwoUrlSprite = '' } = pokemonTypes
         return (
             <View style={styles.containerPkmn}>
                 <View style={styles.containerPkmnInfo}>
@@ -157,16 +156,12 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                     </Text>}
                     <Text style={styles.titleId}>{idDex ? `#${paddingNumber(idDex)}` : '-- -----'}</Text>
                     <View style={styles.containerTypes}>
-                        {types && type1 &&
-                            <View style={styles.typeContainer}>
-                                <Image style={styles.type} source={{ uri: type1_urlSprite }} />
-                            </View>
-                        }
-                        {hasSecondType &&
-                            <View style={styles.typeContainer}>
-                                <Image style={styles.type} source={{ uri: type2_urlSprite }} />
-                            </View>
-                        }
+                        {<View style={styles.typeContainer}>
+                            <Image style={styles.type} source={{ uri: typeOneUrlSprite }} />
+                        </View>}
+                        {!!typeTwoUrlSprite && <View style={styles.typeContainer}>
+                            <Image style={styles.type} source={{ uri: typeTwoUrlSprite }} />
+                        </View>}
                     </View>
                     <Text style={styles.titleInfo}>  {` Peso: ${weight} \n Altura:  ${height}`} </Text>
                 </View>
@@ -181,24 +176,18 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     }
 
     render() {
-        if (this.state.pokemon === undefined) {
+        const { colortype, pokemon, loaded } = { ...this.state }
+        if (pokemon === undefined) {
             return this.renderFailInternet()
         }
-        const { types = [] } = this.state.pokemon
-        const [principalType = [], secundaryType = []] = types
-        const [typeppal] = principalType
-        const [typesecond] = secundaryType
-        const { type: { name: type1 = '' } = {} } = { ...typeppal }
-        const { type: { name: type2 = '' } = {} } = { ...typesecond }
-        const colortype = types && ColorType(type1, type2)
-        if (!this.state.loaded) {
+        if (!loaded) {
             return this.renderLoadingView()
         }
         return (
             <View style={styles.background} >
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.content}>
-                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={types && colortype} style={styles.loading} >
+                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >
                         <ScrollView contentContainerStyle={styles.scrollContainer}>
                             <View>
                                 {this.renderInformation()}

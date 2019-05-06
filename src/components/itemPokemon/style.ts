@@ -12,12 +12,14 @@ export default {
     },
     itemPokemon: {
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        margin: 10,
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        marginHorizontal: 10,
+        marginVertical: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         height: 40,
-        borderRadius: 50
+        borderBottomRightRadius: 50,
+        borderTopRightRadius: 50
     },
     sprite: {
         width: 30,

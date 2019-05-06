@@ -5,5 +5,6 @@ interface PkmnDetailProps {
 interface PkmnDetailState {
     pokemon?: any,
     item?: any,
-    loaded?: any
+    loaded?: any,
+    colortype?: any
 }
