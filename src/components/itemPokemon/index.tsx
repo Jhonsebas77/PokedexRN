@@ -22,9 +22,9 @@ export default class ItemPokemon extends Component<ItemPkmnProps, ItemPkmnState>
                     </View>
                     <Text style={styles.textName}> {name} </Text>
                 </View>
-                <View style={typeOneSource.uri === undefined ? styles.typeOneContainer : styles.typeTwoContainer}>
+                <View style={styles.typeOneContainer}>
                     <Image style={styles.type} source={typeOneSource} />
-                    <Image style={styles.type} source={typeTwoSource} />
+                    {!!typeTwoSource.uri && <Image style={styles.type} source={typeTwoSource} />}
                 </View>
             </View>
         )
