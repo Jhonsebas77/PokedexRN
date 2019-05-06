@@ -64,11 +64,11 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     }
 
     render() {
-        const { loaded = false, newPokemonData = [] } = { ...this.state }
+        const { loaded, newPokemonData } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }
-        if (this.state.pokedex === undefined) {
+        if (newPokemonData === undefined) {
             return this.renderFailInternet()
         }
         return (
