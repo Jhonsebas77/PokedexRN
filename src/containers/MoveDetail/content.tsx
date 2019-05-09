@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
+import { Text, View, Image, TouchableOpacity, ImageBackground, FlatList, ScrollView } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getMove } from '../../util/api'
 import { newString, paddingNumber } from '../../Helpers/Tools'
@@ -14,18 +14,32 @@ import Loading from '../../components/Loading'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailState> {
+export default class MoveDetail extends Component<PkmnDetailProps, any> {
     constructor(props) {
         super(props)
         this.state = {
             move: [],
-            loaded: false
+            loaded: false,
+            spriteBattleType: '',
+            short_effect: '',
+            colortype: [],
+            borderColor: []
         }
     }
 
     async componentWillMount() {
-        let move = await getMove(this.props.item.idDex)
+        const { item: { idDex = '001' } = {} } = { ...this.props }
+        let move = await getMove(idDex)
+        !!move && this.setStateMove(move)
         this.setState({ move, loaded: true })
+    }
+
+    setStateMove(move) {
+        const { battleType = {}, effect_entries: { short_effect = '' } = {}, name = '' } = move
+        const { sprite: spriteBattleType = '', name: nameBattleType = '' } = { ...battleType }
+        const colortype = battleType && ColorType(nameBattleType)
+        const borderColor = battleType && GetColorType(nameBattleType)
+        this.setState({ colortype, borderColor, spriteBattleType, short_effect, name })
     }
 
     renderMiddle() {
@@ -94,12 +108,26 @@ export default class MoveDetail extends Component<PkmnDetailProps, PkmnDetailSta
         )
     }
 
+    renderFailInternet() {
+        return (
+            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
+                style={styles.failInternet} >
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+                <View style={styles.contentFailInternet}>
+                    <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
+                    <Text style={styles.title}>{'Lo sentimos, \nalgo salio mal'}</Text>
+                </View>
+            </ImageBackground>
+        )
+    }
+
     render() {
-        const { name = '', effect_entries: { short_effect = '' } = {}, category: { sprite: spriteCategory = '' } = {},
-            battleType: { sprite: spriteBattleType = '', name: nameBattleType = '' } = {} } = this.state.move
-        const colortype = ColorType(nameBattleType)
-        const borderColor = GetColorType(nameBattleType)
-        if (!this.state.loaded) {
+        const { loaded = false, borderColor = null, colortype = null, spriteBattleType = '', move = null, spriteCategory = '',
+            short_effect = '', name = '' } = { ...this.state }
+        if (move === null) {
+            return this.renderFailInternet()
+        }
+        if (!loaded) {
             return this.renderLoadingView()
         }
         return (
