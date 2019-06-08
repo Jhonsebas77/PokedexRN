@@ -103,5 +103,15 @@ export default {
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center'
+    },
+    contentFailInternet: {
+        flex: 1,
+        justifyContent: 'space-around',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    failInternet: {
+        width: width,
+        height: height
     }
 }
