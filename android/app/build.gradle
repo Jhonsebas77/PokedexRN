@@ -96,7 +96,10 @@ def enableProguardInReleaseBuilds = false
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+        }
     defaultConfig {
         applicationId "com.pokedexrn"
         minSdkVersion rootProject.ext.minSdkVersion
