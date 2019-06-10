@@ -7,9 +7,10 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.3.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -32,20 +33,20 @@ allprojects {
 }
 
 ext {
-    buildToolsVersion = "26.0.3"
+    buildToolsVersion = "27.0.3"
     minSdkVersion = 16
-    compileSdkVersion = 26
-    targetSdkVersion = 26
-    supportLibVersion = "26.1.0"
+    compileSdkVersion = 27
+    targetSdkVersion = 27
+    supportLibVersion = "27.1.1"
 }
 
 subprojects {
     afterEvaluate {project ->
         if (project.hasProperty("android")) {
-            android {
-                compileSdkVersion 25
-                buildToolsVersion '25.0.0'
-            }
+            android { 
+                compileSdkVersion = 27 
+                buildToolsVersion = "27.0.3"
+            } 
         }
     }
 }
