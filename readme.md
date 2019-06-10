@@ -14,7 +14,7 @@ Primero se debe clonar el proyecto
 	     -  1\. En la terminal nos ubicamos en el directorio con el proyecto en *React-Native* con <kbd>cd /nombre_proyecto </kbd>  
 	     - 2\. Ejecutamos <kbd>yarn install </kbd>  
 	     
-	   - 3\. En terminales distintas, ejecutamos en la primera ventana <kbd>yarn run watch</kbd>, en otra ejecutamos <kbd>rnstart</kbd> y por ultimo  <kbd>yarn ios</kbd> / <kbd>yarn android</kbd>
+	   - 3\. En terminales distintas, ejecutamos en la primera ventana <kbd>yarn run watch</kbd>, en otra ejecutamos <kbd>yarn rnstart</kbd> y por ultimo  <kbd>yarn ios</kbd> / <kbd>yarn android</kbd>
 
 ## Preview [Work in progress]
 
