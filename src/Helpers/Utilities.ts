@@ -31,5 +31,8 @@ export default {
             return arr.length > 0
         }
         return false
+    },
+    map(values: any[] = [], fx: any) {
+        return (values || []).map(fx)
     }
 }

@@ -3,9 +3,9 @@ import { Scene, Router, Stack } from 'react-native-router-flux'
 import PokemonDetail from '../containers/pokemonDetail/content'
 import MoveDetail from '../containers/MoveDetail/content'
 import Home from '../containers/Home/content'
-import Items from '../containers/Item/content'
-import Pokemon from '../containers/Pokemon/content'
-import Moves from '../containers/Move/content'
+import Items from '../containers/Item'
+import Pokemon from '../containers/Pokemon'
+import Moves from '../containers/Move'
 export default class Routes extends Component {
   render() {
     return (

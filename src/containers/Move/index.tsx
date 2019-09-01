@@ -11,7 +11,7 @@ import NavBarSimple from '../../components/NavBar/Simple'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default class Move extends Component<MoveProps, MoveState> {
+export default class Move extends Component<any, any> {
     constructor(props) {
         super(props)
         this.state = {
@@ -40,7 +40,7 @@ export default class Move extends Component<MoveProps, MoveState> {
     }
 
     render() {
-        const { loaded = false, moves = {} } = { ...this.state }
+        const { loaded = false, moves = [] } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }

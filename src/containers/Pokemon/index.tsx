@@ -11,7 +11,7 @@ import NavBarSimple from '../../components/NavBar/Simple'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default class Pokemon extends Component<PkmnProps, PkmnState> {
+export default class Pokemon extends Component<any, any> {
     constructor(props) {
         super(props)
         this.state = {
@@ -64,7 +64,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     }
 
     render() {
-        const { loaded, newPokemonData } = { ...this.state }
+        const { loaded = false, newPokemonData = [] } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }

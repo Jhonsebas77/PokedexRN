@@ -10,7 +10,7 @@ import style from './style'
 import { getComponentStyle } from '../../Helpers/Stylus'
 
 const styles = getComponentStyle(style)
-export default class Home extends Component<ItemProps, ItemState> {
+export default class Item extends Component<any, any> {
     modal: any
     constructor(props) {
         super(props)
@@ -40,7 +40,7 @@ export default class Home extends Component<ItemProps, ItemState> {
     }
 
     render() {
-        const { loaded = false, items = {} } = { ...this.state }
+        const { loaded = false, items = [] } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }

@@ -71,6 +71,7 @@ export default {
         height: 60
     },
     stylePadding: {
-        paddingLeft: 20
+        paddingLeft: 80,
+        marginTop: 4
     }
 }
