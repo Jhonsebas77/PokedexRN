@@ -1,10 +1,11 @@
-import * as Orientation from 'react-native-orientation'
 import { Platform, Dimensions } from 'react-native'
 import _ from './Utilities'
 const { width, height } = Dimensions.get('window')
-const BaseSize: ZeplinSize = { height: (Platform.OS === 'ios' ? 667 : 640), width: (Platform.OS === 'ios' ? 375 : 360) }
-const RealWidth = Orientation.getInitialOrientation() === 'PORTRAIT' ? width : height
-const RealHeight = Orientation.getInitialOrientation() === 'PORTRAIT' ? height : width
+const isIOS = Platform.OS === 'ios'
+const BaseSize = { height: (isIOS ? 667 : 640), width: (isIOS ? 375 : 360) };
+const isPortrait = height > width
+const RealWidth = isPortrait ? width : height
+const RealHeight = isPortrait ? height : width
 const WResize: any = ['borderRadius', 'paddingHorizontal', 'marginHorizontal', 'borderWidth', 'borderBottomWidth',
     'borderLeftWidth', 'borderRightWidth', 'borderTopWidth', 'maxLength', 'marginLeft', 'marginRight', 'paddingLeft',
     'paddingRight', 'left', 'right', 'maxWidth', 'minWidth', 'width', 'border', 'radius', 'x', 'fontSize']

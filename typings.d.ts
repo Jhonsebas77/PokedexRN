@@ -3,8 +3,4 @@ declare module "*.json" {
     const value: any;
     export default value;
 }
-interface ZeplinSize  {
-    height: number;
-    width: number;
-}
 declare module "sugar"
