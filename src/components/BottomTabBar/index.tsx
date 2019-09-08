@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { View, Image, TouchableWithoutFeedback } from 'react-native'
+import { View, Image, TouchableWithoutFeedback, Text } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import _ from '../../Helpers/Utilities'
 import style from './style'
@@ -26,12 +26,13 @@ export default class BottomTabBar extends PureComponent<IBottomTabBarProps, IBot
     }
     renderTabs(item: BottomButtonTabBar, index: number) {
         const { activeTab = 0 } = { ...this.state }
-        const { iconName = '', iconPress = '' } = { ...item }
+        const { iconName = '', iconPress = '', title = '' } = { ...item }
         const isActive = index === activeTab
         return (
             <TouchableWithoutFeedback key={index} style={styles.tabContainer} onPress={() => this.setTab(index)}>
-                <View>
+                <View style={styles.tabTextContainer}>
                     <Image style={styles.sprite} source={{ uri: isActive ? iconPress : iconName }} />
+                    <Text style={styles.tabTitle}>{title}</Text>
                 </View>
             </TouchableWithoutFeedback>
         )

@@ -59,7 +59,13 @@ export default {
     tabTitle: {
         fontFamily: 'Gill Sans',
         fontSize: 11,
-        lineHeight: 11
+        lineHeight: 11,
+        color: 'white',
+        fontWeight: 'bold'
+    },
+    tabTextContainer: {
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     activeTab: {
         color: 'red'
@@ -72,11 +78,11 @@ export default {
         padding: 20
     },
     sprite: {
-        width: 100,
+        width: 30,
         height: 30
     },
     spriteContainer: {
-        width: 100,
+        width: 30,
         height: 30
     }
 }

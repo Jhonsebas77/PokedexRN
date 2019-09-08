@@ -72,8 +72,7 @@ export default class Pokemon extends Component<any, any> {
             return this.renderFailInternet()
         }
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
-                style={styles.loading} >
+            <View style={styles.loading} >
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
                 <View style={styles.contentItemPokemon}>
                     <FlatList
@@ -96,7 +95,7 @@ export default class Pokemon extends Component<any, any> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </ImageBackground>
+            </View>
         )
     }
 }

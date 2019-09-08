@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllNewItem } from '../../util/api'
 import ItemItem from '../../components/ItemItem'
 import ItemModal from '../../components/ItemModal'
@@ -45,9 +45,8 @@ export default class Item extends Component<any, any> {
             return this.renderLoadingView()
         }
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
-                style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+            <View style={styles.loading} >
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
                 <View style={styles.container}>
                     <FlatList
                         data={items}
@@ -64,7 +63,7 @@ export default class Item extends Component<any, any> {
                         } />
                     <ItemModal ref={(ref) => { this.modal = ref }} />
                 </View>
-            </ImageBackground>
+            </View>
         )
     }
 }
