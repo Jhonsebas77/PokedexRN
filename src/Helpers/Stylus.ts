@@ -21,22 +21,21 @@ export const getComponentStyle = (component: any) => {
     let isCircle: boolean = _.has(component, 'height') && _.has(component, 'width')
         && _.has(component, 'borderRadius') && component.heigth === component.width
         && component.heigth === (component.borderRadius / 2)
-    let circleWidth: number = Number(_.get(component, 'width')) * WFactor
-    _.objectEach(styles, (val, key) => {
+    const circleWidth: number = Number(component.width) * WFactor
+    const styleHasItems = _.arrayHasItems(Object.keys(styles))
+    styleHasItems && Object.entries(styles).forEach(([key, val]: any) => {
         if (_.isObject(val)) {
             styles[key] = getComponentStyle(val)
-        } else {
-            if (_.isNumber(val)) {
-                if (CrossProperty.includes(key)) {
-                    styles[`${key}Horizontal`] = (WFactor * val)
-                    styles[`${key}Vertical`] = (HFactor * val)
-                } else {
-                    styles[key] = WResize.includes(key) ? (WFactor * val) :
-                        HResize.includes(key) ? (HFactor * val) : val
-                }
+        } else if (_.isNumber(val)) {
+            if (CrossProperty.includes(key)) {
+                styles[`${key}Horizontal`] = (WFactor * val)
+                styles[`${key}Vertical`] = (HFactor * val)
             } else {
-                styles[key] = val
+                styles[key] = WResize.includes(key) ? (WFactor * val) :
+                    HResize.includes(key) ? (HFactor * val) : val
             }
+        } else {
+            styles[key] = val
         }
     })
     if (isCircle) {
@@ -50,8 +49,8 @@ export const getComponentStyle = (component: any) => {
 const extractPlatformStyle = (component: any) => {
     let platformStyle = { ...component, ...(component[Platform.OS]) }
     if (_.has(platformStyle, 'ios') || _.has(platformStyle, 'android')) {
-        platformStyle = _.exclude(platformStyle, 'ios')
-        platformStyle = _.exclude(platformStyle, 'android')
+        delete platformStyle.ios
+        delete platformStyle.android
     }
     return platformStyle
 }

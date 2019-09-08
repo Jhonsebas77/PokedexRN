@@ -1,16 +1,38 @@
-import Sugar from 'sugar'
-Sugar.extend()
+const capitalize = (value: string, all: boolean = false) => {
+    const strValue = isString(value) ? value : ''
+    const lowerStr = strValue.toLowerCase()
+    if (!all) {
+        const delEmptySpaces = strValue.replace(/\s/g, '')
+        for (let i = 0; i < strValue.length; i++) {
+            const strChar = strValue.charAt(i)
+            if (delEmptySpaces[0] === strChar) {
+                const firstCharUpper = strChar.toUpperCase()
+                const firstCharLower = strChar.toLowerCase()
+                return lowerStr.replace(firstCharLower, firstCharUpper)
+            }
+        }
+    }
+    return lowerStr.replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
+}
+const isString = (value: any) => Object.prototype.toString.call(value) === '[object String]'
+const has = (value: Object, key: string) => Object.prototype.hasOwnProperty.call(value, key)
+const isObject = (obj) => {
+    return Object.prototype.toString.call(obj) === '[object Object]'
+}
+const isNumber = (value: any) => Object.prototype.toString.call(value) === '[object Number]'
+const formatNumberDecimal = (value: number = 0) => {
+    return isNumber(value) ? Math.round(value) : 0
+}
+const arrayHasItems = (arr: Array<any> = []) => {
+    if (Array.isArray(arr)) {
+        return arr.length > 0
+    }
+    return false
+}
+
 export default {
-    capitalize: (value: string, all?: boolean) => Sugar.String.capitalize(value, true, all),
     upper: (value: string) => value ? value.toUpperCase() : value,
     lower: (value: string) => value.toLowerCase(),
-    has: (value: Object, key: string) => Sugar.Object.has(value, key),
-    exclude: (value: Object, key: string) => Sugar.Object.reject(value, key),
-    isObject: (value: any) => Sugar.Object.isObject(value),
-    isNumber: (value: any) => Sugar.Object.isNumber(value),
-    objectEach: (value: Object, fcn) => Sugar.Object.forEach(value, fcn),
-    get: (value, key: string) => Sugar.Object.get(value, key),
-    formatNumberDecimal: (value, decimals) => value.toFixed(decimals),
     findProperty: function findProperty(object, property) {
         let value
         Object.keys(object).some((k) => {
@@ -18,7 +40,7 @@ export default {
                 value = object[k]
                 return true
             }
-            if (Sugar.Object.isObject(object[k])) {
+            if (isObject(object[k])) {
                 value = findProperty(object[k], property)
                 return value !== undefined
             }
@@ -26,13 +48,13 @@ export default {
         })
         return value
     },
-    arrayHasItems(arr: any = []) {
-        if (Array.isArray(arr)) {
-            return arr.length > 0
-        }
-        return false
-    },
     map(values: any[] = [], fx: any) {
         return (values || []).map(fx)
-    }
+    },
+    arrayHasItems,
+    capitalize,
+    has,
+    isObject,
+    isNumber,
+    formatNumberDecimal
 }
