@@ -1,6 +1,6 @@
 export default {
     sprite: {
-        width: 40,
-        height: 40
+        width: 20,
+        height: 20
     }
 }

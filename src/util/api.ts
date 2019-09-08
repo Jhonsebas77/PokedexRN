@@ -1,3 +1,4 @@
+export const basePath = `https://pokedexrn-api.herokuapp.com` // `https://1cf637e4.ngrok.io`
 export const getURL =
   (url) => {
     return fetch(`${url}`)
@@ -12,7 +13,7 @@ export const getURL =
 
 export const getAllPokemon =
   () => {
-    return fetch(`https://pokedexrn-api.herokuapp.com/pokedex`)
+    return fetch(`${basePath}/pokedex`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -24,7 +25,7 @@ export const getAllPokemon =
 
 export const getAllNewItem =
   () => {
-    return fetch(`https://pokedexrn-api.herokuapp.com/itemlist`)
+    return fetch(`${basePath}/itemlist`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -36,7 +37,7 @@ export const getAllNewItem =
 
 export const getItem =
   (idDex) => {
-    return fetch(`https://pokedexrn-api.herokuapp.com/item/${idDex}`)
+    return fetch(`${basePath}/item/${idDex}`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -48,7 +49,7 @@ export const getItem =
 
 export const getMove =
   (idDex) => {
-    return fetch(`https://pokedexrn-api.herokuapp.com/move/${idDex}`)
+    return fetch(`${basePath}/move/${idDex}`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -60,7 +61,7 @@ export const getMove =
 
 export const getAllMoves =
   () => {
-    return fetch(`https://pokedexrn-api.herokuapp.com/movelist`)
+    return fetch(`${basePath}/movelist`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson
@@ -84,7 +85,7 @@ export const getAllItems =
 
 export const getPokemon =
   (idDex) => {
-    return fetch(`https://pokedexrn-api.herokuapp.com/pokemon/${idDex}`)
+    return fetch(`${basePath}/pokemon/${idDex}`)
       .then((response) => response.json())
       .then((responseJson) => {
         return responseJson

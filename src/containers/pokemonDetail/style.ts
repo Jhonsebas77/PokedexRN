@@ -30,6 +30,11 @@ export default {
         height: 540,
         borderRadius: 30
     },
+    contentPokemon: {
+        width: width,
+        height: height,
+        paddingBottom: 77
+    },
     background: {
         width: width,
         height: height
@@ -71,8 +76,8 @@ export default {
         flexDirection: 'row'
     },
     content: {
-        backgroundColor: '#C64934',
-        padding: 10
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     scrollContainer: {
         alignItems: 'center',
@@ -119,10 +124,6 @@ export default {
         borderRadius: 20,
         marginHorizontal: 30,
         marginTop: 10
-    },
-    textMiddle: {
-        alignItems: 'center',
-        paddingLeft: 2
     },
     containerInfoPkmn: {
         backgroundColor: 'rgba(0, 0, 0, 0.2)',

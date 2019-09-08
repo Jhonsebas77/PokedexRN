@@ -48,7 +48,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
     renderMiddle() {
         const { pokemon: { name = '' } = {} } = { ...this.state }
         return (
-            <View style={styles.textMiddle}>
+            <View>
                 <Text style={styles.title}>{name}</Text>
             </View>
         )
@@ -187,7 +187,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
             <View style={styles.background} >
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.content}>
-                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >
+                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.contentPokemon} >
                         <ScrollView contentContainerStyle={styles.scrollContainer}>
                             <View>
                                 {this.renderInformation()}
