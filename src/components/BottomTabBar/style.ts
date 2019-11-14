@@ -61,7 +61,8 @@ export default {
         fontSize: 11,
         lineHeight: 11,
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        paddingTop: 5
     },
     tabTextContainer: {
         alignItems: 'center',

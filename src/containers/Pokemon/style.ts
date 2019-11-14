@@ -16,8 +16,7 @@ export default {
         height: 200
     },
     contentTitle: {
-        alignItems: 'center',
-        paddingLeft: 40
+        alignItems: 'center'
     },
     contentLoading: {
         flex: 1,

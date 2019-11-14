@@ -4,8 +4,7 @@ export default {
     },
     navBar: {
         paddingTop: 30,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     subbutton: {
@@ -20,6 +19,7 @@ export default {
         paddingLeft: 20
     },
     stylePadding: {
-        paddingLeft: 20
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }

@@ -17,7 +17,6 @@ export default {
         fontWeight: 'bold'
     },
     contentTitle: {
-        alignItems: 'center',
-        paddingLeft: 40
+        alignItems: 'center'
     }
 }
