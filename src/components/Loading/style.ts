@@ -11,12 +11,14 @@ export default {
         height: height,
         alignContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: '#C64934'
     },
     textLoading: {
         color: 'white',
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     lottieAnimation: {
         justifyContent: 'center',
