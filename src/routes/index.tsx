@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Scene, Router, Stack } from 'react-native-router-flux'
-import PokemonDetail from '../containers/pokemonDetail/content'
-import MoveDetail from '../containers/MoveDetail/content'
-import Home from '../containers/Home/content'
-import Items from '../containers/Item'
-import Pokemon from '../containers/Pokemon'
-import Moves from '../containers/Move'
+import PokemonDetail from '../containers/PokemonDetail'
+import MoveDetail from '../containers/MoveDetail'
+import Home from '../containers/Home'
+import Items from '../containers/ListItem'
+import Pokemon from '../containers/ListPokemon'
+import Moves from '../containers/ListMove'
+import More from '../containers/More'
+import Types from '../containers/Types'
 export default class Routes extends Component {
   render() {
     return (
@@ -17,6 +19,8 @@ export default class Routes extends Component {
           <Scene key='Items' component={Items} hideNavBar={true} />
           <Scene key='Pokemon' component={Pokemon} hideNavBar={true} />
           <Scene key='Moves' component={Moves} hideNavBar={true} />
+          <Scene key='More' component={More} hideNavBar={true} />
+          <Scene key='Types' component={Types} hideNavBar={true} />
         </Stack>
       </Router>
     )
