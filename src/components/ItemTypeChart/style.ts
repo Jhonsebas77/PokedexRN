@@ -11,14 +11,10 @@ export default {
         justifyContent: 'space-between'
     },
     itemPokemon: {
-        alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         margin: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        height: 50,
-        borderRadius: 50,
-        width: 300
+        justifyContent: 'space-between'
     },
     sprite: {
         width: 30,

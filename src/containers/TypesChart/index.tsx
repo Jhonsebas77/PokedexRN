@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { Text, View, FlatList, ImageBackground, Image } from 'react-native'
-// import { Text,  View, TouchableOpacity } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
-// import MenuItem from '../../components/MenuItem'
-// import { Actions } from 'react-native-router-flux'
 import { getType } from '../../util/api'
 import _ from '../../Helpers/Utilities'
 import Loading from '../../components/Loading'
-import ItemType from '../../components/ItemType'
+import ItemType from '../../components/ItemTypeChart'
 import NavBarSimple from '../../components/NavBar/Simple'
 import style from './style'
 
@@ -68,7 +65,7 @@ export default class Types extends Component<any, any> {
                         renderItem={({ item, index }) =>
                             <ItemType
                                 number={index}
-                                name={(item as any).name}
+                                data={...item}
                             />
                         } />
 
