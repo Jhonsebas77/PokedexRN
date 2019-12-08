@@ -14,10 +14,14 @@ export default class ItemType extends Component<any, any> {
     validArray = (arr: any) => {
         return arr && _.arrayHasItems(arr)
     }
-    renderStrengths() {
-        const { strengths = [] } = { ...this.props.data }
-        const [strengths_ = {}] = strengths
-        const sprites = this.validArray(strengths) && map(strengths_, (item: any) => {
+    renderOffensive() {
+        const { offensive = {} } = { ...this.props.data }
+        const { byHalf = [], byOne = [], byTwo = [], byZero = [] } = { ...offensive }
+        const [_byHalf = {}] = byHalf
+        const [_byOne = {}] = byOne
+        const [_byTwo = {}] = byTwo
+        const [_byZero = {}] = byZero
+        const sprites_byOne = this.validArray(byOne) && map(_byOne, (item: any) => {
             const { urlSprite = '' } = { ...item }
             return (
                 <View style={styles.spriteContainer}>
@@ -25,19 +29,7 @@ export default class ItemType extends Component<any, any> {
                 </View>
             )
         })
-        return this.validArray(strengths) && (
-            <View style={{ alignItems: 'flex-start' }}>
-                <Text style={styles.textName}> {`Fuerte`} </Text>
-                <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
-                    {sprites}
-                </View>
-            </View>
-        )
-    }
-    renderWeaknesses() {
-        const { weaknesses = [] } = { ...this.props.data }
-        const [weaknesses_ = {}] = weaknesses
-        const sprites = this.validArray(weaknesses) && map(weaknesses_, (item: any) => {
+        const sprites_byTwo = this.validArray(byTwo) && map(_byTwo, (item: any) => {
             const { urlSprite = '' } = { ...item }
             return (
                 <View style={styles.spriteContainer}>
@@ -45,19 +37,7 @@ export default class ItemType extends Component<any, any> {
                 </View>
             )
         })
-        return this.validArray(weaknesses) && (
-            <View style={{ alignItems: 'flex-start' }}>
-                <Text style={styles.textName}> {`Debil`} </Text>
-                <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
-                    {sprites}
-                </View>
-            </View>
-        )
-    }
-    renderVulnerables() {
-        const { vulnerables = [] } = { ...this.props.data }
-        const [weaknesses_ = {}] = vulnerables
-        const sprites = this.validArray(vulnerables) && map(weaknesses_, (item: any) => {
+        const sprites_byHalf = this.validArray(byHalf) && map(_byHalf, (item: any) => {
             const { urlSprite = '' } = { ...item }
             return (
                 <View style={styles.spriteContainer}>
@@ -65,19 +45,7 @@ export default class ItemType extends Component<any, any> {
                 </View>
             )
         })
-        return this.validArray(vulnerables) && _.arrayHasItems(vulnerables) && (
-            <View style={{ alignItems: 'flex-start' }}>
-                <Text style={styles.textName}> {`Neutro`} </Text>
-                <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
-                    {sprites}
-                </View>
-            </View>
-        )
-    }
-    renderResistants() {
-        const { resistants = null } = { ...this.props.data }
-        const [weaknesses_ = {}] = resistants
-        const _strenghs = this.validArray(resistants) && map(weaknesses_, (item: any) => {
+        const sprites_byZero = this.validArray(byZero) && map(_byZero, (item: any) => {
             const { urlSprite = '' } = { ...item }
             return (
                 <View style={styles.spriteContainer}>
@@ -85,11 +53,24 @@ export default class ItemType extends Component<any, any> {
                 </View>
             )
         })
-        return this.validArray(resistants) && (
+        return this.validArray(byHalf) && (
             <View style={{ alignItems: 'flex-start' }}>
-                <Text style={styles.textName}> {`No tiene efecto`} </Text>
+                <Text style={styles.textName}> {`Ofensivo`} </Text>
+                <Text style={styles.textName}> {`x2`} </Text>
                 <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
-                    {_strenghs}
+                    {sprites_byTwo}
+                </View>
+                <Text style={styles.textName}> {`x1`} </Text>
+                <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
+                    {sprites_byOne}
+                </View>
+                <Text style={styles.textName}> {`x0.5`} </Text>
+                <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
+                    {sprites_byHalf}
+                </View>
+                <Text style={styles.textName}> {`x0`} </Text>
+                <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
+                    {sprites_byZero}
                 </View>
             </View>
         )
@@ -109,10 +90,7 @@ export default class ItemType extends Component<any, any> {
                 </View>
                 <View style={styles.itemPokemon}>
                     <View>
-                        {this.renderStrengths()}
-                        {this.renderWeaknesses()}
-                        {this.renderVulnerables()}
-                        {this.renderResistants()}
+                        {this.renderOffensive()}
                     </View>
                 </View>
             </View>
