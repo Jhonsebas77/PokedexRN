@@ -1,5 +1,12 @@
+import { Dimensions } from 'react-native'
+const { height, width } = Dimensions.get('window')
 
 export default {
+    container: {
+        width: width,
+        height: height,
+        backgroundColor: '#C64934'
+    },
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -55,6 +62,12 @@ export default {
         paddingLeft: 10,
         fontSize: 20
     },
+    textValue: {
+        color: 'black',
+        fontWeight: 'bold',
+        paddingLeft: 10,
+        fontSize: 20
+    },
     textMethod: {
         color: 'white',
         fontWeight: 'bold',
@@ -63,5 +76,13 @@ export default {
     containerNameMethod: {
         flexDirection: 'column',
         marginRight: 20
+    },
+    containerTypeForm: {
+        alignItems: 'flex-start'
+    },
+    containerTypeAndDescription: {
+        alignItems: 'flex-end',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     }
 }

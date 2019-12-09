@@ -4,7 +4,8 @@ const { width, height } = Dimensions.get('window')
 export default {
     loading: {
         width: width,
-        height: height
+        height: height,
+        backgroundColor: '#C64934'
     },
     title: {
         color: 'white',
