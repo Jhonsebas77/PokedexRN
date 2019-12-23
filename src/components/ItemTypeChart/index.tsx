@@ -5,77 +5,79 @@ import style from './style'
 import _ from '../../Helpers/Utilities'
 
 const map = _.map
+const valueEffective_byHalf = 0.5
+const valueEffective_byOne = 1
+const valueEffective_byTwo = 2
+const valueEffective_byZero = 0
 const styles = getComponentStyle(style)
 export default class ItemType extends Component<any, any> {
     constructor(props) {
         super(props)
         this.validArray = this.validArray.bind(this)
         this.renderType = this.renderType.bind(this)
+        this.renderSprites = this.renderSprites.bind(this)
     }
     validArray = (arr: any) => {
         return arr && _.arrayHasItems(arr)
     }
-    renderType = (validArray: any, dataArray: any, valueEffective: Number) => {
+    renderType = (validArray: any, dataArray: any) => {
         const showSprite = this.validArray(validArray) && map(dataArray, (item: any) => {
             const { urlSprite = '' } = { ...item }
             return (
-                <View style={styles.spriteContainer}>
+                <View style={{ flexDirection: 'row', width: 70 }}>
                     <Image style={styles.sprite} source={{ uri: urlSprite }} />
                 </View>
             )
         })
-        return this.validArray(validArray) && (
-            <View style={styles.containerTypeAndDescription}>
-                <View style={{ backgroundColor: 'white', borderRadius: 10 }}>
-                    <Text style={styles.textValue}> {`x${valueEffective}`} </Text>
-                </View>
-                <View > {showSprite} </View>
-            </View>
-        )
+        return showSprite
     }
-    renderOffensive() {
-        const { offensive = {} } = { ...this.props.data }
-        const { byHalf = [], byOne = [], byTwo = [], byZero = [] } = { ...offensive }
+    renderSprites = (data: any, type: string) => {
+        const { byHalf = [], byOne = [], byTwo = [], byZero = [] } = { ...data }
         const [_byHalf = {}] = byHalf
         const [_byOne = {}] = byOne
         const [_byTwo = {}] = byTwo
         const [_byZero = {}] = byZero
-        const r_byHalf = this.renderType(byHalf, _byHalf, 0.5)
-        const r_byOne = this.renderType(byOne, _byOne, 1)
-        const r_byTwo = this.renderType(byTwo, _byTwo, 2)
-        const r_byZero = this.renderType(byZero, _byZero, 0)
+        const r_byHalf = this.renderType(byHalf, _byHalf)
+        const r_byOne = this.renderType(byOne, _byOne)
+        const r_byTwo = this.renderType(byTwo, _byTwo)
+        const r_byZero = this.renderType(byZero, _byZero)
         return (
             <View style={styles.containerTypeForm}>
-                <Text style={styles.textName}> {`Ofensivo ⚔️`} </Text>
-                <View>
+                <Text style={styles.textName}> {type} </Text>
+                {r_byTwo && <View style={styles.textType}>
+                    <Text style={styles.textValue}> {`x${valueEffective_byTwo}`} </Text>
                     {r_byTwo}
+                </View>}
+                {r_byOne && <View style={styles.textType}>
+                    <Text style={styles.textValue}> {`x${valueEffective_byOne}`} </Text>
                     {r_byOne}
+                </View>}
+                {r_byHalf && <View style={styles.textType}>
+                    <Text style={styles.textValue}> {`x${valueEffective_byHalf}`} </Text>
                     {r_byHalf}
+                </View>}
+                {r_byZero && <View style={styles.textType}>
+                    <Text style={styles.textValue}> {`x${valueEffective_byZero}`} </Text>
                     {r_byZero}
-                </View>
+                </View>}
+            </View >
+        )
+    }
+    renderOffensive() {
+        const { offensive = {} } = { ...this.props.data }
+        const offensive_sprites = this.renderSprites(offensive, `Ofensivo ⚔️`)
+        return (
+            <View>
+                {offensive_sprites}
             </View>
         )
     }
     renderDefenssive() {
         const { defenssive = {} } = { ...this.props.data }
-        const { byHalf = [], byOne = [], byTwo = [], byZero = [] } = { ...defenssive }
-        const [_byHalf = {}] = byHalf
-        const [_byOne = {}] = byOne
-        const [_byTwo = {}] = byTwo
-        const [_byZero = {}] = byZero
-        const r_byHalf = this.renderType(byHalf, _byHalf, 0.5)
-        const r_byOne = this.renderType(byOne, _byOne, 1)
-        const r_byTwo = this.renderType(byTwo, _byTwo, 2)
-        const r_byZero = this.renderType(byZero, _byZero, 0)
+        const defenssive_sprites = this.renderSprites(defenssive, `Defensivo 🛡`)
         return (
-            <View style={styles.containerTypeForm}>
-                <Text style={styles.textName}> {`Defensivo 🛡`} </Text>
-                <View>
-                    {r_byTwo}
-                    {r_byOne}
-                    {r_byHalf}
-                    {r_byZero}
-                </View>
+            <View>
+                {defenssive_sprites}
             </View>
         )
     }

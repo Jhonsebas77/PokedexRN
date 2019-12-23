@@ -20,7 +20,7 @@ export default {
     itemPokemon: {
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         margin: 10,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between'
     },
     sprite: {
@@ -31,12 +31,21 @@ export default {
         width: 30,
         height: 30
     },
+    spriteContainerTypes: {
+        width: 30,
+        height: 30,
+        flexDirection: 'row'
+    },
     typeOneContainer: {
         width: 40,
         height: 40,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center'
+    },
+    textType: {
+        backgroundColor: 'white',
+        borderRadius: 10
     },
     typeTwoContainer: {
         width: 40,
