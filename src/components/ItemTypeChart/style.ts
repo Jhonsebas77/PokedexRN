@@ -20,8 +20,16 @@ export default {
     itemPokemon: {
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         margin: 10,
+        paddingLeft: 5,
+        paddingVertical: 5,
         flexDirection: 'column',
         justifyContent: 'space-between'
+    },
+    showValues: {
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        marginVertical: 3
     },
     sprite: {
         width: 30,
@@ -45,7 +53,9 @@ export default {
     },
     textType: {
         backgroundColor: 'white',
-        borderRadius: 10
+        borderRadius: 10,
+        flexDirection: 'row',
+        margin: 5
     },
     typeTwoContainer: {
         width: 40,
@@ -75,7 +85,8 @@ export default {
         color: 'black',
         fontWeight: 'bold',
         paddingLeft: 10,
-        fontSize: 20
+        fontSize: 20,
+        width: 70
     },
     textMethod: {
         color: 'white',

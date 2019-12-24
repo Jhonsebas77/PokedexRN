@@ -24,7 +24,7 @@ export default class ItemType extends Component<any, any> {
         const showSprite = this.validArray(validArray) && map(dataArray, (item: any) => {
             const { urlSprite = '' } = { ...item }
             return (
-                <View style={{ flexDirection: 'row', width: 70 }}>
+                <View style={{ flexDirection: 'row' }}>
                     <Image style={styles.sprite} source={{ uri: urlSprite }} />
                 </View>
             )
@@ -44,21 +44,29 @@ export default class ItemType extends Component<any, any> {
         return (
             <View style={styles.containerTypeForm}>
                 <Text style={styles.textName}> {type} </Text>
-                {r_byTwo && <View style={styles.textType}>
+                {r_byTwo && <View style={styles.showValues}>
                     <Text style={styles.textValue}> {`x${valueEffective_byTwo}`} </Text>
-                    {r_byTwo}
+                    <View style={styles.textType}>
+                        {r_byTwo}
+                    </View>
                 </View>}
-                {r_byOne && <View style={styles.textType}>
+                {r_byOne && <View style={styles.showValues}>
                     <Text style={styles.textValue}> {`x${valueEffective_byOne}`} </Text>
-                    {r_byOne}
+                    <View style={styles.textType}>
+                        {r_byOne}
+                    </View>
                 </View>}
-                {r_byHalf && <View style={styles.textType}>
+                {r_byHalf && <View style={styles.showValues}>
                     <Text style={styles.textValue}> {`x${valueEffective_byHalf}`} </Text>
-                    {r_byHalf}
+                    <View style={styles.textType}>
+                        {r_byHalf}
+                    </View>
                 </View>}
-                {r_byZero && <View style={styles.textType}>
+                {r_byZero && <View style={styles.showValues}>
                     <Text style={styles.textValue}> {`x${valueEffective_byZero}`} </Text>
-                    {r_byZero}
+                    <View style={styles.textType}>
+                        {r_byZero}
+                    </View>
                 </View>}
             </View >
         )
