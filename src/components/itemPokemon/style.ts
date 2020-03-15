@@ -1,4 +1,7 @@
 
+import { Dimensions } from 'react-native'
+import { isAndroidWNotch } from '../../Helpers/Constant'
+const { width } = Dimensions.get('window')
 export default {
     contentContainer: {
         flexDirection: 'row',
@@ -18,6 +21,7 @@ export default {
         flexDirection: 'row',
         justifyContent: 'space-between',
         height: 40,
+        width: isAndroidWNotch ? 340 : width,
         borderBottomRightRadius: 50,
         borderTopRightRadius: 50
     },

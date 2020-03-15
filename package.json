@@ -9,7 +9,7 @@
     "build": "npm run clean && gulp resource-copy && npm run tsc --",
     "rnstart": "react-native start --reset-cache",
     "watch": "npm run build -- -w",
-    "emulator": "emulator @Nexus_5_API_26 -dns-server 8.8.8.8,8.8.4.4",
+    "emulator": "emulator @Nexus_6_API_28 -dns-server 8.8.8.8,8.8.4.4",
     "clean": "rimraf lib",
     "cleancache": "sudo npm cache clean -f",
     "cleanall": "yarn cache clean --force && rm -rf yarn.lock && npm cache clean --force && rm -rf node_modules/ && rm -rf package-lock.json && rm -rf ios/build && rm -rf android/app/build && git clean -xdf",

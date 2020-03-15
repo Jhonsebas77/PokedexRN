@@ -7,41 +7,45 @@ import Items from '../ListItem'
 import Move from '../ListMove'
 import More from '../More'
 import BottomTabBar from '../../components/BottomTabBar'
+import data from '../../Assets/json/Chip_Pokemon_Detail.json'
 
 const styles = getComponentStyle(style)
 export default class Home extends Component<any, any> {
     render() {
+        const { menu = [] } = { ...data }
+        const [one = {}, two = {}, three = {}, four = {}] = menu || []
+        const { title: oneTitle = '', iconPress: oneIconPress = '', iconName: oneIconName = '' } = { ...one }
+        const { title: twoTitle = '', iconPress: twoIconPress = '', iconName: twoIconName = '' } = { ...two }
+        const { title: threeTitle = '', iconPress: threeIconPress = '', iconName: threeIconName = '' } = { ...three }
+        const { title: fourTitle = '', iconPress: fourIconPress = '', iconName: fourIconName = '' } = { ...four }
         return (
             <View style={styles.container}>
                 <View style={styles.loading} >
-                    {<BottomTabBar initialTab={0} tabList={[{
-                        title: 'Pokédex',
-                        iconPress: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_Press.png',
-                        iconName: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_noPress.png', cmp: <Pokemon key={'1'}
-                            title='Más'
-                        />
-                    },
-                    {
-                        title: 'Bolsa',
-                        iconPress: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_Press.png',
-                        iconName: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_noPress.png', cmp: <Items key={'2'}
-                            title='Más'
-                        />
-                    },
-                    {
-                        title: 'Movimientos',
-                        iconPress: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png',
-                        iconName: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png', cmp: <Move key={'3'}
-                            title='Más'
-                        />
-                    },
-                    {
-                        title: 'Mas',
-                        iconPress: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png',
-                        iconName: 'https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png', cmp: <More key={'4'}
-                            title='Más'
-                        />
-                    }
+                    {<BottomTabBar initialTab={0} tabList={[
+                        {
+                            title: oneTitle,
+                            iconPress: oneIconPress,
+                            iconName: oneIconName,
+                            cmp: <Pokemon key={'1'} />
+                        },
+                        {
+                            title: twoTitle,
+                            iconPress: twoIconPress,
+                            iconName: twoIconName,
+                            cmp: <Items key={'2'} />
+                        },
+                        {
+                            title: threeTitle,
+                            iconPress: threeIconPress,
+                            iconName: threeIconName,
+                            cmp: <Move key={'3'} />
+                        },
+                        {
+                            title: fourTitle,
+                            iconPress: fourIconPress,
+                            iconName: fourIconName,
+                            cmp: <More key={'4'} />
+                        }
                     ]} />}
                 </View>
             </View>
