@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View, Text } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import style from './style'
 
@@ -9,12 +9,10 @@ export default class MenuItem extends Component<MenuItemProps> {
         super(props)
     }
     render() {
-        const { icon } = {...this.props}
+        const { name = '' } = { ...this.props }
         return (
             <View style={styles.item}>
-                <View style={styles.spriteContainer}>
-                    <Image style={styles.sprite} source={icon} />
-                </View>
+                <Text>{name}</Text>
             </View>
         )
     }

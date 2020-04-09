@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity, ImageBackground } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllMoves } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import ItemMove from '../../components/ItemMove'
@@ -11,7 +11,7 @@ import NavBarSimple from '../../components/NavBar/Simple'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default class Move extends Component<MoveProps, MoveState> {
+export default class Move extends Component<any, any> {
     constructor(props) {
         super(props)
         this.state = {
@@ -40,14 +40,13 @@ export default class Move extends Component<MoveProps, MoveState> {
     }
 
     render() {
-        const { loaded = false, moves = {} } = { ...this.state }
+        const { loaded = false, moves = [] } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
-                style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+            <View style={styles.loading} >
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
                 <View>
                     <FlatList
                         data={moves}
@@ -65,7 +64,7 @@ export default class Move extends Component<MoveProps, MoveState> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </ImageBackground>
+            </View>
         )
     }
 }

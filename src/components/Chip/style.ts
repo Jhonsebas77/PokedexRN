@@ -27,7 +27,6 @@ export default {
     textChip: {
         fontSize: 16,
         color: 'black'
-        // fontFamily: Fonts.SEMIBOLD
     },
     active: {
         backgroundColor: '#4f8594'

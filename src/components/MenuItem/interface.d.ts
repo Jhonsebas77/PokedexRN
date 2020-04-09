@@ -1,4 +1,5 @@
 interface MenuItemProps {
     name?: string,
-    icon?: any
+    icon?: any,
+    onPress?: any
 }

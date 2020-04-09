@@ -9,7 +9,8 @@ export default {
     title: {
         color: 'white',
         fontSize: 30,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        paddingBottom: 10
     },
     contentTitle: {
         alignItems: 'center'

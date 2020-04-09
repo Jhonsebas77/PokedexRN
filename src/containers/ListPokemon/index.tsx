@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, Image, ImageBackground } from 'react-native'
 import { getAllPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
-import ItemPokemon from '../../components/itemPokemon'
+import ItemPokemon from '../../components/ItemPokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Tools'
@@ -11,7 +11,7 @@ import NavBarSimple from '../../components/NavBar/Simple'
 import style from './style'
 
 const styles = getComponentStyle(style)
-export default class Pokemon extends Component<PkmnProps, PkmnState> {
+export default class Pokemon extends Component<any, any> {
     constructor(props) {
         super(props)
         this.state = {
@@ -64,7 +64,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
     }
 
     render() {
-        const { loaded, newPokemonData } = { ...this.state }
+        const { loaded = false, newPokemonData = [] } = { ...this.state }
         if (!loaded) {
             return this.renderLoadingView()
         }
@@ -72,9 +72,8 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
             return this.renderFailInternet()
         }
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
-                style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+            <View style={styles.loading} >
+                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
                 <View style={styles.contentItemPokemon}>
                     <FlatList
                         data={newPokemonData}
@@ -96,7 +95,7 @@ export default class Pokemon extends Component<PkmnProps, PkmnState> {
                             </TouchableOpacity>
                         } />
                 </View>
-            </ImageBackground>
+            </View>
         )
     }
 }

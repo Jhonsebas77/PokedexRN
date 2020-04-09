@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native'
+import { isAndroidWNotch } from '../../Helpers/Constant'
 const { height, width } = Dimensions.get('window')
 
 export default {
@@ -8,7 +9,7 @@ export default {
     },
     loading: {
         width: width,
-        height: height,
+        height: isAndroidWNotch ? height - 110 : height,
         backgroundColor: '#C64934',
         alignItems: 'center'
     },
