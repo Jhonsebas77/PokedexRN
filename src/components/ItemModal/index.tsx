@@ -30,10 +30,10 @@ export default class ItemModal extends Component<any, any> {
     }
     openModal(selectItem) {
         this.setState({ modal: true, item: { ...selectItem } })
-        Animated.timing(this.state.opacity, { toValue: 1, duration: 1000 }).start()
+        Animated.timing(this.state.opacity, { toValue: 1, duration: 1000, useNativeDriver: true }).start()
     }
     closeModal() {
-        Animated.timing(this.state.opacity, { toValue: 0, duration: 500 }).start(() => {
+        Animated.timing(this.state.opacity, { toValue: 0, duration: 500, useNativeDriver: true }).start(() => {
             this.setState({ modal: false })
         })
     }

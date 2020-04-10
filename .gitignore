@@ -59,3 +59,9 @@ buck-out/
 
 package-lock.json
 yarn.lock
+
+##########iOS#################
+ios/Podfile.lock
+ios/Pods/
+ios/outputs/**
+ios/build/

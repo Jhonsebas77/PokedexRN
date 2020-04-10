@@ -1,3 +1,21 @@
 {
-  "presets": ["react-native"]
+  "presets": ["module:metro-react-native-babel-preset"],
+  "compact" : true  ,
+  "plugins": [
+       ["babel-plugin-root-import", {
+         "rootPathSuffix": "app"
+      }],
+      [
+       "module-resolver",
+       {
+           "root": ["."],
+           "extensions": [".tsx",".ts",".js"]
+       }
+     ]
+   ],
+   "env": {
+     "production": {
+       "plugins": [ ["transform-remove-console", { "exclude": [ "error", "warn"] }] ]
+     }
+   }
 }
