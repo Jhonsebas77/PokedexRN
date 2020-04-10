@@ -15,9 +15,10 @@
     "cleanall": "yarn cache clean --force && rm -rf yarn.lock && npm cache clean --force && rm -rf node_modules/ && rm -rf package-lock.json && rm -rf ios/build && rm -rf android/app/build && git clean -xdf",
     "clock:android": "adb shell \"date `date +%m%d%H%M%Y.%S`\"",
     "pod": "cd ./ios && rm -rf Podfile.lock && rm -rf Pods && pod install",
-    "ios": "react-native run-ios",
-    "iosX": "react-native run-ios --simulator \"iPhone ${1:-X}\"",
-    "iosXr": "react-native run-ios --simulator \"iPhone ${1:-XR}\"",
+    "ios": "npx react-native run-ios",
+    "ios:pod": "cd ./ios && rm -rf Podfile.lock && rm -rf Pods && pod install",
+    "iosX": "npx react-native run-ios --simulator \"iPhone ${1:-X}\"",
+    "iosXr": "npx react-native run-ios --simulator \"iPhone ${1:-XR}\"",
     "android": "npx react-native run-android",
     "android:release": "npm run build && npx react-native run-android --variant=release",
     "android:shake": "adb shell input keyevent 82"
