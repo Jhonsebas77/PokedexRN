@@ -34,23 +34,23 @@
     "menu": [
         {
             "title": "Pokédex",
-            "iconPress": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_Press.png",
-            "iconName": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_noPress.png"
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_Press.png",
+            "iconName": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_noPress.png"
         },
         {
             "title": "Bolsa",
-            "iconPress": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_Press.png",
-            "iconName": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_noPress.png"
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_Press.png",
+            "iconName": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_noPress.png"
         },
         {
             "title": "Movimientos",
-            "iconPress": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png",
-            "iconName": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png"
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png",
+            "iconName": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png"
         },
         {
             "title": "Mas",
-            "iconPress": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png",
-            "iconName": "https: //pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png"
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png",
+            "iconName": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png"
         }
     ]
 }
