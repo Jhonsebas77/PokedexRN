@@ -41,7 +41,7 @@ export default {
         alignItems: 'center'
     },
     typeTwoContainer: {
-        width: 40,
+        width: isAndroidWNotch ? 45 : 40,
         height: 40,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -49,7 +49,7 @@ export default {
         marginRight: 20
     },
     type: {
-        width: 40,
+        width: isAndroidWNotch ? 45 : 40,
         height: 40,
         borderRadius: 10
     },
