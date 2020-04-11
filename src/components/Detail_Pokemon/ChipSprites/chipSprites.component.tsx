@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
-import { getComponentStyle } from '../../Helpers/Stylus'
-import style from './style'
+import { getComponentStyle } from './../../../Helpers/Stylus'
+import style from './chipSprites.style'
 
 const styles = getComponentStyle(style)
 export default class ChipSprites extends Component<ChipItemProps, ChipItemState> {

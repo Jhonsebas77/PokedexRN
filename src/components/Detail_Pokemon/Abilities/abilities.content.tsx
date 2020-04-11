@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import { getComponentStyle } from '../../Helpers/Stylus'
-import style from './style'
+import { getComponentStyle } from './../../../Helpers/Stylus'
+import style from './abilities.style'
 
 const styles = getComponentStyle(style)
 export default ({ data = [] }: AbilitiesProps) => {
