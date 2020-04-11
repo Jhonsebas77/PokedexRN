@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllNewItem } from '../../util/api'
-import ItemItem from '../../components/ItemItem'
-import ItemModal from '../../components/ItemModal'
+import ItemItem from '../ItemItem'
+import ItemModal from '../ItemModal'
 import { newString } from '../../Helpers/Tools'
-import Loading from '../../components/Loading'
-import NavBarSimple from '../../components/NavBar/Simple'
-import style from './style'
+import Loading from '../Loading'
+import NavBarSimple from '../NavBar/Simple'
+import style from './list_Item.style'
 import { getComponentStyle } from '../../Helpers/Stylus'
 
 const styles = getComponentStyle(style)
