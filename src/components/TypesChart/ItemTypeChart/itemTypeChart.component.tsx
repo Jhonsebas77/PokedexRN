@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
-import { getComponentStyle } from '../../Helpers/Stylus'
-import style from './style'
-import _ from '../../Helpers/Utilities'
+import { getComponentStyle } from './../../../Helpers/Stylus'
+import style from './itemTypeChart.style'
+import _ from './../../../Helpers/Utilities'
 
 const map = _.map
 const valueEffective_byHalf = 0.5

@@ -3,10 +3,10 @@ import { Text, View, FlatList, ImageBackground, Image } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getType } from '../../util/api'
 import _ from '../../Helpers/Utilities'
-import Loading from '../../components/Loading'
-import ItemType from '../../components/ItemTypeChart'
-import NavBarSimple from '../../components/NavBar/Simple'
-import style from './style'
+import Loading from '../Loading'
+import ItemType from '../ItemTypeChart'
+import NavBarSimple from '../NavBar/Simple'
+import style from './typesChart.style'
 
 const styles = getComponentStyle(style)
 export default class Types extends Component<any, any> {
