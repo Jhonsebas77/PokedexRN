@@ -4,7 +4,7 @@ import { getComponentStyle } from '../../Helpers/Stylus'
 import { getType } from '../../util/api'
 import _ from '../../Helpers/Utilities'
 import Loading from '../Loading'
-import ItemType from '../ItemTypeChart'
+import ItemType from './ItemTypeChart'
 import NavBarSimple from '../NavBar/Simple'
 import style from './typesChart.style'
 
@@ -32,12 +32,12 @@ export default class Types extends Component<any, any> {
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
+            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
         )
     }
     renderFailInternet() {
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
+            <ImageBackground source={require('./../../Assets/images/BG_Home.png')}
                 style={styles.loading} >
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.contentLoading}>

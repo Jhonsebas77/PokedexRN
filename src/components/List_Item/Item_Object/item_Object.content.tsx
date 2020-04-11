@@ -10,7 +10,7 @@ export default ({ name = '', itemSpriteSource }: IitemProps) => {
             <View>
                 {itemSpriteSource ?
                     <Image style={styles.sprite} source={itemSpriteSource} /> :
-                    <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
+                    <Image style={styles.sprite} source={require('./../../../Assets/images/NoMiniSprite.png')} />
                 }
             </View>
             <View>

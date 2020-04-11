@@ -39,10 +39,10 @@ export default class ItemModal extends Component<any, any> {
     }
     renderSpriteItem(urlSprite) {
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
+            <ImageBackground source={require('./../../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
                 {urlSprite ?
                     <Image style={styles.sprite} source={{ uri: urlSprite }} /> :
-                    <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
+                    <Image style={styles.sprite} source={require('./../../../Assets/images/NoMiniSprite.png')} />
                 }
             </ImageBackground>
         )
@@ -75,7 +75,7 @@ export default class ItemModal extends Component<any, any> {
                             <View style={styles.spriteContainer}>
                                 {urlSprite ?
                                     this.renderSpriteItem(urlSprite) :
-                                    <Image style={styles.sprite} source={require('../../Assets/images/Icon_Item.png')} />
+                                    <Image style={styles.sprite} source={require('./../../../Assets/images/Icon_Item.png')} />
                                 }
                             </View>
                             <View style={styles.containerEffect} >

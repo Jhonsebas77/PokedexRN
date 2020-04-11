@@ -35,7 +35,7 @@ export default class Move extends Component<any, any> {
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Movimientos'} />
+            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Movimientos'} />
         )
     }
 

@@ -16,7 +16,7 @@ export default class Itempokemonmove extends Component<any, any> {
                 <View style={styles.spriteContainer}>
                     {spriteSource ?
                         <Image style={styles.sprite} source={spriteSource} /> :
-                        <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
+                        <Image style={styles.sprite} source={require('./../../../Assets/images/NoMiniSprite.png')} />
                     }
                 </View>
                 <View style={styles.containerNameMethod}>

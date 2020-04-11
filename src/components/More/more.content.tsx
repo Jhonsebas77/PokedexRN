@@ -25,7 +25,7 @@ export default class More extends Component<any, any> {
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
+            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
         )
     }
 

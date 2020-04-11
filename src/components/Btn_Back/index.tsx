@@ -8,7 +8,7 @@ const styles = getComponentStyle(style)
 export default ({ onBack = (() => Actions.pop()) }: any) => {
     return (
         <TouchableOpacity onPress={onBack} activeOpacity={0.9}>
-            <Image style={styles.sprite} source={require('../../Assets/images/Btn_Back.png')} />
+            <Image style={styles.sprite} source={require('./../../Assets/images/Btn_Back.png')} />
         </TouchableOpacity>
     )
 }

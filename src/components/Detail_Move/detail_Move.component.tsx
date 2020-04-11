@@ -93,7 +93,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, any> {
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={` Cargando...`} />
+            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={` Cargando...`} />
         )
     }
 
@@ -110,11 +110,11 @@ export default class MoveDetail extends Component<PkmnDetailProps, any> {
 
     renderFailInternet() {
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
+            <ImageBackground source={require('./../../Assets/images/BG_Home.png')}
                 style={styles.failInternet} >
                 <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.contentFailInternet}>
-                    <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
+                    <Image style={styles.sprite} source={require('./../../Assets/images/No_Internet.png')} />
                     <Text style={styles.title}>{'Lo sentimos, \nalgo salio mal'}</Text>
                 </View>
             </ImageBackground>

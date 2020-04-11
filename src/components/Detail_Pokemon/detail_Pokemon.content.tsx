@@ -41,7 +41,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={`Cargando la información del Pokémon seleccionado`} />
+            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={`Cargando la información del Pokémon seleccionado`} />
         )
     }
 
@@ -166,10 +166,10 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                     <Text style={styles.titleInfo}>  {` Peso: ${weight} \n Altura:  ${height}`} </Text>
                 </View>
                 {sprites ?
-                    <ImageBackground source={require('../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
+                    <ImageBackground source={require('./../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
                         <Image style={styles.sprite} source={{ uri: sprites.male }} />
                     </ImageBackground> :
-                    <Image style={styles.sprite} source={require('../../Assets/images/Icon_Pokedex.png')} />
+                    <Image style={styles.sprite} source={require('./../../Assets/images/Icon_Pokedex.png')} />
                 }
             </View>
         )

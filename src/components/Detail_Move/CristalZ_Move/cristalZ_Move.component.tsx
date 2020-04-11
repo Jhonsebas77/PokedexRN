@@ -21,7 +21,7 @@ export default class Cristalzmove extends Component<any, any> {
                     <View style={styles.spriteContainer}>
                         {urlSprite ?
                             <Image style={styles.sprite} source={{ uri: urlSprite }} /> :
-                            <Image style={styles.sprite} source={require('../../Assets/images/NoMiniSprite.png')} />
+                            <Image style={styles.sprite} source={require('./../../../Assets/images/NoMiniSprite.png')} />
                         }
                     </View>
                 </View>
