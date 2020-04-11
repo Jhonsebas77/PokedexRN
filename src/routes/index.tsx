@@ -6,7 +6,7 @@ import Home from './../components/Home'
 import Items from './../components/List_Item'
 import Pokemon from './../components/List_Pokemon'
 import Moves from './../components/List_Move'
-import More from '../containers/More'
+import More from './../components/More'
 import Types from '../containers/TypesChart'
 export default class Routes extends Component {
   render() {

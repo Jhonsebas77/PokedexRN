@@ -5,7 +5,7 @@ import style from './home.style'
 import Pokemon from './../List_Pokemon'
 import Items from './../List_Item'
 import Move from './../List_Move'
-import More from '../More'
+import More from '../More/more.content'
 import BottomTabBar from './../BottomTabBar'
 import data from '../../Assets/json/Chip_Pokemon_Detail.json'
 

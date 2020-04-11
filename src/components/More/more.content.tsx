@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
-// import { Text,  View, TouchableOpacity } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
-import MenuItem from '../../components/MenuItem'
+import MenuItem from '../MenuItem'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
-import Loading from '../../components/Loading'
-import NavBarSimple from '../../components/NavBar/Simple'
-import style from './style'
+import Loading from '../Loading'
+import NavBarSimple from '../NavBar/Simple'
+import style from './more.style'
 
 const styles = getComponentStyle(style)
 export default class More extends Component<any, any> {
