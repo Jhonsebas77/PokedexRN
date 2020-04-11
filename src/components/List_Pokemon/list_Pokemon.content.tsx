@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Text, FlatList, View, TouchableOpacity, Image, ImageBackground } from 'react-native'
 import { getAllPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
-import ItemPokemon from '../../components/ItemPokemon'
+import ItemPokemon from './Item_Pokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Tools'
-import Loading from '../../components/Loading'
-import NavBarSimple from '../../components/NavBar/Simple'
-import style from './style'
+import Loading from '../Loading'
+import NavBarSimple from '../NavBar/Simple'
+import style from './list_Pokemon.style'
 
 const styles = getComponentStyle(style)
 export default class Pokemon extends Component<any, any> {

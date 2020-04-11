@@ -1,6 +1,6 @@
 
 import { Dimensions } from 'react-native'
-import { isAndroidWNotch } from '../../Helpers/Constant'
+import { isAndroidWNotch } from '../../../Helpers/Constant'
 const { width } = Dimensions.get('window')
 export default {
     contentContainer: {
