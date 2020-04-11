@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
-import style from './style'
-import Pokemon from './../../components/List_Pokemon'
-import Items from './../../components/List_Item'
+import style from './home.style'
+import Pokemon from './../List_Pokemon'
+import Items from './../List_Item'
 import Move from '../ListMove'
 import More from '../More'
-import BottomTabBar from '../../components/BottomTabBar'
+import BottomTabBar from './../BottomTabBar'
 import data from '../../Assets/json/Chip_Pokemon_Detail.json'
 
 const styles = getComponentStyle(style)

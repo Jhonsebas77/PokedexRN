@@ -1,0 +1,6 @@
+interface IHomeProps {
+
+}
+interface IHomeState {
+
+}
