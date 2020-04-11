@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import { getComponentStyle } from '../../Helpers/Stylus'
-import style from './style'
+import { getComponentStyle } from './../../../Helpers/Stylus'
+import style from './item_Object.style'
 
 const styles = getComponentStyle(style)
 export default ({ name = '', itemSpriteSource }: IitemProps) => {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, Modal, Animated, PanResponder, Image, ImageBackground } from 'react-native'
-import { getComponentStyle } from '../../Helpers/Stylus'
-import { newString } from '../../Helpers/Tools'
-import style from './style'
+import { getComponentStyle } from './../../../Helpers/Stylus'
+import { newString } from './../../../Helpers/Tools'
+import style from './item_Modal.style'
 const styles = getComponentStyle(style)
 export default class ItemModal extends Component<any, any> {
     _panResponder: any
