@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Scene, Router, Stack } from 'react-native-router-flux'
 import PokemonDetail from '../containers/PokemonDetail'
-import MoveDetail from '../containers/MoveDetail'
+import MoveDetail from './../components/Detail_Move'
 import Home from './../components/Home'
 import Items from './../components/List_Item'
 import Pokemon from './../components/List_Pokemon'

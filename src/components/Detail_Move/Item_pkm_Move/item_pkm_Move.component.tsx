@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from 'react-native'
-import { getComponentStyle } from '../../Helpers/Stylus'
-import style from './style'
+import { getComponentStyle } from './../../../Helpers/Stylus'
+import style from './item_pkm_Move.style'
 
 const styles = getComponentStyle(style)
 export default class Itempokemonmove extends Component<any, any> {

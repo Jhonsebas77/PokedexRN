@@ -3,15 +3,15 @@ import { Text, View, Image, TouchableOpacity, ImageBackground, FlatList, ScrollV
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getMove } from '../../util/api'
 import { newString, paddingNumber } from '../../Helpers/Tools'
-import NavBarSimple from '../../components/NavBar/Simple'
+import NavBarSimple from '../NavBar/Simple'
 import LinearGradient from 'react-native-linear-gradient'
 import { Actions } from 'react-native-router-flux'
 import { ColorType, GetColorType } from '../../Helpers/Colors'
-import Itempokemonmove from '../../components/ItemPokemonMove'
-import Cristalzmove from '../../components/CristalZ_Move'
+import Item_pkm_Move from './Item_pkm_Move'
+import Cristalzmove from './CristalZ_Move'
 import _ from '../../Helpers/Utilities'
-import Loading from '../../components/Loading'
-import style from './style'
+import Loading from '../Loading'
+import style from './detail_Move.style'
 
 const styles = getComponentStyle(style)
 export default class MoveDetail extends Component<PkmnDetailProps, any> {
@@ -70,7 +70,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, any> {
                     renderItem={({ item, index }) =>
                         <TouchableOpacity
                             onPress={() => { Actions.PokemonDetail({ item, index }) }}>
-                            <Itempokemonmove
+                            <Item_pkm_Move
                                 number={paddingNumber((item as any).idDex)}
                                 name={_.capitalize((item as any).name)}
                                 method={_.capitalize((item as any).method)}
