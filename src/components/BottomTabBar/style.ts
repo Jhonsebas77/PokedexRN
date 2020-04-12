@@ -1,3 +1,4 @@
+import { isAndroidWNotch } from './../../Helpers/Constant'
 export default {
     cmpContainer: {
         flex: 1
@@ -79,7 +80,7 @@ export default {
         padding: 20
     },
     sprite: {
-        width: 30,
+        width: isAndroidWNotch ? 33 : 30,
         height: 30
     },
     spriteContainer: {

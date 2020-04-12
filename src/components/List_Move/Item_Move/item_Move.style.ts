@@ -1,3 +1,6 @@
+import { Dimensions } from 'react-native'
+const { width } = Dimensions.get('window')
+import { isAndroidWNotch } from './../../../Helpers/Constant'
 export default {
     itemMove: {
         alignItems: 'center',
@@ -6,6 +9,7 @@ export default {
         flexDirection: 'row',
         justifyContent: 'space-between',
         height: 60,
+        width: isAndroidWNotch ? 340 : width,
         borderRadius: 50
     },
     typeContainer: {
@@ -13,7 +17,7 @@ export default {
         height: 60
     },
     type: {
-        width: 60,
+        width: isAndroidWNotch ? 67 : 60,
         height: 60,
         borderRadius: 10
     },
