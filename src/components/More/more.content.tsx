@@ -32,7 +32,7 @@ export default class More extends Component<any, any> {
     render() {
         return (
             <View style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
+                <NavBarSimple contentCenter={this.renderMiddle()} isHome={true} />
                 <View style={styles.contentItemPokemon}>
                     <TouchableOpacity onPress={() => { Actions.Types() }}>
                         <MenuItem name={'Ventajas de Tipos'} />

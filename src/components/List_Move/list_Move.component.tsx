@@ -27,9 +27,7 @@ export default class Move extends Component<any, any> {
 
     renderMiddle() {
         return (
-            <View style={styles.contentTitle}>
-                <Text style={styles.title}>{'MOVIMIENTOS'}</Text>
-            </View>
+            <Text style={styles.title}>{'MOVIMIENTOS'}</Text>
         )
     }
 
@@ -46,7 +44,7 @@ export default class Move extends Component<any, any> {
         }
         return (
             <View style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
+                <NavBarSimple contentCenter={this.renderMiddle()} />
                 <View>
                     <FlatList
                         data={moves}

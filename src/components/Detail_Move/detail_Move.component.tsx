@@ -44,9 +44,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, any> {
 
     renderMiddle() {
         return (
-            <View style={styles.middle}>
-                <Text style={styles.titleNavBar}>{'MOVIMIENTOS'}</Text>
-            </View>
+            <Text style={styles.titleNavBar}>{'MOVIMIENTOS'}</Text>
         )
     }
 
@@ -112,7 +110,6 @@ export default class MoveDetail extends Component<PkmnDetailProps, any> {
         return (
             <ImageBackground source={require('./../../Assets/images/BG_Home.png')}
                 style={styles.failInternet} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.contentFailInternet}>
                     <Image style={styles.sprite} source={require('./../../Assets/images/No_Internet.png')} />
                     <Text style={styles.title}>{'Lo sentimos, \nalgo salio mal'}</Text>
@@ -132,7 +129,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, any> {
         }
         return (
             <View style={styles.background} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
+                <NavBarSimple contentCenter={this.renderMiddle()} />
                 <ScrollView>
                     <View style={[{ borderColor }, styles.head]}>
                         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.loading} >

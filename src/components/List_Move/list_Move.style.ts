@@ -1,5 +1,6 @@
 import { Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
+import { isAndroidWNotch } from './../../Helpers/Constant'
 
 export default {
     loading: {
@@ -8,9 +9,12 @@ export default {
     },
     title: {
         color: 'white',
-        fontSize: 30,
+        marginLeft: 60,
         fontWeight: 'bold',
-        paddingBottom: 10
+        alignSelf: 'center',
+        android: {
+            fontSize: isAndroidWNotch ? 24 : 20
+        }
     },
     contentTitle: {
         alignItems: 'center'

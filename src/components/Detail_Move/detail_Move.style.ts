@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native'
+import { isAndroidWNotch } from './../../Helpers/Constant'
 const { width, height } = Dimensions.get('window')
 
 export default {
@@ -46,8 +47,12 @@ export default {
     },
     titleNavBar: {
         color: 'white',
-        fontSize: 24,
-        fontWeight: 'bold'
+        marginLeft: 60,
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        android: {
+            fontSize: isAndroidWNotch ? 24 : 20
+        }
     },
     title2: {
         color: 'white',

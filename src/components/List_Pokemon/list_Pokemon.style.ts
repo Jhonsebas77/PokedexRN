@@ -15,9 +15,6 @@ export default {
         width: 200,
         height: 200
     },
-    contentTitle: {
-        alignItems: 'center'
-    },
     contentLoading: {
         flex: 1,
         justifyContent: 'space-around',

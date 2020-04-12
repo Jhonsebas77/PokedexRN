@@ -1,25 +1,35 @@
+import { Dimensions } from 'react-native'
+import { isAndroidWNotch } from '../../../Helpers/Constant'
+const { width } = Dimensions.get('window')
 export default {
     header: {
-        backgroundColor: '#C64934'
+        backgroundColor: '#C64934',
+        width: isAndroidWNotch ? 360 : width,
+        height: 70,
+        resizeMode: 'contain'
+    },
+    navBarBtn: {
+        android: {
+            paddingLeft: 16,
+            paddingRight: 16,
+            justifyContent: 'space-between'
+        },
+        paddingTop: 30,
+        alignItems: 'center',
+        flexDirection: 'row'
     },
     navBar: {
         paddingTop: 30,
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
-    },
-    subbutton: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'white'
-    },
-    empty: {
-        width: 60
-    },
-    spriteContainer: {
-        paddingLeft: 20
+        flexDirection: 'row'
     },
     stylePadding: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    empty: {
+        width: 90
     }
 }

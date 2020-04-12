@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native'
+import { isAndroidWNotch } from './../../Helpers/Constant'
 const { width, height } = Dimensions.get('window')
 
 export default {
@@ -12,8 +13,12 @@ export default {
     },
     title: {
         color: 'white',
-        fontSize: 30,
-        fontWeight: 'bold'
+        marginLeft: 60,
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        android: {
+            fontSize: isAndroidWNotch ? 30 : 20
+        }
     },
     titleCardInfo: {
         color: 'white',

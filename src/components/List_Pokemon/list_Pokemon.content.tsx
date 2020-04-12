@@ -37,9 +37,7 @@ export default function List_Pokemon() {
 
     const renderMiddle = () => {
         return (
-            <View style={styles.contentTitle}>
-                <Text style={styles.title}>{'POKÉDEX'}</Text>
-            </View>
+            <Text style={styles.title}>{'POKÉDEX'}</Text>
         )
     }
 
@@ -63,7 +61,7 @@ export default function List_Pokemon() {
 
     return (
         <View style={styles.loading} >
-            <NavBarSimple icon={'back'} contentCenter={renderMiddle()} isHome={true} />
+            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
             {!loading && renderLoadingView()}
             {emptyState && renderFailInternet()}
             <View style={styles.contentItemPokemon}>

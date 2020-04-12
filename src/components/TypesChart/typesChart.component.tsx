@@ -39,7 +39,6 @@ export default class Types extends Component<any, any> {
         return (
             <ImageBackground source={require('./../../Assets/images/BG_Home.png')}
                 style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
                 <View style={styles.contentLoading}>
                     <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
                     <Text style={styles.title}>{'Lo sentimos, no hay conexion a internet'}</Text>
@@ -57,7 +56,7 @@ export default class Types extends Component<any, any> {
         }
         return (
             <View style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
+                <NavBarSimple contentCenter={this.renderMiddle()} isHome={true} />
                 <View style={styles.contentItemPokemon}>
                     <FlatList
                         data={type}

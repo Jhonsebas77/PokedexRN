@@ -46,7 +46,7 @@ export default class Item extends Component<any, any> {
         }
         return (
             <View style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
+                <NavBarSimple contentCenter={this.renderMiddle()} isHome={true} />
                 <View style={styles.container}>
                     <FlatList
                         data={items}
