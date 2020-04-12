@@ -23,12 +23,12 @@ export const Colors = {
     shadow: '#1E1C1C', background: '#a2db96', background1: '#24cca9'
 }
 
-export const GetColorType = (type) => {
+export const GetColorType = (type: string) => {
     const typeBorder = `${type}_border`
     return _.findProperty(Colors, typeBorder)
 }
 
-export const ColorType = (type1, type2?) => {
+export const ColorType = (type1: string, type2?: string) => {
     let ColorsType = type1 + (type2 ? '_' + type2 : '')
     const typeColor = {
         fire: { color: () => [Colors.fire, Colors.fire1] },

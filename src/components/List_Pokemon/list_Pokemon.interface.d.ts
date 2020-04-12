@@ -1,4 +1,4 @@
-interface PkmnProps {
+interface IPkmnProps {
     item?: {}
 }
 interface PkmnState {
