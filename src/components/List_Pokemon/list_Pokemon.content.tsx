@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, FlatList, View, TouchableOpacity, Image, ImageBackground } from 'react-native'
+import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import ItemPokemon from './Item_Pokemon'
@@ -8,6 +8,7 @@ import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Tools'
 import Loading_Screen from '../Loading'
 import NavBarSimple from '../NavBar/Simple'
+import Fail_Internet from '../Fail_Internet'
 import style from './list_Pokemon.style'
 
 const styles = getComponentStyle(style)
@@ -42,18 +43,13 @@ export default function List_Pokemon() {
     }
 
     const renderFailInternet = () => {
-        return (
-            <ImageBackground source={require('./../../Assets/images/BG_Home.png')} style={styles.loading} >
-                <View style={styles.contentLoading}>
-                    <Image style={styles.sprite} source={require('./../../Assets/images/No_Internet.png')} />
-                    <Text style={styles.title}>{'Lo sentimos, no hay conexion a internet'}</Text>
-                </View>
-            </ImageBackground>
+        return emptyState && (
+            <Fail_Internet />
         )
     }
 
     const renderLoadingView = () => {
-        return (
+        return !loading && (
             <Loading_Screen imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
         )
     }
@@ -62,8 +58,8 @@ export default function List_Pokemon() {
     return (
         <View style={styles.loading} >
             <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
-            {!loading && renderLoadingView()}
-            {emptyState && renderFailInternet()}
+            {renderLoadingView()}
+            {renderFailInternet()}
             <View style={styles.contentItemPokemon}>
                 <FlatList
                     data={newPokemonData}

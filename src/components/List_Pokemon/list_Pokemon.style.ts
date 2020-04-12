@@ -9,17 +9,8 @@ export default {
     title: {
         color: 'white',
         fontSize: 30,
-        fontWeight: 'bold'
-    },
-    sprite: {
-        width: 200,
-        height: 200
-    },
-    contentLoading: {
-        flex: 1,
-        justifyContent: 'space-around',
-        flexDirection: 'column',
-        alignItems: 'center'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     contentItemPokemon: {
         paddingTop: 10,

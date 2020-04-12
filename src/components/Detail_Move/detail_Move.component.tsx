@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Image, TouchableOpacity, ImageBackground, FlatList, ScrollView } from 'react-native'
+import { Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getMove } from '../../util/api'
 import { newString, paddingNumber } from '../../Helpers/Tools'
@@ -11,6 +11,7 @@ import Item_pkm_Move from './Item_pkm_Move'
 import Cristalzmove from './CristalZ_Move'
 import _ from '../../Helpers/Utilities'
 import Loading from '../Loading'
+import Fail_Internet from '../Fail_Internet'
 import style from './detail_Move.style'
 
 const styles = getComponentStyle(style)
@@ -108,13 +109,7 @@ export default class MoveDetail extends Component<PkmnDetailProps, any> {
 
     renderFailInternet() {
         return (
-            <ImageBackground source={require('./../../Assets/images/BG_Home.png')}
-                style={styles.failInternet} >
-                <View style={styles.contentFailInternet}>
-                    <Image style={styles.sprite} source={require('./../../Assets/images/No_Internet.png')} />
-                    <Text style={styles.title}>{'Lo sentimos, \nalgo salio mal'}</Text>
-                </View>
-            </ImageBackground>
+            <Fail_Internet />
         )
     }
 

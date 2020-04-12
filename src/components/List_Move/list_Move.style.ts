@@ -9,7 +9,6 @@ export default {
     },
     title: {
         color: 'white',
-        marginLeft: 60,
         fontWeight: 'bold',
         alignSelf: 'center',
         android: {

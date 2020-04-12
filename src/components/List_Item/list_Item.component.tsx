@@ -7,6 +7,7 @@ import { newString } from '../../Helpers/Tools'
 import Loading from '../Loading'
 import NavBarSimple from '../NavBar/Simple'
 import style from './list_Item.style'
+import Fail_Internet from '../Fail_Internet'
 import { getComponentStyle } from '../../Helpers/Stylus'
 
 const styles = getComponentStyle(style)
@@ -27,9 +28,7 @@ export default class Item extends Component<any, any> {
 
     renderMiddle() {
         return (
-            <View style={styles.contentTitle}>
-                <Text style={styles.title}>{'MOCHILA'}</Text>
-            </View>
+            <Text style={styles.title}>{'MOCHILA'}</Text>
         )
     }
 
@@ -38,9 +37,16 @@ export default class Item extends Component<any, any> {
             <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Items'} />
         )
     }
-
+    renderFailInternet() {
+        return (
+            <Fail_Internet />
+        )
+    }
     render() {
-        const { loaded = false, items = [] } = { ...this.state }
+        const { loaded = false, items = null } = { ...this.state }
+        if (items === null) {
+            return this.renderFailInternet()
+        }
         if (!loaded) {
             return this.renderLoadingView()
         }

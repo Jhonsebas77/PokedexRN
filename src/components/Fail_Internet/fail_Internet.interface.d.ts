@@ -1,0 +1,6 @@
+interface IFailInternerProps {
+
+}
+interface IFailInternerState {
+
+}

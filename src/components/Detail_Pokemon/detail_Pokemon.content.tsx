@@ -10,6 +10,7 @@ import LineEvolutive from './LineEvolutive'
 import style from './detail_Pokemon.style'
 import ChipSprites from './ChipSprites'
 import Chip from '../../Assets/json/Chip_Pokemon_Detail.json'
+import Fail_Internet from '../Fail_Internet'
 import Loading from '../Loading'
 
 import LinearGradient from 'react-native-linear-gradient'
@@ -132,13 +133,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
 
     renderFailInternet() {
         return (
-            <ImageBackground source={require('../../Assets/images/BG_Home.png')}
-                style={styles.failInternet} >
-                <View style={styles.contentFailInternet}>
-                    <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
-                    <Text style={styles.title}>{'Lo sentimos, \nalgo salio mal'}</Text>
-                </View>
-            </ImageBackground>
+            <Fail_Internet />
         )
     }
 
