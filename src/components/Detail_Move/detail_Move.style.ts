@@ -10,7 +10,7 @@ export default {
         overflow: 'hidden',
         borderRadius: 50,
         borderWidth: 5,
-        width: 350,
+        width: isAndroidWNotch ? 340 : 350,
         height: 210
     },
     head2: {
@@ -20,8 +20,8 @@ export default {
         overflow: 'hidden',
         borderRadius: 50,
         borderWidth: 5,
-        width: 350,
-        height: 300
+        width: isAndroidWNotch ? 340 : 350,
+        minHeight: 130
     },
     head3: {
         alignItems: 'center',
@@ -29,6 +29,7 @@ export default {
         overflow: 'hidden',
         borderRadius: 50,
         borderWidth: 5,
+        width: isAndroidWNotch ? 340 : 350,
         height: 200
     },
     textContainer: {
@@ -74,11 +75,11 @@ export default {
     },
     type: {
         width: 80,
-        height: 80
+        height: 80,
+        resizeMode: 'contain'
     },
     background: {
         width: width,
-        height: height,
         backgroundColor: '#C64934'
     },
     containerStats: {

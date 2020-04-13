@@ -24,7 +24,9 @@ export default {
     textEffect: {
         color: 'white',
         fontWeight: 'bold',
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        marginTop: 5,
+        maxWidth: 330
     },
     textNameTitle: {
         color: 'white',

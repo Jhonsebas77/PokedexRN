@@ -29,7 +29,16 @@ const arrayHasItems = (arr: Array<any> = []) => {
     }
     return false
 }
-
+const isEmpty = (obj: any = null) => {
+    switch (Object.prototype.toString.call(obj)) {
+        case '[object Object]':
+            return Object.keys(obj).length === 0
+        case '[object Array]':
+            return obj.length === 0
+        default:
+            return !obj || obj === 'undefined' || obj === 'null'
+    }
+}
 export default {
     upper: (value: string) => value ? value.toUpperCase() : value,
     lower: (value: string) => value.toLowerCase(),
@@ -56,5 +65,6 @@ export default {
     has,
     isObject,
     isNumber,
+    isEmpty,
     formatNumberDecimal
 }
