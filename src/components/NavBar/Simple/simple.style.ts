@@ -1,9 +1,10 @@
 import { Dimensions } from 'react-native'
 import { isAndroidWNotch } from '../../../Helpers/Constant'
+import { Colors } from './../../../Helpers/Colors'
 const { width } = Dimensions.get('window')
 export default {
     header: {
-        backgroundColor: '#C64934',
+        backgroundColor: Colors.redPokedex,
         width: isAndroidWNotch ? 360 : width,
         height: 70,
         resizeMode: 'contain'
@@ -26,8 +27,7 @@ export default {
     },
     stylePadding: {
         justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 20
+        alignItems: 'center'
     },
     empty: {
         width: 90

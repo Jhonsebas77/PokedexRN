@@ -1,5 +1,6 @@
 import { Dimensions } from 'react-native'
 import { isAndroidWNotch } from '../../Helpers/Constant'
+import { Colors } from './../../Helpers/Colors'
 const { height, width } = Dimensions.get('window')
 
 export default {
@@ -10,7 +11,7 @@ export default {
     loading: {
         width: width,
         height: isAndroidWNotch ? height - 110 : height,
-        backgroundColor: '#C64934',
+        backgroundColor: Colors.redPokedex,
         alignItems: 'center'
     },
     contentContainer: {

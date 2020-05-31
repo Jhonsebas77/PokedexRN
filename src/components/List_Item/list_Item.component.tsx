@@ -4,7 +4,7 @@ import { getAllNewItem } from '../../util/api'
 import ItemItem from './Item_Object'
 import ItemModal from './Item_Modal'
 import { newString } from '../../Helpers/Tools'
-import Loading from '../Loading'
+import Loading_Screen from '../Loading'
 import NavBarSimple from '../NavBar/Simple'
 import style from './list_Item.style'
 import Fail_Internet from '../Fail_Internet'
@@ -34,7 +34,7 @@ export default class Item extends Component<any, any> {
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando los Items'} />
+            <Loading_Screen textLoading={'Cargando los Items...'} />
         )
     }
     renderFailInternet() {

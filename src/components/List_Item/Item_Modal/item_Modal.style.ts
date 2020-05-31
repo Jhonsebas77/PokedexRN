@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native'
+import { Colors } from './../../../Helpers/Colors'
 const { width, height } = Dimensions.get('window')
 export default {
     modalBackground: {
@@ -42,7 +43,7 @@ export default {
     },
     header: {
         height: 56,
-        backgroundColor: '#C64934',
+        backgroundColor: Colors.redPokedex,
         alignItems: 'center',
         flexDirection: 'column',
         borderTopLeftRadius: 12,
@@ -94,7 +95,7 @@ export default {
     loading: {
         width: width,
         height: height,
-        backgroundColor: '#C64934',
+        backgroundColor: Colors.redPokedex,
         justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'column',

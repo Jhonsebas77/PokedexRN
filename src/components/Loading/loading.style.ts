@@ -1,18 +1,18 @@
 import { Dimensions } from 'react-native'
+import { Colors } from './../../Helpers/Colors'
 const { width, height } = Dimensions.get('window')
 
 export default {
     containerActivity: {
-        width: width / 2,
-        height: height / 2
+        width: 200,
+        height: 200
     },
     loading: {
         width: width,
         height: height,
         alignContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#C64934'
+        justifyContent: 'center'
     },
     textLoading: {
         color: 'white',
@@ -25,6 +25,6 @@ export default {
         alignItems: 'center'
     },
     styleCenter: {
-        alignItems: 'center'
+        backgroundColor: Colors.redPokedex
     }
 }

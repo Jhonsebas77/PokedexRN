@@ -10,7 +10,7 @@ import { ColorType as _ColorType, GetColorType, Colors } from '../../Helpers/Col
 import Item_pkm_Move from './Item_pkm_Move'
 import Cristalzmove from './CristalZ_Move'
 import _ from '../../Helpers/Utilities'
-import Loading from '../Loading'
+import Loading_Screen from '../Loading'
 import Fail_Internet from '../Fail_Internet'
 import style from './detail_Move.style'
 
@@ -102,7 +102,7 @@ export default function MoveDetail(props: {}) {
 
     const renderLoadingView = () => {
         return !loading && (
-            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={` Cargando...`} />
+            <Loading_Screen textLoading={'Cargando el detalle del movimiento...'} />
         )
     }
 
