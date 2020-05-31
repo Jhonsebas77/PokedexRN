@@ -11,7 +11,7 @@ import style from './detail_Pokemon.style'
 import ChipSprites from './ChipSprites'
 import Chip from '../../Assets/json/Chip_Pokemon_Detail.json'
 import Fail_Internet from '../Fail_Internet'
-import Loading from '../Loading'
+import Loading_Screen from '../Loading'
 
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -42,7 +42,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={`Cargando la información del Pokémon seleccionado`} />
+            <Loading_Screen textLoading={'Cargando la información del Pokémon seleccionado...'} />
         )
     }
 

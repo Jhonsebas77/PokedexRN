@@ -26,8 +26,7 @@ export default {
     },
     stylePadding: {
         justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 20
+        alignItems: 'center'
     },
     empty: {
         width: 90

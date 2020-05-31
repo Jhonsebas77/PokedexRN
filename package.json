@@ -38,7 +38,8 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-router-flux": "^4.2.0",
     "react-native-screens": "^2.4.0",
-    "react-native-shimmer-placeholder": "^1.0.35"
+    "react-native-shimmer-placeholder": "^1.0.35",
+    "rgba-convert": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

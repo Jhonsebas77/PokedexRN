@@ -36,7 +36,7 @@ export default function List_Move() {
     }
     const renderLoadingView = () => {
         return !loading && (
-            <Loading_Screen imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
+            <Loading_Screen textLoading={'Cargando la lista de Movimientos...'} />
         )
     }
     const renderFailInternet = () => {

@@ -50,9 +50,10 @@ export default function List_Pokemon() {
 
     const renderLoadingView = () => {
         return !loading && (
-            <Loading_Screen imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
+            <Loading_Screen textLoading={'Cargando la Pokedex...'} />
         )
     }
+
     const onPressPokemon = (item = {}, index: number) => Actions.PokemonDetail({ item, index })
 
     return (
@@ -63,7 +64,7 @@ export default function List_Pokemon() {
             <View style={styles.contentItemPokemon}>
                 <FlatList
                     data={newPokemonData}
-                    keyExtractor={(item) => (item as any).index}
+                    keyExtractor={item => `pokemon_${(item as any).idDex}`}
                     renderItem={({ item, index }) =>
                         <TouchableOpacity
                             onPress={() => onPressPokemon(item, index)}>
@@ -71,12 +72,8 @@ export default function List_Pokemon() {
                                 number={paddingNumber((item as any).idDex)}
                                 name={_.capitalize((item as any).name)}
                                 spriteSource={{ uri: (item as any).urlSprite }}
-                                typeTwoSource={{
-                                    uri: (item as any).typeTwoUrlSprite && (item as any).typeTwoUrlSprite
-                                }}
-                                typeOneSource={{
-                                    uri: (item as any).typeOneUrlSprite && (item as any).typeOneUrlSprite
-                                }}
+                                typeTwoSource={{ uri: (item as any).typeTwoUrlSprite && (item as any).typeTwoUrlSprite }}
+                                typeOneSource={{ uri: (item as any).typeOneUrlSprite && (item as any).typeOneUrlSprite }}
                             />
                         </TouchableOpacity>
                     } />

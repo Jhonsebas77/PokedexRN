@@ -1,44 +1,43 @@
-import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import React, { useState, useContext } from 'react'
+import { Text, View, TouchableOpacity, Switch } from 'react-native'
+import { ThemeContext } from './../../Helpers/Theme/theme.context'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import MenuItem from '../MenuItem'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
-import Loading from '../Loading'
 import NavBarSimple from '../NavBar/Simple'
 import style from './more.style'
 
 const styles = getComponentStyle(style)
-export default class More extends Component<any, any> {
-    constructor(props) {
-        super(props)
-        this.state = {}
+export default function More() {
+    const { theme = '', changeTheme = () => { }, isLightTheme = true } = useContext(ThemeContext)
+    const [isEnabled, setIsEnabled] = useState(isLightTheme ? false : true)
+    const { textColor = '', thumbColor = '', trackColorOn = '', trackColorOff = '' } = { ...theme }
+    const toggleSwitch = () => {
+        const newTheme = isLightTheme ? 'dark' : 'light'
+        changeTheme(newTheme)
+        setIsEnabled(previousState => !previousState)
     }
-
-    renderMiddle() {
+    const renderMiddle = () => {
         return (
             <View style={styles.contentTitle}>
                 <Text style={styles.title}>{'MÁS'}</Text>
             </View>
         )
     }
-
-    renderLoadingView() {
-        return (
-            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
-        )
-    }
-
-    render() {
-        return (
-            <View style={styles.loading} >
-                <NavBarSimple contentCenter={this.renderMiddle()} isHome={true} />
-                <View style={styles.contentItemPokemon}>
-                    <TouchableOpacity onPress={() => { Actions.Types() }}>
-                        <MenuItem name={'Ventajas de Tipos'} />
-                    </TouchableOpacity>
-                </View>
+    return (
+        <View style={styles.loading} >
+            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
+            <View style={styles.containerDarkMode}>
+                <Text style={{ color: textColor }}>{'Activar Modo Oscuro '}</Text>
+                <Switch style={styles.switch} trackColor={{ true: trackColorOn, false: trackColorOff }}
+                    onValueChange={toggleSwitch} value={isEnabled} thumbColor={thumbColor} />
             </View>
-        )
-    }
+            <View style={styles.contentItemPokemon}>
+                <TouchableOpacity onPress={() => { Actions.Types() }}>
+                    <MenuItem name={'Ventajas de Tipos'} />
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
 }

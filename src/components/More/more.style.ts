@@ -27,5 +27,14 @@ export default {
     contentItemPokemon: {
         paddingTop: 10,
         height: 550
+    },
+    switch: {
+        color: 'white'
+    },
+    containerDarkMode: {
+        margin: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }

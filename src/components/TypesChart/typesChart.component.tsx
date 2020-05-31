@@ -3,7 +3,7 @@ import { Text, View, FlatList, ImageBackground, Image } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getType } from '../../util/api'
 import _ from '../../Helpers/Utilities'
-import Loading from '../Loading'
+import Loading_Screen from '../Loading'
 import ItemType from './ItemTypeChart'
 import NavBarSimple from '../NavBar/Simple'
 import style from './typesChart.style'
@@ -32,7 +32,7 @@ export default class Types extends Component<any, any> {
 
     renderLoadingView() {
         return (
-            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
+            <Loading_Screen textLoading={'Cargando la Pokedex...'} />
         )
     }
     renderFailInternet() {
