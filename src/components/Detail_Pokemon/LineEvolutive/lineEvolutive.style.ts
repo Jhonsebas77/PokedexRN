@@ -1,3 +1,4 @@
+import { Colors } from './../../../Helpers/Colors'
 export default {
     container: {
         borderRadius: 20,
@@ -29,7 +30,7 @@ export default {
         color: 'black'
     },
     active: {
-        backgroundColor: '#4f8594'
+        backgroundColor: Colors.activeChip
     },
     activeLast: {
         borderStyle: 'solid',

@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native'
+import { Colors } from './../../Helpers/Colors'
 const { width, height } = Dimensions.get('window')
 
 export default {
@@ -24,6 +25,6 @@ export default {
         alignItems: 'center'
     },
     styleCenter: {
-        backgroundColor: '#C64934'
+        backgroundColor: Colors.redPokedex
     }
 }

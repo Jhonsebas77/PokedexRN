@@ -1,28 +1,19 @@
-import rgba from 'rgba-convert'
-
-const color = {
-    white: rgba.hex('#FFFFFF'),
-    black: rgba.hex('#121212'),
-    grey: rgba.hex('#BDBDBD'),
-    greyDark: rgba.hex('#CFCFCF'),
-    green: rgba.hex('#077A3E'),
-    red: rgba.hex('#E30613')
-}
+import { Colors } from './../Colors'
 
 export const lightTheme = {
-    backgroundColor: color.white,
-    backgroundColorItem: color.greyDark,
-    textColor: color.black,
-    thumbColor: color.black,
-    trackColorOn: color.green,
-    trackColorOff: color.red
+    backgroundColor: Colors.white,
+    backgroundColorItem: Colors.greyDark,
+    textColor: Colors.black,
+    thumbColor: Colors.black,
+    trackColorOn: Colors.green,
+    trackColorOff: Colors.red
 }
 
 export const darkTheme = {
-    backgroundColor: color.black,
-    backgroundColorItem: color.grey,
-    textColor: color.white,
-    thumbColor: color.white,
-    trackColorOn: color.green,
-    trackColorOff: color.red
+    backgroundColor: Colors.black,
+    backgroundColorItem: Colors.grey,
+    textColor: Colors.white,
+    thumbColor: Colors.white,
+    trackColorOn: Colors.green,
+    trackColorOff: Colors.red
 }

@@ -1,11 +1,12 @@
 import { Dimensions } from 'react-native'
+import { Colors } from './../../../Helpers/Colors'
 const { height, width } = Dimensions.get('window')
 
 export default {
     container: {
         width: width,
         height: height,
-        backgroundColor: '#C64934'
+        backgroundColor: Colors.redPokedex
     },
     contentContainer: {
         flexDirection: 'row',

@@ -66,8 +66,7 @@ export default function List_Pokemon() {
                     data={newPokemonData}
                     keyExtractor={item => `pokemon_${(item as any).idDex}`}
                     renderItem={({ item, index }) =>
-                        <TouchableOpacity
-                            onPress={() => onPressPokemon(item, index)}>
+                        <TouchableOpacity activeOpacity={0.9} onPress={() => onPressPokemon(item, index)}>
                             <ItemPokemon
                                 number={paddingNumber((item as any).idDex)}
                                 name={_.capitalize((item as any).name)}

@@ -29,7 +29,7 @@ export default function More() {
         <View style={styles.loading} >
             <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
             <View style={styles.containerDarkMode}>
-                <Text style={{ color: textColor }}>{'Activar Modo Oscuro '}</Text>
+                <Text style={{ color: textColor }}>{'Modo Oscuro '}</Text>
                 <Switch style={styles.switch} trackColor={{ true: trackColorOn, false: trackColorOff }}
                     onValueChange={toggleSwitch} value={isEnabled} thumbColor={thumbColor} />
             </View>
