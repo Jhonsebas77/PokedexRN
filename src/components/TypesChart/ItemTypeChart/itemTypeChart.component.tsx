@@ -5,87 +5,74 @@ import style from './itemTypeChart.style'
 import _ from './../../../Helpers/Utilities'
 
 const map = _.map
-const valueEffective_byHalf = 0.5
-const valueEffective_byOne = 1
-const valueEffective_byTwo = 2
-const valueEffective_byZero = 0
 const styles = getComponentStyle(style)
 export default class ItemType extends Component<any, any> {
     constructor(props) {
         super(props)
         this.validArray = this.validArray.bind(this)
-        this.renderType = this.renderType.bind(this)
         this.renderSprites = this.renderSprites.bind(this)
     }
     validArray = (arr: any) => {
         return arr && _.arrayHasItems(arr)
     }
-    renderType = (validArray: any, dataArray: any) => {
-        const showSprite = this.validArray(validArray) && map(dataArray, (item: any) => {
-            const { urlSprite = '' } = { ...item }
+    showNameData = (key: string) => {
+        const context_name = {
+            ['no_effect']: 'Sin Efecto',
+            ['not_very_effective']: 'No Muy Efectivo',
+            ['super_very_effective']: 'Super Efectivo',
+            ['weakness']: 'Debil',
+            ['resist']: 'Resistente',
+            ['immune']: 'Inmune',
+            ['DEFAULT']: '- - -'
+        }
+        return context_name[key] || context_name['DEFAULT']
+    }
+    showIconData = (kind: string) => {
+        const context_kind = {
+            offensive: '⚔️',
+            defenssive: '🛡'
+        }
+        return context_kind[kind]
+    }
+    renderSprites = (data: any) => {
+        const [typeData = {}] = data
+        const { value = 0, kind = '', key = '' } = { ...typeData }
+        const icon_kind = this.showIconData(kind)
+        const key_name = this.showNameData(key)
+        const showSprite = this.validArray(data) && map(data, (item: any) => {
+            const { urlSprite = '', name = '' } = { ...item }
             return (
-                <View style={{ flexDirection: 'row' }}>
+                <View style={styles.containerKindText}>
                     <Image style={styles.sprite} source={{ uri: urlSprite }} />
+                    <Text style={styles.textTypeKind}> {name} </Text>
                 </View>
             )
         })
-        return showSprite
-    }
-    renderSprites = (data: any, type: string) => {
-        const { byHalf = [], byOne = [], byTwo = [], byZero = [] } = { ...data }
-        const [_byHalf = {}] = byHalf
-        const [_byOne = {}] = byOne
-        const [_byTwo = {}] = byTwo
-        const [_byZero = {}] = byZero
-        const r_byHalf = this.renderType(byHalf, _byHalf)
-        const r_byOne = this.renderType(byOne, _byOne)
-        const r_byTwo = this.renderType(byTwo, _byTwo)
-        const r_byZero = this.renderType(byZero, _byZero)
-        return (
-            <View style={styles.containerTypeForm}>
-                <Text style={styles.textName}> {type} </Text>
-                {r_byTwo && <View style={styles.showValues}>
-                    <Text style={styles.textValue}> {`x${valueEffective_byTwo}`} </Text>
-                    <View style={styles.textType}>
-                        {r_byTwo}
-                    </View>
-                </View>}
-                {r_byOne && <View style={styles.showValues}>
-                    <Text style={styles.textValue}> {`x${valueEffective_byOne}`} </Text>
-                    <View style={styles.textType}>
-                        {r_byOne}
-                    </View>
-                </View>}
-                {r_byHalf && <View style={styles.showValues}>
-                    <Text style={styles.textValue}> {`x${valueEffective_byHalf}`} </Text>
-                    <View style={styles.textType}>
-                        {r_byHalf}
-                    </View>
-                </View>}
-                {r_byZero && <View style={styles.showValues}>
-                    <Text style={styles.textValue}> {`x${valueEffective_byZero}`} </Text>
-                    <View style={styles.textType}>
-                        {r_byZero}
-                    </View>
-                </View>}
-            </View >
-        )
-    }
-    renderOffensive() {
-        const { offensive = {} } = { ...this.props.data }
-        const offensive_sprites = this.renderSprites(offensive, `Ofensivo ⚔️`)
         return (
             <View>
-                {offensive_sprites}
+                <View style={styles.containerNameEffective}>
+                    <View style={styles.containerNameIconKind}>
+                        <Text style={styles.textEffective}> {`${key_name}`} </Text>
+                        <Text style={styles.textEffective}> {`${icon_kind}`} </Text>
+                    </View>
+                    <Text style={styles.textEffective}> {`x${value}`} </Text>
+                </View>
+                <View style={styles.showValues}>
+                    {showSprite}
+                </View>
             </View>
         )
     }
-    renderDefenssive() {
-        const { defenssive = {} } = { ...this.props.data }
-        const defenssive_sprites = this.renderSprites(defenssive, `Defensivo 🛡`)
+    renderInfoTypes() {
+        const { no_effect = [], not_very_effective = [], super_very_effective = [], weakness = [], resist = [], immune = [] } = { ...this.props.data }
         return (
             <View>
-                {defenssive_sprites}
+                {this.validArray(no_effect) && this.renderSprites(no_effect)}
+                {this.validArray(not_very_effective) && this.renderSprites(not_very_effective)}
+                {this.validArray(super_very_effective) && this.renderSprites(super_very_effective)}
+                {this.validArray(weakness) && this.renderSprites(weakness)}
+                {this.validArray(resist) && this.renderSprites(resist)}
+                {this.validArray(immune) && this.renderSprites(immune)}
             </View>
         )
     }
@@ -93,15 +80,14 @@ export default class ItemType extends Component<any, any> {
         const { name = '', sprite = null } = { ...this.props.data }
         return (
             <View>
-                <View style={{ alignItems: 'center', flexDirection: 'column' }}>
+                <View style={styles.containerItem}>
                     <View style={styles.spriteContainer}>
                         <Image style={styles.sprite} source={{ uri: sprite }} />
                     </View>
                     <Text style={styles.textName}> {name} </Text>
                 </View>
                 <View style={styles.itemPokemon}>
-                    {this.renderOffensive()}
-                    {this.renderDefenssive()}
+                    {this.renderInfoTypes()}
                 </View>
             </View>
         )
