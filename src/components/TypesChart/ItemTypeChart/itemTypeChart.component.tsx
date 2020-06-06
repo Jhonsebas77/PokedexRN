@@ -17,7 +17,7 @@ export default class ItemType extends Component<any, any> {
     }
     showNameData = (key: string) => {
         const context_name = {
-            ['no_effect']: 'No Efecto',
+            ['no_effect']: 'Sin Efecto',
             ['not_very_effective']: 'No Muy Efectivo',
             ['super_very_effective']: 'Super Efectivo',
             ['weakness']: 'Debil',
@@ -40,23 +40,26 @@ export default class ItemType extends Component<any, any> {
         const icon_kind = this.showIconData(kind)
         const key_name = this.showNameData(key)
         const showSprite = this.validArray(data) && map(data, (item: any) => {
-            const { urlSprite = '' } = { ...item }
+            const { urlSprite = '', name = '' } = { ...item }
             return (
-                <View style={styles.containerTypeForm}>
-                    <View style={styles.showValues}>
-                        <View style={styles.textType}>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Image style={styles.sprite} source={{ uri: urlSprite }} />
-                            </View>
-                        </View>
-                    </View>
-                </View >
+                <View style={styles.containerKindText}>
+                    <Image style={styles.sprite} source={{ uri: urlSprite }} />
+                    <Text style={styles.textTypeKind}> {name} </Text>
+                </View>
             )
         })
         return (
             <View>
-                <Text style={styles.textValue}> {`${key_name} x${value} ${icon_kind}`} </Text>
-                {showSprite}
+                <View style={styles.containerNameEffective}>
+                    <View style={styles.containerNameIconKind}>
+                        <Text style={styles.textEffective}> {`${key_name}`} </Text>
+                        <Text style={styles.textEffective}> {`${icon_kind}`} </Text>
+                    </View>
+                    <Text style={styles.textEffective}> {`x${value}`} </Text>
+                </View>
+                <View style={styles.showValues}>
+                    {showSprite}
+                </View>
             </View>
         )
     }
@@ -77,7 +80,7 @@ export default class ItemType extends Component<any, any> {
         const { name = '', sprite = null } = { ...this.props.data }
         return (
             <View>
-                <View style={{ alignItems: 'center', flexDirection: 'column' }}>
+                <View style={styles.containerItem}>
                     <View style={styles.spriteContainer}>
                         <Image style={styles.sprite} source={{ uri: sprite }} />
                     </View>

@@ -19,7 +19,7 @@ export default {
         justifyContent: 'space-between'
     },
     itemPokemon: {
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
         margin: 10,
         paddingLeft: 5,
         paddingVertical: 5,
@@ -28,8 +28,6 @@ export default {
     },
     showValues: {
         flexDirection: 'row',
-        backgroundColor: 'white',
-        borderRadius: 10,
         marginVertical: 3
     },
     sprite: {
@@ -88,6 +86,32 @@ export default {
         paddingLeft: 10,
         fontSize: 20,
         width: 70
+    },
+    textEffective: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+    containerNameIconKind: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    containerNameEffective: {
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    textTypeKind: {
+        color: 'black',
+        fontWeight: 'bold'
+    },
+    containerKindText: {
+        margin: 3,
+        alignItems: 'center'
+    },
+    containerItem: {
+        alignItems: 'center',
+        flexDirection: 'column'
     },
     textMethod: {
         color: 'white',
