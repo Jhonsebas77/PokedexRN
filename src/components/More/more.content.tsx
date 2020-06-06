@@ -34,7 +34,7 @@ export default function More() {
                     onValueChange={toggleSwitch} value={isEnabled} thumbColor={thumbColor} />
             </View>
             <View style={styles.contentItemPokemon}>
-                <TouchableOpacity onPress={() => { Actions.Types() }}>
+                <TouchableOpacity onPress={() => Actions.Types()}>
                     <MenuItem name={'Ventajas de Tipos'} />
                 </TouchableOpacity>
             </View>
