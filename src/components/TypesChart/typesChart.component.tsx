@@ -19,7 +19,6 @@ export default function Types() {
     useEffect(() => {
         const getTypeData = async () => {
             const typeData = await getType()
-            console.log('[typeData]', typeData)
             setType(typeData)
             setLoading(true)
             setLoadData(true)
