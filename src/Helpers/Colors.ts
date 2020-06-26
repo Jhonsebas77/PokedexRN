@@ -49,7 +49,9 @@ export const Colors = {
     shadow: rgba.hex('#1E1C1C'),
     background: rgba.hex('#a2db96'),
     background1: rgba.hex('#24cca9'),
-    activeChip: rgba.hex('#4f8594')
+    activeChip: rgba.hex('#4f8594'),
+    blackAlpha90: rgba.hex('rgba(0, 0, 0, 0.1)'),
+    blackAlpha80: rgba.hex('rgba(0, 0, 0, 0.2)')
 }
 
 export const GetColorType = (type: string) => {

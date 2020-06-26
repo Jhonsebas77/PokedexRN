@@ -1,10 +1,17 @@
 import { Dimensions } from 'react-native'
 import { Colors } from './../../Helpers/Colors'
+import { isAndroidWNotch, isIphoneWNotch } from '../../Helpers/Constant'
+
 const { width, height } = Dimensions.get('window')
 
 export default {
     loading: {
-        width: width,
+        ios: {
+            width: isIphoneWNotch ? 350 : 360
+        },
+        android: {
+            width: isAndroidWNotch ? 360 : width
+        },
         height: height,
         backgroundColor: Colors.redPokedex
     },

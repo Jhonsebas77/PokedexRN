@@ -1,5 +1,6 @@
 import { Dimensions } from 'react-native'
 import { Colors } from './../../../Helpers/Colors'
+import { isAndroidWNotch, isIphoneWNotch } from '../../../Helpers/Constant'
 const { height, width } = Dimensions.get('window')
 
 export default {
@@ -19,7 +20,7 @@ export default {
         justifyContent: 'space-between'
     },
     itemPokemon: {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        backgroundColor: Colors.blackAlpha90,
         margin: 10,
         paddingLeft: 5,
         paddingVertical: 5,
@@ -31,7 +32,12 @@ export default {
         marginVertical: 3
     },
     sprite: {
-        width: 30,
+        ios: {
+            width: isIphoneWNotch ? 37 : 30
+        },
+        android: {
+            width: isAndroidWNotch ? 33 : 30
+        },
         height: 30
     },
     spriteContainer: {
@@ -51,7 +57,7 @@ export default {
         alignItems: 'center'
     },
     textType: {
-        backgroundColor: 'white',
+        backgroundColor: Colors.white,
         borderRadius: 10,
         flexDirection: 'row',
         margin: 5
@@ -70,25 +76,25 @@ export default {
         borderRadius: 10
     },
     textStyle: {
-        color: 'white',
+        color: Colors.white,
         fontWeight: 'bold',
         paddingHorizontal: 10
     },
     textName: {
-        color: 'white',
+        color: Colors.white,
         fontWeight: 'bold',
         paddingLeft: 10,
         fontSize: 20
     },
     textValue: {
-        color: 'black',
+        color: Colors.black,
         fontWeight: 'bold',
         paddingLeft: 10,
         fontSize: 20,
         width: 70
     },
     textEffective: {
-        color: 'white',
+        color: Colors.white,
         fontWeight: 'bold',
         fontSize: 20
     },
@@ -97,12 +103,12 @@ export default {
         justifyContent: 'space-between'
     },
     containerNameEffective: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: Colors.blackAlpha80,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
     textTypeKind: {
-        color: 'black',
+        color: Colors.black,
         fontWeight: 'bold'
     },
     containerKindText: {
@@ -114,7 +120,7 @@ export default {
         flexDirection: 'column'
     },
     textMethod: {
-        color: 'white',
+        color: Colors.white,
         fontWeight: 'bold',
         paddingLeft: 10
     },
