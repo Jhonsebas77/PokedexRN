@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Text, View, TouchableOpacity, Switch } from 'react-native'
 import { ThemeContext } from './../../Helpers/Theme/theme.context'
 import { getComponentStyle } from '../../Helpers/Stylus'
-import MenuItem from '../MenuItem'
+import More_Item from './More_Item'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../NavBar/Simple'
@@ -35,7 +35,7 @@ export default function More() {
             </View>
             <View style={styles.contentItemPokemon}>
                 <TouchableOpacity onPress={() => Actions.Types()}>
-                    <MenuItem name={'Ventajas de Tipos'} />
+                    <More_Item name={'Ventajas de Tipos'} />
                 </TouchableOpacity>
             </View>
         </View>

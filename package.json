@@ -24,7 +24,7 @@
     "android:release": "npm run build && npx react-native run-android --variant=release",
     "android:shake": "adb shell input keyevent 82",
     "android:emulator:list": "emulator -list-avds",
-    "android:reconect": "adb devices && adb reverse tcp:8081 tcp:8081"
+    "android:reconnect": "adb devices && adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "@babel/runtime": "7.6.2",
