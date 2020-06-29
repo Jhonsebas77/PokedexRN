@@ -1,10 +1,12 @@
 import { Dimensions } from 'react-native'
+import { Colors } from './../../Helpers/Colors'
 const { width, height } = Dimensions.get('window')
 
 export default {
     loading: {
         width: width,
-        height: height
+        height: height,
+        backgroundColor: Colors.redPokedex
     },
     title: {
         color: 'white',
@@ -27,5 +29,14 @@ export default {
     contentItemPokemon: {
         paddingTop: 10,
         height: 550
+    },
+    switch: {
+        color: 'white'
+    },
+    containerDarkMode: {
+        margin: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }

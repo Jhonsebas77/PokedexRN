@@ -1,6 +1,6 @@
 {
   "name": "PokedexRN",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "start": "./scripts/start.sh",
@@ -16,14 +16,15 @@
     "clock:android": "adb shell \"date `date +%m%d%H%M%Y.%S`\"",
     "ios": "npx react-native run-ios",
     "ios:pod": "cd ./ios && rm -rf Podfile.lock && rm -rf Pods && pod install",
-    "iosX": "npx react-native run-ios --simulator \"iPhone ${1:-X}\"",
-    "iosXr": "npx react-native run-ios --simulator \"iPhone ${1:-XR}\"",
+    "ios:simulator:8": "npx react-native run-ios --simulator \"iPhone ${1:-8}\"",
+    "ios:simulator:Plus": "npx react-native run-ios --simulator \"iPhone ${1:-8 Plus}\"",
+    "ios:simulator:11": "npx react-native run-ios --simulator \"iPhone ${1:-11}\"",
     "ios:simulator:list": "xcrun simctl list devices | grep iPhone | grep -v unavailable | cut -d'(' -f1",
     "android": "npx react-native run-android",
     "android:release": "npm run build && npx react-native run-android --variant=release",
     "android:shake": "adb shell input keyevent 82",
     "android:emulator:list": "emulator -list-avds",
-    "android:reconect": "adb devices && adb reverse tcp:8081 tcp:8081"
+    "android:reconnect": "adb devices && adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "@babel/runtime": "7.6.2",
@@ -37,7 +38,8 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-router-flux": "^4.2.0",
     "react-native-screens": "^2.4.0",
-    "react-native-shimmer-placeholder": "^1.0.35"
+    "react-native-shimmer-placeholder": "^1.0.35",
+    "rgba-convert": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -66,6 +68,7 @@
     "haul": "^1.0.0-rc.15",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.58.0",
+    "react-devtools": "^4.6.0",
     "react-native-bundle-visualizer": "^2.1.1",
     "react-native-reanimated": "^1.8.0",
     "react-navigation-tabs": "^2.8.11",

@@ -2,7 +2,7 @@ import { Platform, Dimensions } from 'react-native'
 import _ from './Utilities'
 const { width, height } = Dimensions.get('window')
 const isIOS = Platform.OS === 'ios'
-const BaseSize = { height: (isIOS ? 667 : 640), width: (isIOS ? 375 : 360) };
+const BaseSize = { height: (isIOS ? 667 : 640), width: (isIOS ? 375 : 360) }
 const isPortrait = height > width
 const RealWidth = isPortrait ? width : height
 const RealHeight = isPortrait ? height : width

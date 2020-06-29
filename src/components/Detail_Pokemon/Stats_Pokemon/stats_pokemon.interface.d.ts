@@ -1,0 +1,3 @@
+interface StatsPkmnProps {
+    stats: object
+}

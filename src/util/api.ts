@@ -1,4 +1,4 @@
-export const basePath = `https://pokedexrn-api.herokuapp.com` // `https://1cf637e4.ngrok.io`
+export const basePath = `https://pokedexrn-api.herokuapp.com` // TODO: BasePath ->`https://1cf637e4.ngrok.io`
 export const getURL = async (url: string) => {
   return fetch(`${url}`)
     .then((response) => response.json())

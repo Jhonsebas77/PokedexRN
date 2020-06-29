@@ -1,3 +1,5 @@
+import { isAndroidWNotch } from './../../Helpers/Constant'
+import { Colors } from './../../Helpers/Colors'
 export default {
     cmpContainer: {
         flex: 1
@@ -8,7 +10,7 @@ export default {
         ios: {
             height: 60,
             width: 375,
-            shadowColor: 'grey',
+            shadowColor: Colors.grey,
             shadowOffset: { width: -1, height: -2 },
             shadowOpacity: 0.3,
             shadowRadius: 1
@@ -18,7 +20,7 @@ export default {
             width: 360,
             elevation: 8
         },
-        backgroundColor: 'white'
+        backgroundColor: Colors.white
     },
     container: {
         android: {
@@ -32,7 +34,7 @@ export default {
             height: 60
         },
         flexDirection: 'row',
-        backgroundColor: '#C64934',
+        backgroundColor: Colors.redPokedex,
         justifyContent: 'space-around'
     },
     tabContainer: {
@@ -60,7 +62,7 @@ export default {
         fontFamily: 'Gill Sans',
         fontSize: 11,
         lineHeight: 11,
-        color: 'white',
+        color: Colors.white,
         fontWeight: 'bold',
         paddingTop: 5
     },
@@ -79,7 +81,7 @@ export default {
         padding: 20
     },
     sprite: {
-        width: 30,
+        width: isAndroidWNotch ? 33 : 30,
         height: 30
     },
     spriteContainer: {

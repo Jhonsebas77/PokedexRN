@@ -1,101 +1,82 @@
-import React, { Component } from 'react'
-import { Text, FlatList, View, TouchableOpacity, Image, ImageBackground } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Text, FlatList, View, TouchableOpacity } from 'react-native'
 import { getAllPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import ItemPokemon from './Item_Pokemon'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Tools'
-import Loading from '../Loading'
+import Loading_Screen from '../Loading'
 import NavBarSimple from '../NavBar/Simple'
+import Fail_Internet from '../Fail_Internet'
 import style from './list_Pokemon.style'
 
 const styles = getComponentStyle(style)
-export default class Pokemon extends Component<any, any> {
-    constructor(props) {
-        super(props)
-        this.state = {
-            newPokemonData: [],
-            pokedex: [],
-            loaded: false
-        }
-    }
-
-    async componentWillMount() {
-        let pokedex = await getAllPokemon()
-        const newPokemonData = pokedex && this.preparePokemon(pokedex)
-        this.setState({ newPokemonData, loaded: true })
-    }
-
-    renderMiddle() {
-        return (
-            <View style={styles.contentTitle}>
-                <Text style={styles.title}>{'POKÉDEX'}</Text>
-            </View>
-        )
-    }
-
-    renderFailInternet() {
-        return (
-            <ImageBackground source={require('./../../Assets/images/BG_Home.png')}
-                style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
-                <View style={styles.contentLoading}>
-                    <Image style={styles.sprite} source={require('./../../Assets/images/No_Internet.png')} />
-                    <Text style={styles.title}>{'Lo sentimos, no hay conexion a internet'}</Text>
-                </View>
-            </ImageBackground>
-        )
-    }
-
-    renderLoadingView() {
-        return (
-            <Loading imageLoading={require('../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
-        )
-    }
-
-    preparePokemon(pokedex) {
-        const newPokemonData = pokedex.map((pokemon) => {
+export default function List_Pokemon() {
+    const [loading, setLoading] = useState(false)
+    const [LoadData, setLoadData] = useState(false)
+    const [emptyState, setEmptyState] = useState(true)
+    const [newPokemonData, setNewPokemonData] = useState([])
+    const preparePokemon = (pokedex: Array<any>) => {
+        return pokedex.map((pokemon) => {
             const { idDex = 0, name = '', url = '', urlSprite = '', types: [pokemonTypes] = {} } = { ...pokemon }
             const { typeOneName = '', typeOneURL = '', typeOneUrlSprite = '', typeTwoName = '', typeTwoURL = '', typeTwoUrlSprite = '' } = pokemonTypes
             return { idDex, name, url, urlSprite, typeOneName, typeOneURL, typeOneUrlSprite, typeTwoName, typeTwoURL, typeTwoUrlSprite }
         })
-        return newPokemonData
     }
+    useEffect(() => {
+        const getPokemonData = async () => {
+            const pokedex = await getAllPokemon()
+            const pokedex_ = pokedex && preparePokemon(pokedex)
+            setNewPokemonData(pokedex_)
+            setLoading(true)
+            setLoadData(true)
+        }
+        _.arrayHasItems(newPokemonData) && setEmptyState(false)
+        !LoadData && getPokemonData()
+    }, [loading])
 
-    render() {
-        const { loaded = false, newPokemonData = [] } = { ...this.state }
-        if (!loaded) {
-            return this.renderLoadingView()
-        }
-        if (newPokemonData === undefined) {
-            return this.renderFailInternet()
-        }
+    const renderMiddle = () => {
         return (
-            <View style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
-                <View style={styles.contentItemPokemon}>
-                    <FlatList
-                        data={newPokemonData}
-                        keyExtractor={(item) => (item as any).index}
-                        renderItem={({ item, index }) =>
-                            <TouchableOpacity
-                                onPress={() => { Actions.PokemonDetail({ item, index }) }}>
-                                <ItemPokemon
-                                    number={paddingNumber((item as any).idDex)}
-                                    name={_.capitalize((item as any).name)}
-                                    spriteSource={{ uri: (item as any).urlSprite }}
-                                    typeTwoSource={{
-                                        uri: (item as any).typeTwoUrlSprite ? (item as any).typeTwoUrlSprite : undefined
-                                    }}
-                                    typeOneSource={{
-                                        uri: (item as any).typeOneUrlSprite ? (item as any).typeOneUrlSprite : undefined
-                                    }}
-                                />
-                            </TouchableOpacity>
-                        } />
-                </View>
-            </View>
+            <Text style={styles.title}>{'POKÉDEX'}</Text>
         )
     }
+
+    const renderFailInternet = () => {
+        return emptyState && (
+            <Fail_Internet />
+        )
+    }
+
+    const renderLoadingView = () => {
+        return !loading && (
+            <Loading_Screen textLoading={'Cargando la Pokedex...'} />
+        )
+    }
+
+    const onPressPokemon = (item = {}, index: number) => Actions.PokemonDetail({ item, index })
+
+    return (
+        <View style={styles.loading} >
+            <NavBarSimple contentCenter={renderMiddle()} />
+            {renderLoadingView()}
+            {renderFailInternet()}
+            <View style={styles.contentItemPokemon}>
+                <FlatList
+                    data={newPokemonData}
+                    keyExtractor={item => `pokemon_${(item as any).idDex}`}
+                    renderItem={({ item, index }) =>
+                        <TouchableOpacity activeOpacity={0.9} onPress={() => onPressPokemon(item, index)}>
+                            <ItemPokemon
+                                number={paddingNumber((item as any).idDex)}
+                                name={_.capitalize((item as any).name)}
+                                spriteSource={{ uri: (item as any).urlSprite }}
+                                typeTwoSource={{ uri: (item as any).typeTwoUrlSprite && (item as any).typeTwoUrlSprite }}
+                                typeOneSource={{ uri: (item as any).typeOneUrlSprite && (item as any).typeOneUrlSprite }}
+                            />
+                        </TouchableOpacity>
+                    } />
+            </View>
+        </View>
+    )
 }

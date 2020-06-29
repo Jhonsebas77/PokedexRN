@@ -1,76 +1,62 @@
-import React, { Component } from 'react'
-import { Text, View, FlatList, ImageBackground, Image } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Text, View, FlatList } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import { getType } from '../../util/api'
 import _ from '../../Helpers/Utilities'
-import Loading from '../Loading'
+import Loading_Screen from '../Loading'
 import ItemType from './ItemTypeChart'
 import NavBarSimple from '../NavBar/Simple'
+import Fail_Internet from '../Fail_Internet'
 import style from './typesChart.style'
 
 const styles = getComponentStyle(style)
-export default class Types extends Component<any, any> {
-    constructor(props) {
-        super(props)
-        this.state = {
-            type: [],
-            loaded: false
-        }
-    }
+export default function Types() {
+    const [type, setType] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [LoadData, setLoadData] = useState(false)
+    const [emptyState, setEmptyState] = useState(true)
 
-    async componentWillMount() {
-        let responseType = await getType()
-        this.setState({ type: responseType, loaded: true })
-    }
-    renderMiddle() {
+    useEffect(() => {
+        const getTypeData = async () => {
+            const typeData = await getType()
+            setType(typeData)
+            setLoading(true)
+            setLoadData(true)
+        }
+        _.arrayHasItems(type) && setEmptyState(false)
+        !LoadData && getTypeData()
+    }, [loading])
+    const renderMiddle = () => {
         return (
-            <View style={styles.contentTitle}>
-                <Text style={styles.title}>{'Tipos'}</Text>
+            <Text style={styles.title}>{'Tipos'}</Text>
+        )
+    }
+    const renderLoadingView = () => {
+        return !loading && (
+            <Loading_Screen textLoading={'Cargando los datos...'} />
+        )
+    }
+    const renderFailInternet = () => {
+        return emptyState && (
+            <Fail_Internet />
+        )
+    }
+    return (
+        <View style={styles.loading} >
+            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
+            {renderLoadingView()}
+            {renderFailInternet()}
+            <View style={styles.contentItemPokemon}>
+                <FlatList
+                    data={type}
+                    keyExtractor={(item) => (item as any).index}
+                    renderItem={({ item, index }) =>
+                        <ItemType
+                            number={index}
+                            data={...item}
+                        />
+                    } />
             </View>
-        )
-    }
-
-    renderLoadingView() {
-        return (
-            <Loading imageLoading={require('./../../Assets/images/BG_Loading.png')} textLoading={'Cargando la Pokedex'} />
-        )
-    }
-    renderFailInternet() {
-        return (
-            <ImageBackground source={require('./../../Assets/images/BG_Home.png')}
-                style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} />
-                <View style={styles.contentLoading}>
-                    <Image style={styles.sprite} source={require('../../Assets/images/No_Internet.png')} />
-                    <Text style={styles.title}>{'Lo sentimos, no hay conexion a internet'}</Text>
-                </View>
-            </ImageBackground>
-        )
-    }
-    render() {
-        const { loaded = false, type = [] } = { ...this.state }
-        if (!loaded) {
-            return this.renderLoadingView()
-        }
-        if (type === undefined) {
-            return this.renderFailInternet()
-        }
-        return (
-            <View style={styles.loading} >
-                <NavBarSimple icon={'back'} contentCenter={this.renderMiddle()} isHome={true} />
-                <View style={styles.contentItemPokemon}>
-                    <FlatList
-                        data={type}
-                        keyExtractor={(item) => (item as any).index}
-                        renderItem={({ item, index }) =>
-                            <ItemType
-                                number={index}
-                                data={...item}
-                            />
-                        } />
-
-                </View>
-            </View>
-        )
-    }
+        </View>
+    )
 }

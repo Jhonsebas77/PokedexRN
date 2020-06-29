@@ -1,54 +1,36 @@
-import React, { Component } from 'react'
-import { View } from 'react-native'
+import React from 'react'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import { getComponentStyle } from '../../Helpers/Stylus'
 import style from './home.style'
-import Pokemon from './../List_Pokemon'
-import Items from './../List_Item'
-import Move from './../List_Move'
-import More from '../More'
-import BottomTabBar from './../BottomTabBar'
+import Menu_Item from './Menu_item'
+import NavBarSimple from '../NavBar/Simple'
+import { Actions } from 'react-native-router-flux'
 import data from '../../Assets/json/Chip_Pokemon_Detail.json'
 
 const styles = getComponentStyle(style)
-export default class Home extends Component<any, any> {
-    render() {
-        const { menu = [] } = { ...data }
-        const [one = {}, two = {}, three = {}, four = {}] = menu || []
-        const { title: oneTitle = '', iconPress: oneIconPress = '', iconName: oneIconName = '' } = { ...one }
-        const { title: twoTitle = '', iconPress: twoIconPress = '', iconName: twoIconName = '' } = { ...two }
-        const { title: threeTitle = '', iconPress: threeIconPress = '', iconName: threeIconName = '' } = { ...three }
-        const { title: fourTitle = '', iconPress: fourIconPress = '', iconName: fourIconName = '' } = { ...four }
-        return (
-            <View style={styles.container}>
-                <View style={styles.loading} >
-                    {<BottomTabBar initialTab={0} tabList={[
-                        {
-                            title: oneTitle,
-                            iconPress: oneIconPress,
-                            iconName: oneIconName,
-                            cmp: <Pokemon key={'1'} />
-                        },
-                        {
-                            title: twoTitle,
-                            iconPress: twoIconPress,
-                            iconName: twoIconName,
-                            cmp: <Items key={'2'} />
-                        },
-                        {
-                            title: threeTitle,
-                            iconPress: threeIconPress,
-                            iconName: threeIconName,
-                            cmp: <Move key={'3'} />
-                        },
-                        {
-                            title: fourTitle,
-                            iconPress: fourIconPress,
-                            iconName: fourIconName,
-                            cmp: <More key={'4'} />
-                        }
-                    ]} />}
-                </View>
-            </View>
-        )
+export default function Home() {
+    const { menu = [] } = { ...data }
+    const onPressMenu = (item: any) => {
+        const { action = '' } = { ...item }
+        !!action && Actions.push(action)
     }
+    return (
+        <View style={styles.container} >
+            <NavBarSimple isHome={true} />
+            <View style={styles.itemContainer}>
+                <FlatList
+                    data={menu}
+                    keyExtractor={(item) => (item as any).index}
+                    renderItem={({ item }) =>
+                        <TouchableOpacity
+                            onPress={() => onPressMenu(item)}>
+                            <Menu_Item
+                                name={(item as any).title}
+                                image={{ uri: (item as any).iconNoPress }}
+                            />
+                        </TouchableOpacity>
+                    } />
+            </View>
+        </View>
+    )
 }

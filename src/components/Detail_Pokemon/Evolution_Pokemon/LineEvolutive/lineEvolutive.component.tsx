@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, Text } from 'react-native'
-import { getComponentStyle } from './../../../Helpers/Stylus'
-import _ from './../../../Helpers/Utilities'
+import { getComponentStyle } from './../../../../Helpers/Stylus'
+import _ from './../../../../Helpers/Utilities'
 import style from './lineEvolutive.style'
 
 const styles = getComponentStyle(style)
