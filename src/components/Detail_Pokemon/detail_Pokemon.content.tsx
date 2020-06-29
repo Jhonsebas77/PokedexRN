@@ -48,7 +48,7 @@ export default function PokemonDetail(props: PkmnDetailProps) {
 
     const renderLoadingView = () => {
         return !loading && (
-            <Loading_Screen textLoading={'Cargando los Items...'} />
+            <Loading_Screen textLoading={'Cargando la información del Pokémon seleccionado...'} />
         )
     }
     const renderFailInternet = () => {
@@ -59,7 +59,7 @@ export default function PokemonDetail(props: PkmnDetailProps) {
     const renderMiddle = () => {
         const { name = '' } = { ...pokemon }
         return (
-            <Text style={styles.title}>{emptyState ? 'Ups!' : name}</Text>
+            <Text style={styles.title}>{name}</Text>
         )
     }
 
