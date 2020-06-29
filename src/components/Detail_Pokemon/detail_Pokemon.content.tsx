@@ -7,31 +7,41 @@ import { paddingNumber } from '../../Helpers/Tools'
 import { Colors } from '../../Helpers/Colors'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../NavBar/Simple'
-import Abilities from './Abilities'
-import LineEvolutive from './LineEvolutive'
 import style from './detail_Pokemon.style'
 import ChipSprites from './ChipSprites'
 import Chip from '../../Assets/json/Chip_Pokemon_Detail.json'
 import Fail_Internet from '../Fail_Internet'
 import Loading_Screen from '../Loading'
-
+import Information_Pokemon from './Information_Pokemon'
+import Stats_Pokemon from './Stats_Pokemon'
+import Evolution_Pokemon from './Evolution_Pokemon'
+import Hability_Pokemon from './Hability_Pokemon'
 import LinearGradient from 'react-native-linear-gradient'
 
 const styles = getComponentStyle(style)
 export default function PokemonDetail(props: PkmnDetailProps) {
     const [pokemon, setPokemon] = useState([])
     const [pokemonTypes, setPokemonTypes] = useState({})
+    const [pokemonStats, setPokemonStats] = useState({})
+    const [pokemonHabilities, setPokemonHabilities] = useState({})
     const [colortype, setColortype] = useState([Colors.unknown, Colors.unknown1])
     const [loading, setLoading] = useState(false)
     const [LoadData, setLoadData] = useState(false)
+    const [pokemonEvolution, setPokemonEvolution] = useState([])
     const [emptyState, setEmptyState] = useState(true)
+    const [info_pokemon, setInfo_pokemon] = useState('')
 
     useEffect(() => {
         const getItemData = async () => {
             const { item: { idDex = '001' } = {} } = { ...props }
             const pokemonData = await getPokemon(idDex)
             setPokemon(pokemonData)
-            const { types = [] } = { ...pokemonData }
+            const { types = [], dex_entry = {}, stats = {}, line_evolution = [], abilities = [] } = { ...pokemonData }
+            const { flavor_text = '' } = { ...dex_entry }
+            setInfo_pokemon(flavor_text)
+            setPokemonStats(stats)
+            setPokemonEvolution(line_evolution)
+            setPokemonHabilities(abilities)
             const [res_types] = types
             setPokemonTypes(res_types)
             const { typeOneName = '', typeTwoName = '' } = { ...pokemonTypes }
@@ -60,65 +70,6 @@ export default function PokemonDetail(props: PkmnDetailProps) {
         const { name = '' } = { ...pokemon }
         return (
             <Text style={styles.title}>{name}</Text>
-        )
-    }
-
-    const renderInformation = () => {
-        const { dex_entry = {} } = { ...pokemon }
-        const { flavor_text = '' } = { ...dex_entry }
-        return (
-            <View style={styles.containerInfoPkmn}>
-                <Text style={styles.titleCardInfo}> {'Informacion'}  </Text>
-                <Text style={styles.textStats}>{flavor_text}</Text>
-            </View>
-        )
-    }
-
-    const renderStats = () => {
-        const { stats = {} } = { ...pokemon }
-        const { attack = 0, defense = 0, hp = 0, special_attack = 0, special_defense = 0, speed = 0 } = { ...stats }
-        return (
-            <View style={styles.containerStats}>
-                <Text style={styles.titleCardInfo}>  {'Estadisticas'} </Text>
-                <View style={styles.textContainerColumnStats}>
-                    <Text style={styles.textStats}>
-                        {`Ataque: ${attack}\n Defensa: ${defense}\n Salud: ${hp}`}
-                    </Text>
-                    <Text style={styles.textStats}>
-                        {`Ataque Especial: ${special_attack}\n Defensa Especial: ${special_defense}\n Velocidad: ${speed}\n`}
-                    </Text>
-                </View>
-            </View>
-        )
-    }
-
-    const renderEvolution = () => {
-        const { line_evolution = [] } = { ...pokemon }
-        return (
-            <View style={styles.containerEvolution}>
-                <Text style={styles.titleCardInfo}>
-                    {'Evolucion'}
-                </Text>
-                <View style={styles.containerEvolutionLine}>
-                    <LineEvolutive data={line_evolution} />
-                </View>
-            </View>
-        )
-    }
-
-    const renderAbility = () => {
-        const { abilities = [] } = { ...pokemon }
-        return (
-            <View style={styles.containerAbility}>
-                <Text style={styles.titleCardInfo}> {'Habilidad'} </Text>
-                <FlatList
-                    horizontal={false}
-                    showsHorizontalScrollIndicator={false}
-                    data={abilities}
-                    keyExtractor={(item) => (item as any).index}
-                    renderItem={({ item }: any) => <Abilities data={item} />}
-                />
-            </View>
         )
     }
 
@@ -173,13 +124,10 @@ export default function PokemonDetail(props: PkmnDetailProps) {
             <View style={styles.content}>
                 <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.contentPokemon} >
                     <ScrollView contentContainerStyle={styles.scrollContainer}>
-                        {!!pokemon &&
-                            <View>
-                                {renderInformation()}
-                                {renderStats()}
-                                {renderEvolution()}
-                                {renderAbility()}
-                            </View>}
+                        <Information_Pokemon flavor_text={info_pokemon} />
+                        <Stats_Pokemon stats={pokemonStats} />
+                        <Evolution_Pokemon evolutionChain={pokemonEvolution} />
+                        <Hability_Pokemon habilities={pokemonHabilities} />
                     </ScrollView>
                     {renderChipSprites()}
                     {renderPkmn()}

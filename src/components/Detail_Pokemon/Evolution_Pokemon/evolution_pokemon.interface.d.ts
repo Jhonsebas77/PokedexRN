@@ -1,0 +1,3 @@
+interface EvolutionPkmnProps {
+    evolutionChain: object
+}

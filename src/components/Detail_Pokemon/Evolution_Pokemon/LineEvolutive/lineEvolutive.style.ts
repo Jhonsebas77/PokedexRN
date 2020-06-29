@@ -1,4 +1,4 @@
-import { Colors } from './../../../Helpers/Colors'
+import { Colors } from './../../../../Helpers/Colors'
 export default {
     container: {
         borderRadius: 20,
