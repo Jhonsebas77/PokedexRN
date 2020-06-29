@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, View, Image, ImageBackground, FlatList, ScrollView } from 'react-native'
 import { getPokemon } from '../../util/api'
 import { getComponentStyle } from '../../Helpers/Stylus'
+import _ from '../../Helpers/Utilities'
 import { paddingNumber } from '../../Helpers/Tools'
+import { Colors } from '../../Helpers/Colors'
 import { ColorType } from '../../Helpers/Colors'
 import NavBarSimple from '../NavBar/Simple'
 import Abilities from './Abilities'
@@ -16,55 +18,65 @@ import Loading_Screen from '../Loading'
 import LinearGradient from 'react-native-linear-gradient'
 
 const styles = getComponentStyle(style)
-export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetailState> {
-    TypeColor: any
-    constructor(props) {
-        super(props)
-        this.state = {
-            pokemon: [],
-            loaded: false,
-            colortype: []
+export default function PokemonDetail(props: PkmnDetailProps) {
+    const [pokemon, setPokemon] = useState([])
+    const [pokemonTypes, setPokemonTypes] = useState({})
+    const [colortype, setColortype] = useState([Colors.unknown, Colors.unknown1])
+    const [loading, setLoading] = useState(false)
+    const [LoadData, setLoadData] = useState(false)
+    const [emptyState, setEmptyState] = useState(true)
+
+    useEffect(() => {
+        const getItemData = async () => {
+            const { item: { idDex = '001' } = {} } = { ...props }
+            const pokemonData = await getPokemon(idDex)
+            setPokemon(pokemonData)
+            const { types = [] } = { ...pokemonData }
+            const [res_types] = types
+            setPokemonTypes(res_types)
+            const { typeOneName = '', typeTwoName = '' } = { ...pokemonTypes }
+            const type_Color = ColorType(typeOneName, typeTwoName)
+            setColortype(type_Color)
+            setLoading(true)
+            setLoadData(true)
         }
-        this.renderInformation = this.renderInformation.bind(this)
-        this.renderEvolution = this.renderEvolution.bind(this)
-        this.renderAbility = this.renderAbility.bind(this)
-        this.selectChip = this.selectChip.bind(this)
-    }
+        !LoadData && getItemData()
+    }, [loading])
+    useEffect(() => {
+        !_.isEmpty(pokemon) && setEmptyState(false)
+    }, [pokemon])
 
-    async componentWillMount() {
-        const { item: { idDex = '001' } = {} } = { ...this.props }
-        let pokemon = await getPokemon(idDex)
-        const { types: [pokemonTypes] = {} } = pokemon
-        const { typeOneName = '', typeTwoName = '' } = pokemonTypes
-        const colortype = ColorType(typeOneName, typeTwoName)
-        this.setState({ pokemon, loaded: true, colortype })
+    const renderLoadingView = () => {
+        return !loading && (
+            <Loading_Screen textLoading={'Cargando los Items...'} />
+        )
     }
-
-    renderLoadingView() {
+    const renderFailInternet = () => {
+        return emptyState && (
+            <Fail_Internet />
+        )
+    }
+    const renderMiddle = () => {
+        const { name = '' } = { ...pokemon }
         return (
-            <Loading_Screen textLoading={'Cargando la información del Pokémon seleccionado...'} />
+            <Text style={styles.title}>{emptyState ? 'Ups!' : name}</Text>
         )
     }
 
-    renderMiddle() {
-        const { pokemon: { name = '' } = {} } = { ...this.state }
-        return (
-            <Text style={styles.title}>{name}</Text>
-        )
-    }
-
-    renderInformation() {
-        const { dex_entry: { flavor_text = {} } = {} } = { ...this.state.pokemon }
+    const renderInformation = () => {
+        const { dex_entry = {} } = { ...pokemon }
+        const { flavor_text = '' } = { ...dex_entry }
         return (
             <View style={styles.containerInfoPkmn}>
                 <Text style={styles.titleCardInfo}> {'Informacion'}  </Text>
-                <Text style={styles.textStats}>  {flavor_text}  </Text>
+                <Text style={styles.textStats}>{flavor_text}</Text>
             </View>
         )
     }
 
-    renderStats() {
-        const { pokemon: { stats: { attack = 0, defense = 0, hp = 0, special_attack = 0, special_defense = 0, speed = 0 } = {} } = {} } = { ...this.state }
+    const renderStats = () => {
+        const { stats = {} } = { ...pokemon }
+        const { attack = 0, defense = 0, hp = 0, special_attack = 0, special_defense = 0, speed = 0 } = { ...stats }
         return (
             <View style={styles.containerStats}>
                 <Text style={styles.titleCardInfo}>  {'Estadisticas'} </Text>
@@ -80,8 +92,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         )
     }
 
-    renderEvolution() {
-        const { pokemon: { line_evolution = [] } = {} } = { ...this.state }
+    const renderEvolution = () => {
+        const { line_evolution = [] } = { ...pokemon }
         return (
             <View style={styles.containerEvolution}>
                 <Text style={styles.titleCardInfo}>
@@ -94,8 +106,8 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         )
     }
 
-    renderAbility() {
-        const { pokemon: { abilities = {} } = {} } = { ...this.state }
+    const renderAbility = () => {
+        const { abilities = [] } = { ...pokemon }
         return (
             <View style={styles.containerAbility}>
                 <Text style={styles.titleCardInfo}> {'Habilidad'} </Text>
@@ -110,15 +122,7 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         )
     }
 
-    selectChip(type) {
-        const context = {
-            Informacion: this.renderInformation(),
-            Evolucion: this.renderEvolution()
-        }
-        return context[type] || context['Informacion']
-    }
-
-    renderChipSprites() {
+    const renderChipSprites = () => {
         const { options = {} } = { ...Chip }
         return (
             <View style={styles.chipContainer}>
@@ -131,15 +135,10 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
         )
     }
 
-    renderFailInternet() {
-        return (
-            <Fail_Internet />
-        )
-    }
-
-    renderPkmn() {
-        const { idDex = '006', types: [pokemonTypes] = {}, sprites = {}, weight = '', height = '', dex_entry: { classification = {} } = {} } = this.state.pokemon
-        const { typeOneUrlSprite = '', typeTwoUrlSprite = '' } = pokemonTypes
+    const renderPkmn = () => {
+        const { idDex = 0, sprites = {}, weight = '', height = '', dex_entry: { classification = {} } = {} } = { ...pokemon }
+        const { typeOneUrlSprite = '', typeTwoUrlSprite = '' } = { ...pokemonTypes }
+        const { male: male_sprite = '' } = { ...sprites }
         return (
             <View style={styles.containerPkmn}>
                 <View style={styles.containerPkmnInfo}>
@@ -159,40 +158,33 @@ export default class PokemonDetail extends Component<PkmnDetailProps, PkmnDetail
                 </View>
                 {sprites ?
                     <ImageBackground source={require('./../../Assets/images/BG_Holder_Pkmn_W.png')} style={styles.spriteContainer}>
-                        <Image style={styles.sprite} source={{ uri: sprites.male }} />
+                        <Image style={styles.sprite} source={{ uri: male_sprite }} />
                     </ImageBackground> :
                     <Image style={styles.sprite} source={require('./../../Assets/images/Icon_Pokedex.png')} />
                 }
             </View>
         )
     }
-
-    render() {
-        const { colortype, pokemon, loaded } = { ...this.state }
-        if (pokemon === undefined) {
-            return this.renderFailInternet()
-        }
-        if (!loaded) {
-            return this.renderLoadingView()
-        }
-        return (
-            <View style={styles.background} >
-                <NavBarSimple contentCenter={this.renderMiddle()} />
-                <View style={styles.content}>
-                    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.contentPokemon} >
-                        <ScrollView contentContainerStyle={styles.scrollContainer}>
+    return (
+        <View style={styles.background} >
+            <NavBarSimple contentCenter={renderMiddle()} />
+            {renderLoadingView()}
+            {renderFailInternet()}
+            <View style={styles.content}>
+                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={colortype} style={styles.contentPokemon} >
+                    <ScrollView contentContainerStyle={styles.scrollContainer}>
+                        {!!pokemon &&
                             <View>
-                                {this.renderInformation()}
-                                {this.renderStats()}
-                                {this.renderEvolution()}
-                                {this.renderAbility()}
-                            </View>
-                        </ScrollView>
-                        {this.renderChipSprites()}
-                        {this.renderPkmn()}
-                    </LinearGradient >
-                </View>
-            </View >
-        )
-    }
+                                {renderInformation()}
+                                {renderStats()}
+                                {renderEvolution()}
+                                {renderAbility()}
+                            </View>}
+                    </ScrollView>
+                    {renderChipSprites()}
+                    {renderPkmn()}
+                </LinearGradient >
+            </View>
+        </View >
+    )
 }
