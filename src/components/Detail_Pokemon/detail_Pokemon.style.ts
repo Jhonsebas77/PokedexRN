@@ -4,11 +4,11 @@ const { width, height } = Dimensions.get('window')
 
 export default {
     sprite: {
-        width: 200,
+        width: isAndroidWNotch ? 220 : 200,
         height: 200
     },
     spriteContainer: {
-        width: 200,
+        width: isAndroidWNotch ? 220 : 200,
         height: 200
     },
     title: {
@@ -20,20 +20,9 @@ export default {
             fontSize: isAndroidWNotch ? 30 : 20
         }
     },
-    titleCardInfo: {
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        paddingTop: 10
-    },
     titleId: {
         color: 'white',
         fontSize: 14
-    },
-    loading: {
-        width: 356,
-        height: 540,
-        borderRadius: 30
     },
     contentPokemon: {
         width: width,
@@ -54,7 +43,7 @@ export default {
         justifyContent: 'space-between'
     },
     type: {
-        width: 50,
+        width: isAndroidWNotch ? 55 : 50,
         height: 50,
         borderRadius: 10
     },
@@ -62,8 +51,8 @@ export default {
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
         width: 350,
         height: 200,
-        borderBottomRightRadius: 100,
-        borderTopRightRadius: 100,
+        borderBottomRightRadius: isAndroidWNotch ? 120 : 100,
+        borderTopRightRadius: isAndroidWNotch ? 120 : 100,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
@@ -84,68 +73,9 @@ export default {
         alignItems: 'center',
         justifyContent: 'center'
     },
-    scrollContainer: {
-        alignItems: 'center',
-        paddingTop: 10
-    },
     titleInfo: {
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold'
-    },
-    textStats: {
-        color: 'white',
-        textAlign: 'center',
-        paddingVertical: 10,
-        paddingHorizontal: 5
-    },
-    textContainerColumnStats: {
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
-    containerStats: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        width: 340,
-        borderRadius: 20,
-        marginHorizontal: 30,
-        marginTop: 10
-    },
-    containerEvolution: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        width: 340,
-        borderRadius: 20,
-        marginHorizontal: 30,
-        marginTop: 10,
-        paddingBottom: 20
-    },
-    containerEvolutionLine: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        paddingTop: 10
-    },
-    containerAbility: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        width: 340,
-        borderRadius: 20,
-        marginHorizontal: 30,
-        marginTop: 10
-    },
-    containerInfoPkmn: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        width: 340,
-        borderRadius: 20,
-        marginHorizontal: 30,
-        alignItems: 'center',
-        paddingTop: 5
-    },
-    contentFailInternet: {
-        flex: 1,
-        justifyContent: 'space-around',
-        flexDirection: 'column',
-        alignItems: 'center'
-    },
-    failInternet: {
-        width: width,
-        height: height
     }
 }

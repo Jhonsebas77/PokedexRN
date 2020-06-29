@@ -3,8 +3,8 @@ export default {
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
         width: 340,
         borderRadius: 20,
-        marginHorizontal: 30,
-        marginTop: 10
+        marginHorizontal: 10,
+        marginTop: 50
     },
     titleCardInfo: {
         color: 'white',
