@@ -60,5 +60,35 @@
             "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png",
             "iconNoPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png"
         }
+    ],
+    "pokemon_detail": [
+        {
+            "title": "Informacion",
+            "id":"1",
+            "action":"Pokemon",
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_Press.png",
+            "iconNoPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Pok_Round_noPress.png"
+        },
+        {
+            "title": "Estadisticas",
+            "id":"2",
+            "action":"Items",
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_Press.png",
+            "iconNoPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Bag_Round_noPress.png"
+        },
+        {
+            "title": "Evolucion",
+            "id":"3",
+            "action":"Moves",
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png",
+            "iconNoPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png"
+        },
+        {
+            "title": "Habilidades",
+            "id":"4",
+            "action":"More",
+            "iconPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_Press.png",
+            "iconNoPress": "https://pokedex-jsob.s3.us-east-2.amazonaws.com/UI/Menu_Item/Icon_Move_Round_noPress.png"
+        }
     ]
 }
