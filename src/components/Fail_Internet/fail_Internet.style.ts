@@ -1,3 +1,4 @@
+import { Colors } from './../../Helpers/Colors'
 export default {
     title: {
         color: 'white',
@@ -15,6 +16,7 @@ export default {
         flexDirection: 'column',
         alignItems: 'center',
         alignContent: 'center',
-        marginTop: 100
+        marginTop: 100,
+        backgroundColor: Colors.redPokedex
     }
 }

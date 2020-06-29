@@ -1,19 +1,17 @@
 import { Dimensions } from 'react-native'
 const { width, height } = Dimensions.get('window')
-import { isAndroidWNotch } from './../../Helpers/Constant'
+import { Colors } from './../../Helpers/Colors'
 
 export default {
     loading: {
         width: width,
-        height: height
+        height: height,
+        backgroundColor: Colors.redPokedex
     },
     title: {
         color: 'white',
-        fontWeight: 'bold',
-        alignSelf: 'center',
-        android: {
-            fontSize: isAndroidWNotch ? 24 : 20
-        }
+        fontSize: 30,
+        fontWeight: 'bold'
     },
     contentTitle: {
         alignItems: 'center'

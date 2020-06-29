@@ -58,7 +58,7 @@ export default function List_Pokemon() {
 
     return (
         <View style={styles.loading} >
-            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
+            <NavBarSimple contentCenter={renderMiddle()} />
             {renderLoadingView()}
             {renderFailInternet()}
             <View style={styles.contentItemPokemon}>

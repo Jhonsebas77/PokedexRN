@@ -48,7 +48,7 @@ export default function List_Move() {
 
     return (
         <View style={styles.loading} >
-            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
+            <NavBarSimple contentCenter={renderMiddle()} />
             {renderLoadingView()}
             {renderFailInternet()}
             <View>

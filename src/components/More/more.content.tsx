@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Text, View, TouchableOpacity, Switch } from 'react-native'
 import { ThemeContext } from './../../Helpers/Theme/theme.context'
 import { getComponentStyle } from '../../Helpers/Stylus'
-import MenuItem from '../MenuItem'
+import More_Item from './More_Item'
 import { Actions } from 'react-native-router-flux'
 import _ from '../../Helpers/Utilities'
 import NavBarSimple from '../NavBar/Simple'
@@ -20,14 +20,12 @@ export default function More() {
     }
     const renderMiddle = () => {
         return (
-            <View style={styles.contentTitle}>
-                <Text style={styles.title}>{'MÁS'}</Text>
-            </View>
+            <Text style={styles.title}>{'MÁS'}</Text>
         )
     }
     return (
         <View style={styles.loading} >
-            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
+            <NavBarSimple contentCenter={renderMiddle()} />
             <View style={styles.containerDarkMode}>
                 <Text style={{ color: textColor }}>{'Modo Oscuro '}</Text>
                 <Switch style={styles.switch} trackColor={{ true: trackColorOn, false: trackColorOff }}
@@ -35,7 +33,7 @@ export default function More() {
             </View>
             <View style={styles.contentItemPokemon}>
                 <TouchableOpacity onPress={() => Actions.Types()}>
-                    <MenuItem name={'Ventajas de Tipos'} />
+                    <More_Item name={'Ventajas de Tipos'} />
                 </TouchableOpacity>
             </View>
         </View>

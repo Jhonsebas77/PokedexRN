@@ -1,10 +1,12 @@
 import { Dimensions } from 'react-native'
+import { Colors } from './../../Helpers/Colors'
 const { width, height } = Dimensions.get('window')
 
 export default {
     loading: {
         width: width,
-        height: height
+        height: height,
+        backgroundColor: Colors.redPokedex
     },
     title: {
         color: 'white',
