@@ -1,7 +1,6 @@
 export default {
     btnContainer: {
-        alignItems: 'center',
-        marginBottom: 25
+        alignItems: 'center'
     },
     sprite: {
         width: 20,

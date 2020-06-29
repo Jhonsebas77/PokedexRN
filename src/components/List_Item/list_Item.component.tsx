@@ -51,7 +51,7 @@ export default function Item() {
     }
     return (
         <View style={styles.loading} >
-            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
+            <NavBarSimple contentCenter={renderMiddle()} />
             {renderLoadingView()}
             {renderFailInternet()}
             <View style={styles.container}>

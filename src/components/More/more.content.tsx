@@ -20,14 +20,12 @@ export default function More() {
     }
     const renderMiddle = () => {
         return (
-            <View style={styles.contentTitle}>
-                <Text style={styles.title}>{'MÁS'}</Text>
-            </View>
+            <Text style={styles.title}>{'MÁS'}</Text>
         )
     }
     return (
         <View style={styles.loading} >
-            <NavBarSimple contentCenter={renderMiddle()} isHome={true} />
+            <NavBarSimple contentCenter={renderMiddle()} />
             <View style={styles.containerDarkMode}>
                 <Text style={{ color: textColor }}>{'Modo Oscuro '}</Text>
                 <Switch style={styles.switch} trackColor={{ true: trackColorOn, false: trackColorOff }}

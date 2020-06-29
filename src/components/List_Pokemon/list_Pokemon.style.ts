@@ -6,7 +6,8 @@ const { width, height } = Dimensions.get('window')
 export default {
     loading: {
         width: width,
-        height: isIphoneWNotch ? height - 110 : height
+        height: isIphoneWNotch ? height - 110 : height,
+        backgroundColor: Colors.redPokedex
     },
     title: {
         color: Colors.white,
